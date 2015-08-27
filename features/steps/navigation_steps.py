@@ -3,13 +3,16 @@ from nose.tools import assert_true
 from webium.driver import get_driver
 
 from pages import (
-    MainPage, LoginPage)
+    MainPage, LoginPage, ManageProductsPage, CreateProductPage,ViewProductPage)
 
 use_step_matcher("re")
 
 PAGES_MAP = {
     'Main': MainPage,
     'Login': LoginPage,
+    'Manage Products': ManageProductsPage,
+    'Create Product': CreateProductPage,
+    'View Product': ViewProductPage
 }
 
 

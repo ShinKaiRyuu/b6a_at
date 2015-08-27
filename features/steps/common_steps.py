@@ -7,7 +7,8 @@ use_step_matcher("re")
 def step_impl(context, element_name, element_type):
     types_map = {
         'link': 'link',
-        'button': 'btn'
+        'button': 'btn',
+        'product': 'product'
     }
     element = '_'.join([element_name.lower(), types_map[element_type]])
     getattr(context.page, element).click()

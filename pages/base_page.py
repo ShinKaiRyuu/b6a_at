@@ -1,5 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from webium import BasePage as WebiumBasePage, Find
+from selenium.webdriver.common.by import By
 
 
 class BasePage(WebiumBasePage):
@@ -9,6 +10,9 @@ class BasePage(WebiumBasePage):
     login_link = Find(value='a[href*=login]')
     logout_css = 'a[href*=logout]'
     logout_link = Find(value=logout_css)
+
+    manage_site_link = Find(value='li.dropdown:nth-child(1) > a:nth-child(1)')
+    manage_products_link = Find(value='#w0 > li:nth-child(4) > a:nth-child(1)')
 
     def clear_send_keys(self, element_name, kwargs):
         value = kwargs.get(element_name)
