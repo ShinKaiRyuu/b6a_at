@@ -1,7 +1,9 @@
 from datetime import datetime
 from sys import platform
 from webium.driver import get_driver
+from helpers.app_helpers import APP_URL
 from helpers.driver_helpers import get_updated_driver
+from helpers import app_helpers
 
 
 def before_all(context):
@@ -13,7 +15,8 @@ def before_all(context):
         context.close_after_all = False
 
     context.driver = get_updated_driver()
-    context.app_url = 'http://b6a.scoreboard-qa.selfip.com'
+    context.app_url = APP_URL
+    context.created_items = {}
 
 
 def before_scenario(context, scenario):
@@ -25,6 +28,7 @@ def after_scenario(context, scenario):
         if getattr(context, 'save_screenshots', True):
             take_screenshot(scenario, context.step_name)
     get_driver().delete_all_cookies()
+    delete_created_items(context)
 
 
 def before_step(context, step):
@@ -46,3 +50,14 @@ def take_screenshot(scenario, step_name):
     dir_name = './test-results/screenshots'
     get_driver().get_screenshot_as_file('{0}/{1}__{2}__{3}__{4}.png'.format(
         dir_name, datetime_part, feature_filename, scenario_name, step_name))
+
+
+def delete_created_items(context):
+    delete_map = {
+        'users': app_helpers.delete_user,
+    }
+
+    if context.created_items:
+        for item_type, ids in context.created_items.items():
+            for _id in ids:
+                delete_map[item_type](_id)

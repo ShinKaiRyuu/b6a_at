@@ -2,13 +2,13 @@ Feature: Products
   # Test all stuff connected with products(add,view,update,delete,sort,etc...)
 
   Scenario: Open products page
-    Given I am logged in as administrator
+    Given I am logged in as Administrator
     When I click on Manage_Site link
     When I click on Manage_Products link
     Then I want to see Manage Products page
 
   Scenario: Create new product
-    Given I am logged in as administrator
+    Given I am logged in as Administrator
     When I click on Manage_Site link
     When I click on Manage_Products link
     Then I want to see Manage Products page
@@ -25,7 +25,7 @@ Feature: Products
 #   # TODO write products sorting scenario
 #
   Scenario: View product
-    Given I am logged in as administrator
+    Given I am logged in as Administrator
     When I click on Manage_Site link
     When I click on Manage_Products link
     Then I want to see Manage Products page
@@ -35,7 +35,7 @@ Feature: Products
 
 #
   Scenario: Update product
-      Given I am logged in as administrator
+      Given I am logged in as Administrator
       When I click on Manage_Site link
       When I click on Manage_Products link
       Then I want to see Manage Products page

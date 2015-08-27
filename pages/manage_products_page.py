@@ -8,11 +8,11 @@ class ManageProductsPage(BasePage):
     url_path = '/admin/goods/index'
 
     # sorting
-    id_link = Find(value='a[data-sort*=id')
-    title_link = Find(value='a[data-sort*=title')
-    slug_link = Find(value='a[data-sort*=slug')
-    description_link = Find(value='a[data-sort*=description')
-    price_link = Find(value='a[data-sort*=price')
+    id_link = Find(value='a[data-sort*=id]')
+    title_link = Find(value='a[data-sort*=title]')
+    slug_link = Find(value='a[data-sort*=slug]')
+    description_link = Find(value='a[data-sort*=description]')
+    price_link = Find(value='a[data-sort*=price]')
 
     # buttons
     create_new_product_btn = Find(value='#main-container > div > div.col-xs-10 > div > p > a')
