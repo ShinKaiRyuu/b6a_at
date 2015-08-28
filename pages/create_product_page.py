@@ -1,8 +1,8 @@
 import time
+
+from webium import Find
+
 from pages.base_page import BasePage
-from webium import Find, Finds
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 class CreateProductPage(BasePage):
@@ -27,6 +27,3 @@ class CreateProductPage(BasePage):
             self.enabled.click()
         self.create.click()
         time.sleep(5)
-
-
-

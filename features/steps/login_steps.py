@@ -23,6 +23,7 @@ def step_impl(context):
         Given I am on Main page
     ''')
     update_driver_cookies(context.driver, ADMIN_CREDENTIALS)
+    context.driver.refresh()
 
 
 @then("I want to see that I am (?P<login_status>.+)")

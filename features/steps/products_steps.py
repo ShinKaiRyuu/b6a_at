@@ -1,9 +1,7 @@
 from behave import *
-from collections import OrderedDict
 from nose.tools import assert_equal, assert_in
-from helpers.data_helpers import make_ordered_dict, modify_value
-from webium import Find, Finds
-from selenium.webdriver.common.by import By
+
+from helpers.data_helpers import make_ordered_dict
 
 use_step_matcher("re")
 
@@ -22,7 +20,7 @@ def step_impl(context, title, slug, description, price, enabled):
 def step_impl(context, title, slug, description, price, enabled):
     keys = ['title', 'slug', 'description', 'price', 'enabled']
     kwargs = make_ordered_dict(keys, locals())
-    #TODO change asserting (format text)
+    # TODO change asserting (format text)
     assert_equal(context.page.get_product_details
                  (context.page.title.text,
                   context.page.slug.text,

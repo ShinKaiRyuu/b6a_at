@@ -1,18 +1,19 @@
-from pages.base_page import BasePage
-from webium import Find, Finds
-from selenium.webdriver.common.by import By
 from collections import OrderedDict
-from helpers.data_helpers import make_ordered_dict, modify_value
+
+from webium import Find
+
+from pages.base_page import BasePage
+from helpers.data_helpers import make_ordered_dict
 
 
 class ViewProductPage(BasePage):
     # url_path = '/admin/goods/create'
     url_path = 'admin/goods/view/5'
 
-    #links
+    # links
     manage_products_menu_link = Find(value=".nav-pills > li:nth-child(4) > a:nth-child(1)")
 
-    #table data
+    # table data
     title = Find(value=".table > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2)")
     slug = Find(value=".table > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)")
     description = Find(value=".table > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(2)")
