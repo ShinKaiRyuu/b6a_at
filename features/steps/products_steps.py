@@ -1,5 +1,8 @@
 from behave import *
 from nose.tools import assert_equal, assert_in, assert_true
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
 
 from helpers.data_helpers import make_ordered_dict
 
@@ -37,9 +40,11 @@ def step_impl(context):
     assert_true(len(products) >= 1)
 
 
-@given("I add one random product")
+@then("I want to see dialog box")
 def step_impl(context):
-    """
-    :type context behave.runner.Context
-    """
-    pass
+    WebDriverWait(context.driver , 3).until(EC.alert_is_present(),
+                                   'Timed out waiting for PA creation ' +
+                                   'confirmation popup to appear.')
+    time.sleep(2)
+    alert = context.driver.switch_to_alert()
+    alert.dismiss()

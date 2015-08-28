@@ -10,7 +10,7 @@ Feature: Manage products module
 
   Scenario: Create new product
     Given I am logged in as Administrator
-    Given I am on Manage Products page
+    And I am on Manage Products page
     When I click on Create new product button
     Then I want to see Create Product page
     When I create new product with Title1, Slug1, Description, 1025, true
@@ -30,30 +30,28 @@ Feature: Manage products module
 #   When I click on ID link
 #   Then I want to see sorted by *ID* *ascent* products
 
+  @wip
   Scenario: View product
     Given I am logged in as Administrator
-    When I click on Manage Site link
-    When I click on Manage Products link
-    Then I want to see Manage Products page
+    And I am on Manage Products page
     When I click on view link
     Then I want to see View Product page
    #And I want to see selected product details
 
-#
+  @wip
   Scenario: Update product
     Given I am logged in as Administrator
-    When I click on Manage_Site link
-    When I click on Manage_Products link
-    Then I want to see Manage Products page
+    And I am on Manage Products page
     When I click on update link
     Then I want to see Create Product page
-#
+
+  @wip
   Scenario: Delete product
-     Given I am logged in as Administrator
-     Given I add one random product
-     Then I want to see this product
-     When I click on delete button for this product
-#   Then I want to see dialog box
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    When I click on delete link
+    Then I want to see dialog box
+#    Given created product
 #   When I click no
 #   Then nothing changed
 #   When I click on delete button for this product

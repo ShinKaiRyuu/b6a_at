@@ -94,7 +94,6 @@ def delete_user(user_id):
 def create_product(product_data):
     s = _get_admin_session()
     product_id = _create_product_record(s, product_data)
-    _update_product_record(s, product_id, product_data)
     return product_id
 
 
@@ -114,20 +113,3 @@ def _create_product_record(session, product_data):
     assert 'Product has been created' in r.content.decode('utf-8')
     product_id = r.url.split('/')[-1]
     return product_id
-
-
-def _update_product_record(session, product_id, product_data):
-    params = {'id': product_id}
-    url = _get_url(CreateProductPage)
-    r = session.get(url, params=params)
-
-    payload = {
-        '_csrf': _get_csrf_token(r),
-        'Product[title]': product_data['title'],
-        'Product[slug]': product_data['slug'],
-        'Product[description]': product_data['description'],
-        'Product[price]': product_data['price'],
-        'Product[enabled]': product_data['enabled'],
-    }
-    r = session.post(url, params=params, data=payload)
-    assert 'Product details have been updated' in r.content.decode('utf-8')

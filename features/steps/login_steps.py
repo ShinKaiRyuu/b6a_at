@@ -7,7 +7,6 @@ from helpers.app_helpers import ADMIN_CREDENTIALS
 use_step_matcher("re")
 
 
-
 @when("I login with username '(?P<username>.+)' and password '(?P<password>.+)'")
 def step_impl(context, username, password):
     credentials = {
