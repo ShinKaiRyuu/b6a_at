@@ -6,3 +6,4 @@ from .update_user_page import UpdateUserPage
 from .create_product_page import CreateProductPage
 from .view_product_page import ViewProductPage
 from .manage_products_page import ManageProductsPage
+from .manage_partners_page import ManagePartnersPage

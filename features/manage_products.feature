@@ -1,4 +1,4 @@
-Feature: Products products module
+Feature: Manage products module
   # Test all stuff connected with products(add,view,update,delete,sort,etc...)
 
   Scenario: Open products page
@@ -6,6 +6,7 @@ Feature: Products products module
     When I click on Manage Site link
     When I click on Manage Products link
     Then I want to see Manage Products page
+    And I want to see all products
 
   Scenario: Create new product
     Given I am logged in as Administrator

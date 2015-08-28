@@ -1,5 +1,5 @@
 from behave import *
-from nose.tools import assert_equal, assert_in
+from nose.tools import assert_equal, assert_in, assert_true
 
 from helpers.data_helpers import make_ordered_dict
 
@@ -37,3 +37,9 @@ def step_impl(context, title):
     title = title
     table_text = context.page.table.text
     assert_in(title, table_text)
+
+
+@step("I want to see all products")
+def step_impl(context):
+    products = context.page.get_products()
+    assert_true(len(products) >= 1)
