@@ -21,15 +21,7 @@ def step_impl(context, title, slug, description, price, enabled):
     keys = ['title', 'slug', 'description', 'price', 'enabled']
     kwargs = make_ordered_dict(keys, locals())
     # TODO change asserting (format text)
-    assert_equal(context.page.get_product_details
-                 (context.page.title.text,
-                  context.page.slug.text,
-                  context.page.description.text,
-                  context.page.price.text,
-                  context.page.enabled.text)
-                 ,
-                 kwargs
-                 )
+    assert_equal(context.page.get_product_details(), kwargs)
 
 
 @then("I want to see product with (?P<title>.+) in list")
@@ -43,3 +35,11 @@ def step_impl(context, title):
 def step_impl(context):
     products = context.page.get_products()
     assert_true(len(products) >= 1)
+
+
+@given("I add one random product")
+def step_impl(context):
+    """
+    :type context behave.runner.Context
+    """
+    pass

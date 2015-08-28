@@ -10,9 +10,7 @@ Feature: Manage products module
 
   Scenario: Create new product
     Given I am logged in as Administrator
-    When I click on Manage Site link
-    When I click on Manage Products link
-    Then I want to see Manage Products page
+    Given I am on Manage Products page
     When I click on Create new product button
     Then I want to see Create Product page
     When I create new product with Title1, Slug1, Description, 1025, true
@@ -23,12 +21,19 @@ Feature: Manage products module
     Then I want to see product with Title1 in list
 
 #  Scenario: Sorting products
-#   # TODO write products sorting scenario
-#
+#   Given I am logged in as Administrator
+#   Given I am on Manage Products page
+#   When I click on ID link
+#   Then I want to see nothing changed
+#   When I click on ID link
+#   Then I want to see sorted by *ID* *descent* products
+#   When I click on ID link
+#   Then I want to see sorted by *ID* *ascent* products
+
   Scenario: View product
     Given I am logged in as Administrator
-    When I click on Manage_Site link
-    When I click on Manage_Products link
+    When I click on Manage Site link
+    When I click on Manage Products link
     Then I want to see Manage Products page
     When I click on view link
     Then I want to see View Product page
@@ -36,12 +41,22 @@ Feature: Manage products module
 
 #
   Scenario: Update product
-      Given I am logged in as Administrator
-      When I click on Manage_Site link
-      When I click on Manage_Products link
-      Then I want to see Manage Products page
-      When I click on update link
-      Then I want to see Create Product page
+    Given I am logged in as Administrator
+    When I click on Manage_Site link
+    When I click on Manage_Products link
+    Then I want to see Manage Products page
+    When I click on update link
+    Then I want to see Create Product page
 #
-#  Scenario: Delete product
-#   #TODO write delete product scenario
+  Scenario: Delete product
+     Given I am logged in as Administrator
+     Given I add one random product
+     Then I want to see this product
+     When I click on delete button for this product
+#   Then I want to see dialog box
+#   When I click no
+#   Then nothing changed
+#   When I click on delete button for this product
+#   Then I want to see dialog box
+#   When I click yes
+#   Then I want to see this product was deleted

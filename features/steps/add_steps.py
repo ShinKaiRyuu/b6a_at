@@ -38,3 +38,29 @@ def step_impl(context):
 
     import time
     time.sleep(5)
+
+
+def _create_product_data():
+    faker = Faker()
+    return {
+        'title': faker.company(),
+        'slug': faker.pystr(max_chars=10),
+        'description': faker.pystr(max_chars=20),
+        'price': faker.pyint(),
+        'enabled': random.getrandbits(1),
+
+    }
+
+
+@given("created product")
+def step_impl(context):
+    product_data = _create_product_data()
+    product_id = app_helpers.create_product(product_data)
+
+    context.created_items['products'] = context.created_items.get('products', [])
+    context.created_items['products'].append(product_id)
+
+    print(context.created_items)
+
+    import time
+    time.sleep(5)

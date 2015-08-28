@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from webium import Finds, Find
 
-from .base_page import BasePage
+from pages.base_page import BasePage
 
 USER_COLUMNS_MAP = {
     '1': 'username',

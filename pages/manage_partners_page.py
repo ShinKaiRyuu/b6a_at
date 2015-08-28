@@ -18,10 +18,10 @@ class ManagePartnersPage(BasePage):
     url_path = 'admin/partner/index'
 
     # sorting
-    order_link = Find(value='//a[text()="Order"]')
-    id_link = Find(value='//a[text()="ID"]')
-    name_link = Find(value='//a[text()="Name"]')
-    star_name_link = Find(value='//a[text()="Star Name"]')
+    order_link = Find(by=By.XPATH, value='//a[text()="Order"]')
+    id_link = Find(by=By.XPATH, value='//a[text()="ID"]')
+    name_link = Find(by=By.XPATH, value='//a[text()="Name"]')
+    star_name_link = Find(by=By.XPATH, value='//a[text()="Star Name"]')
 
     # filters
     order_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[sort_order]"]')

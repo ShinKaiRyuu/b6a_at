@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from webium import Find
 
 from pages.base_page import BasePage
@@ -20,8 +18,12 @@ class ViewProductPage(BasePage):
     price = Find(value=".table > tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2)")
     enabled = Find(value=".table > tbody:nth-child(1) > tr:nth-child(6) > td:nth-child(2)")
 
-    def get_product_details(self, title, slug, description, price, enabled):
-        product_details = OrderedDict()
+    def get_product_details(self):
+        title = self.title.text
+        slug = self.slug.text
+        description = self.description.text
+        price = self.price.text
+        enabled = self.enabled.text
         keys = ['title', 'slug', 'description', 'price', 'enabled']
         kwargs = make_ordered_dict(keys, locals())
         return kwargs
