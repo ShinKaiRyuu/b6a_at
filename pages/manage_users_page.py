@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from webium import Finds, Find
+from helpers.data_helpers import make_ordered_dict
 
 from pages.base_page import BasePage
 
@@ -22,15 +23,17 @@ class ManageUsersPage(BasePage):
     user_column_xpath = '//tr[@data-key="{}"]/td[{}]'
     user_column_links_xpath = '//tr[@data-key="{}"]/td/a[@title]'
     user_records = Finds(by=By.XPATH, value=user_record_xpath)
+    # TODO change selector
+    success_message = Find(value='#w4')
 
     def get_users(self):
         users = [
             {
                 column_name: self._get_user_column_value(data_key, column_name)
                 for column_name in USER_COLUMNS_MAP.values()
-            }
+                }
             for data_key in self._get_data_keys()
-        ]
+            ]
 
         return users
 
@@ -51,8 +54,25 @@ class ManageUsersPage(BasePage):
                     link.get_attribute('title').lower(): link.get_attribute('href')
                 }
                 for link in links
-            ]
+                ]
 
         else:
             column_xpath = self.user_column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text
+
+    def delete_user(self, context):
+        for user in self.get_users():
+            if user['data_key'] == str(context.user_id):
+                username = user['username']
+                email = user['email']
+                registration_ip = user['registration_ip']
+                registration_time = user['registration_time']
+                confirmation = user['confirmation']
+                # enabled = product['enabled']
+                link = next(b['delete'] for b in user['links'] if 'delete' in b)
+        link = link.replace(context.app_url, '')
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
+        delete_link.click()
+        keys = ['username', 'email', 'registration_ip', 'registration_time', 'confirmation']
+        kwargs = make_ordered_dict(keys, locals())
+        return kwargs

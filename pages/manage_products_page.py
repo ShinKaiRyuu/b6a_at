@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from webium import Finds, Find
 
 from pages.base_page import BasePage
+from helpers.data_helpers import make_ordered_dict
 
 PRODUCT_COLUMNS_MAP = {
     '1': '#',
@@ -71,3 +72,43 @@ class ManageProductsPage(BasePage):
         else:
             column_xpath = self.product_column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text
+
+    def view_product(self, context, number):
+        link = ''
+        #TODO NO ENABLED INFO IN TABLE
+        enabled = '1'
+        for product in self.get_products():
+            if product['#'] == str(number):
+                id = product['id']
+                title = product['title']
+                slug = product['slug']
+                description = product['description']
+                price = product['price']
+                # enabled = product['enabled']
+                link = next(b['view'] for b in product['links'] if 'view' in b)
+        link = link.replace(context.app_url, '')
+        view_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
+        view_link.click()
+        keys = ['title', 'slug', 'description', 'price', 'enabled']
+        kwargs = make_ordered_dict(keys, locals())
+        return kwargs
+
+    def update_product(self, context, number):
+        link = ''
+        #TODO NO ENABLED INFO IN TABLE
+        enabled = '1'
+        for product in self.get_products():
+            if product['#'] == str(number):
+                id = product['id']
+                title = product['title']
+                slug = product['slug']
+                description = product['description']
+                price = product['price']
+                # enabled = product['enabled']
+                link = next(b['update'] for b in product['links'] if 'update' in b)
+        link = link.replace(context.app_url, '')
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
+        update_link.click()
+        keys = ['title', 'slug', 'description', 'price', 'enabled']
+        kwargs = make_ordered_dict(keys, locals())
+        return kwargs

@@ -1,8 +1,10 @@
+import random
+import time
+
 from behave import *
-from nose.tools import assert_equal, assert_in, assert_true
+from nose.tools import assert_equal, assert_true
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-import time
 
 from helpers.data_helpers import make_ordered_dict
 
@@ -23,10 +25,12 @@ def step_impl(context, title, slug, description, price, enabled):
         context.product['enabled'] = '0'
 
 
-@step("I want to see  product details with new data")
+# TODO DESCRIPTION FIX
+@step("I want to see  product details")
 def step_impl(context):
     assert_equal(context.page.get_product_details(), context.product)
-    context.product[id] = context.page.id.text
+    if 'Update Products:' not in context.driver.title:
+        context.product['id'] = context.page.id.text
 
 
 @then("I want to see created product in list")
@@ -44,14 +48,28 @@ def step_impl(context):
 
 @step("I want to see all products")
 def step_impl(context):
-    products = context.page.get_products
+    products = context.page.get_products()
     assert_true(len(products) >= 1)
 
 
 # TODO make choise dismiss\accept
-@then("I want to see dialog box")
-def step_impl(context):
+@then("I want to see dialog box and click (?P<dialogbox_answer>.+)")
+def step_impl(context, dialogbox_answer):
     WebDriverWait(context.driver, 3).until(ec.alert_is_present())
-    time.sleep(2)
     alert = context.driver.switch_to_alert()
-    alert.dismiss()
+    if dialogbox_answer == "No":
+        alert.dismiss()
+    elif dialogbox_answer == "Yes":
+        alert.accept()
+
+
+@when("I view random product")
+def step_impl(context):
+    product_number = random.randint(1, len(context.page.get_products()))
+    context.product = context.page.view_product(context, product_number)
+
+
+@when("I update random product")
+def step_impl(context):
+    product_number = random.randint(1, len(context.page.get_products()))
+    context.product = context.page.update_product(context, product_number)

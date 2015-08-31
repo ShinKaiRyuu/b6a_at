@@ -27,3 +27,6 @@ class BasePage(WebiumBasePage):
     def wait_for_loading(self, seconds=180):
         wait = WebDriverWait(self._driver, seconds)
         wait.until(lambda x: self._driver.execute_script('return jQuery.active == 0') is True)
+
+    def replace_bad_elements(self, css_locator):
+        self._driver.execute_script("$('{}').remove()".format(css_locator))

@@ -13,8 +13,8 @@ data_from_table = lambda context: [
 @given("created user")
 def step_impl(context):
     user_data = create_user_data()
-    user_id = app_helpers.create_user(user_data)
-    save_item_id(user_id, 'users', context)
+    context.user_id = app_helpers.create_user(user_data)
+    save_item_id(context.user_id, 'users', context)
 
 
 @given("created product")
