@@ -27,12 +27,12 @@ def _get_logged_session(credentials):
         'login-form[password]': credentials['password']
     }
     r = s.post(url, data=payload)
-    assert '/user/logout' in r.content.decode('utf-8')
+    assert '/user/logout' in r.text
     return s
 
 
 def _get_csrf_token(response):
-    response_content = response.content.decode('utf-8')
+    response_content = response.text
     csrf_pattern = re.compile('<input type="hidden" name="_csrf" value="(.*?)">')
     return csrf_pattern.findall(response_content)[0]
 
@@ -59,7 +59,7 @@ def _create_user_record(session, user_data):
         'User[password]': user_data['password'],
     }
     r = session.post(url, data=payload)
-    assert 'User has been created' in r.content.decode('utf-8')
+    assert 'User has been created' in r.text
     user_id = r.url.split('/')[-1]
     return user_id
 
@@ -78,17 +78,21 @@ def _update_user_record(session, user_id, user_data):
         'Profile[partner_id]': user_data['partner_id'],
     }
     r = session.post(url, params=params, data=payload)
-    assert 'Profile details have been updated' in r.content.decode('utf-8')
+    assert 'Profile details have been updated' in r.text
 
 
 def delete_user(user_id):
     s = _get_admin_session()
     params = {'id': user_id}
     r = s.get(_get_url(UpdateUserPage), params=params)
+
+    if 'The requested page does not exist' in r.text:
+        return 
+    
     payload = {'_csrf': _get_csrf_token(r)}
     url = ''.join([APP_URL, '/user/admin/delete/{}'.format(user_id)])
     r = s.post(url, data=payload)
-    assert 'User has been deleted' in r.content.decode('utf-8')
+    assert 'User has been deleted' in r.text
 
 
 def create_product(product_data):
@@ -105,7 +109,7 @@ def create_product(product_data):
         'Product[enabled]': product_data['enabled'],
     }
     r = s.post(url, data=payload)
-    assert 'Product has been created' in r.content.decode('utf-8')
+    assert 'Product has been created' in r.text
     product_id = r.url.split('/')[-1]
     return product_id
 
