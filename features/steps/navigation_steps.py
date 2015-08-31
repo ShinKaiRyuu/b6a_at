@@ -2,19 +2,18 @@ from behave import *
 from nose.tools import assert_in
 from webium.driver import get_driver
 
-from pages import (
-    MainPage, LoginPage, ManageProductsPage, CreateProductPage, ViewProductPage, ManageUsersPage, ManagePartnersPage)
+import pages
 
 use_step_matcher("re")
 
 PAGES_MAP = {
-    'Main': MainPage,
-    'Login': LoginPage,
-    'Manage Products': ManageProductsPage,
-    'Create Product': CreateProductPage,
-    'View Product': ViewProductPage,
-    'Manage Users': ManageUsersPage,
-    'Manage Partners': ManagePartnersPage
+    'Main': pages.MainPage,
+    'Login': pages.LoginPage,
+    'Manage Products': pages.ManageProductsPage,
+    'Create Product': pages.CreateProductPage,
+    'View Product': pages.ViewProductPage,
+    'Manage Users': pages.ManageUsersPage,
+    'Manage Partners': pages.ManagePartnersPage,
 }
 
 

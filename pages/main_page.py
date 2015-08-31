@@ -7,9 +7,9 @@ class MainPage(BasePage):
 
     url_path = '/'
 
-    a_tag_with_text_xpath = "//a[contains(.,'{link_text}')]"
-    manage_site_link = Find(by=By.XPATH, value=a_tag_with_text_xpath.format(link_text='Manage Site'))
-    manage_users_link = Find(by=By.XPATH, value=a_tag_with_text_xpath.format(link_text='Manage Users'))
-    manage_partners_link = Find(by=By.XPATH, value=a_tag_with_text_xpath.format(link_text='Manage Partners'))
-    manage_pages_link = Find(by=By.XPATH, value=a_tag_with_text_xpath.format(link_text='Manage Pages'))
-    manage_products_link = Find(by=By.XPATH, value=a_tag_with_text_xpath.format(link_text='Manage Products'))
+    a_tag = "//a[contains(.,'{link_text}')]"
+    manage_site_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Site'))
+    manage_users_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Users'))
+    manage_partners_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Partners'))
+    manage_pages_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Pages'))
+    manage_products_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Products'))

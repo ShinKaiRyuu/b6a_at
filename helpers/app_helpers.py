@@ -93,13 +93,8 @@ def delete_user(user_id):
 
 def create_product(product_data):
     s = _get_admin_session()
-    product_id = _create_product_record(s, product_data)
-    return product_id
-
-
-def _create_product_record(session, product_data):
     url = _get_url(CreateProductPage)
-    r = session.get(url)
+    r = s.get(url)
 
     payload = {
         '_csrf': _get_csrf_token(r),
@@ -109,7 +104,11 @@ def _create_product_record(session, product_data):
         'Product[price]': product_data['price'],
         'Product[enabled]': product_data['enabled'],
     }
-    r = session.post(url, data=payload)
+    r = s.post(url, data=payload)
     assert 'Product has been created' in r.content.decode('utf-8')
     product_id = r.url.split('/')[-1]
     return product_id
+
+
+def delete_product(product_id):
+    raise NotImplementedError
