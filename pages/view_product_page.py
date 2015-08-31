@@ -12,6 +12,7 @@ class ViewProductPage(BasePage):
     manage_products_menu_link = Find(value=".nav-pills > li:nth-child(4) > a:nth-child(1)")
 
     # table data
+    id = Find(value=".table > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2)")
     title = Find(value=".table > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2)")
     slug = Find(value=".table > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)")
     description = Find(value=".table > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(2)")

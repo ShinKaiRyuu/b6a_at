@@ -12,15 +12,17 @@ class CreateProductPage(BasePage):
     # inputs
     title = Find(value="input#goods-title")
     slug = Find(value="input#goods-slug")
-    description = Find(value="div.redactor-editor")
+    description = Find(value="#goods-description")
     price = Find(value="input#goods-price")
     enabled = Find(value="input#goods-enabled")
     # buttons
     create = Find(value="button.btn-primary")
+    html = Find(value=".re-html")
 
     def create_new_product(self, enabled, **kwargs):
         self.clear_send_keys('title', kwargs)
         self.clear_send_keys('slug', kwargs)
+        self.html.click()
         self.clear_send_keys('description', kwargs)
         self.clear_send_keys('price', kwargs)
         if not enabled:

@@ -47,7 +47,6 @@ class ManageProductsPage(BasePage):
                 }
             for data_key in self._get_data_keys()
             ]
-
         return products
 
     def _get_data_keys(self):

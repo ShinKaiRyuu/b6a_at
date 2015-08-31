@@ -13,12 +13,12 @@ Feature: Manage products module
     And I am on Manage Products page
     When I click on Create new product button
     Then I want to see Create Product page
-    When I create new product with Title1, Slug1, Description, 1025, true
+    When I create new product with UnicTitle, UnicSlug, UnicDescription, 1025.00, true
     Then I want to see View Product page
-    And I want to see  product details with Title1, Slug1, Description, 1025, true
+    And I want to see  product details with new data
     When I click on Manage products menu link
     Then I want to see Manage Products page
-    Then I want to see product with Title1 in list
+    Then I want to see created product in list
 
 #  Scenario: Sorting products
 #   Given I am logged in as Administrator
