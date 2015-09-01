@@ -86,12 +86,6 @@ class ManageUsersPage(BasePage):
         block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id), context=self)
         block_link.click()
 
-    def unblock_user(self, context):
-        self.filter_user('username_filter', context.user_data['username'])
-        unblock_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id),
-                            context=self)
-        unblock_link.click()
-
     def filter_user(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
         filter_element.clear()

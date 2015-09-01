@@ -34,3 +34,13 @@ def step_impl(context, login_status):
 @then('I want to see error message "(?P<error_message>.+)"')
 def step_impl(context, error_message):
     assert_in(error_message, context.page.get_error_messages())
+
+
+@then("I want to login with these user")
+def step_impl(context):
+    context.execute_steps('''
+            Given I am on Main page
+            When I click on Login link
+            Then I want to see Login page
+            When I login with username '{}' and password '{}'
+            '''.format(context.user_data['username'], context.user_data['password']))

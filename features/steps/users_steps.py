@@ -101,20 +101,7 @@ def step_impl(context):
 
 
 @when("I block created user")
+@when("I unblock created user")
 def step_impl(context):
     context.page.block_user(context)
 
-
-@when("I unblock created user")
-def step_impl(context):
-    context.page.unblock_user(context)
-
-
-@then("I want to login with these user")
-def step_impl(context):
-    context.execute_steps('''
-            Given I am on Main page
-            When I click on Login link
-            Then I want to see Login page
-            When I login with username '{}' and password '{}'
-            '''.format(context.user_data['username'], context.user_data['password']))

@@ -66,6 +66,7 @@ Feature: Manage users module
 #  Scenario: Update user. Delete user
 #
 #  Scenario: Update user. Block user
+
   @wip @delete_user
   Scenario: Delete user
     Given created user
