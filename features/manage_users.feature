@@ -7,15 +7,50 @@ Feature: Manage users module
     Then I want to see Manage Users page
     And I want to see all users
 
-  @wip
-  Scenario: View users. Filter records
+  @wip @filter_users
+  Scenario: View users. Filter records by Username
     Given I am logged in as Administrator
     And I am on Manage Users page
+    Then I write admin in username Filter
+    Then I want to see filtered users
+
+  @wip @filter_users
+  Scenario: View users. Filter records by email
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    Then I write admin@nomail.com in email Filter
+    Then I want to see filtered users
+
+  @wip @filter_users
+  Scenario: View users. Filter records by registration ip
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    Then I write ::1 in registration_ip Filter
+    Then I want to see filtered users
+
+  @wip @filter_users
+  Scenario: View users. Filter records by registration date
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    Then I write 2015-08-07 in registration_at Filter
+    Then I want to see filtered users
 
 
 #  Scenario: View users. Sort records
 #
-#  Scenario: Create new user
+  @wip @create_user
+  Scenario: Create new user
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    When I click on Create link
+    And I click on Create User link
+    Then I want to see Create User page
+    When I create new user
+    Then I want to see Update User Account Details page
+    And I am on Manage Users page
+    Then I want to see created user in list
+    When I click on Logout link
+    Then I want to be able to login created user
 
   @now
   Scenario: Update user. Update account details
@@ -31,7 +66,7 @@ Feature: Manage users module
 #  Scenario: Update user. Delete user
 #
 #  Scenario: Update user. Block user
-#
+  @wip @delete_users
   Scenario: Delete user
     Given created user
     Given I am logged in as Administrator

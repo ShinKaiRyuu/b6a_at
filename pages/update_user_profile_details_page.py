@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
 
 
-class UpdateUserPage(BasePage):
+class UpdateUserProfileDetailsPage(BasePage):
     url_path = '/user/admin/update-profile'

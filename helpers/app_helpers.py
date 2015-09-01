@@ -1,6 +1,9 @@
 import re
+
 import requests
-from pages import LoginPage, CreateUserPage, UpdateUserPage, CreateProductPage
+
+from pages import LoginPage, CreateUserPage, UpdateUserAccountDetailsPage, UpdateUserProfileDetailsPage, \
+    CreateProductPage
 
 APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
 ADMIN_CREDENTIALS = {'username': 'admin', 'password': '123456'}
@@ -66,7 +69,7 @@ def _create_user_record(session, user_data):
 
 def _update_user_record(session, user_id, user_data):
     params = {'id': user_id}
-    url = _get_url(UpdateUserPage)
+    url = _get_url(UpdateUserProfileDetailsPage)
     r = session.get(url, params=params)
 
     payload = {
@@ -84,11 +87,11 @@ def _update_user_record(session, user_id, user_data):
 def delete_user(user_id):
     s = _get_admin_session()
     params = {'id': user_id}
-    r = s.get(_get_url(UpdateUserPage), params=params)
+    r = s.get(_get_url(UpdateUserProfileDetailsPage), params=params)
 
     if 'The requested page does not exist' in r.text:
-        return 
-    
+        return
+
     payload = {'_csrf': _get_csrf_token(r)}
     url = ''.join([APP_URL, '/user/admin/delete/{}'.format(user_id)])
     r = s.post(url, data=payload)

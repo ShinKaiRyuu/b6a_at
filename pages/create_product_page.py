@@ -1,5 +1,3 @@
-import time
-
 from webium import Find
 
 from pages.base_page import BasePage
@@ -29,14 +27,15 @@ class CreateProductPage(BasePage):
         if not enabled:
             self.enabled.click()
         self.create.click()
-        time.sleep(5)
+        self.wait_for_loading()
 
-    def get_product_details(self):
-        title = self.title.get_attribute("value")
-        slug = self.slug.get_attribute("value")
-        description = self.description.get_attribute("value")
-        price = self.price.get_attribute("value")
-        enabled = self.enabled.get_attribute("value")
-        keys = ['title', 'slug', 'description', 'price', 'enabled']
-        kwargs = make_ordered_dict(keys, locals())
-        return kwargs
+
+def get_product_details(self):
+    title = self.title.get_attribute("value")
+    slug = self.slug.get_attribute("value")
+    description = self.description.get_attribute("value")
+    price = self.price.get_attribute("value")
+    enabled = self.enabled.get_attribute("value")
+    keys = ['title', 'slug', 'description', 'price', 'enabled']
+    kwargs = make_ordered_dict(keys, locals())
+    return kwargs

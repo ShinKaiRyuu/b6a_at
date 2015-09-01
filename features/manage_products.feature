@@ -55,7 +55,7 @@ Feature: Manage products module
     Given created product
     And I am on Manage Products page
     When I click on delete link
-    Then I want to see dialog box
+    Then I want to see dialog box and click No
 
 #    Given created product
 #   When I click no

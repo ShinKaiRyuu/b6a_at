@@ -1,7 +1,8 @@
+from selenium.webdriver.common import keys
 from selenium.webdriver.common.by import By
 from webium import Finds, Find
-from helpers.data_helpers import make_ordered_dict
 
+from helpers.data_helpers import make_ordered_dict
 from pages.base_page import BasePage
 
 USER_COLUMNS_MAP = {
@@ -18,6 +19,19 @@ USER_COLUMNS_MAP = {
 
 class ManageUsersPage(BasePage):
     url_path = '/user/admin/index'
+
+    # filters
+    username_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[username]"]')
+    email_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[email]"]')
+    registration_ip_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[registration_ip]"]')
+    registration_at_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[created_at]"]')
+
+    # date picker
+    active_date_in_date_picker = Find(value='.ui-state-active')
+
+    # links
+    create_link = Find(by=By.XPATH, value='//a[contains(text(),"Create")]')
+    create_user_link = Find(by=By.XPATH, value='//a[@href="/user/admin/create"]')
 
     user_record_xpath = '//tr[@data-key]'
     user_column_xpath = '//tr[@data-key="{}"]/td[{}]'
@@ -75,4 +89,12 @@ class ManageUsersPage(BasePage):
         delete_link.click()
         keys = ['username', 'email', 'registration_ip', 'registration_time', 'confirmation']
         kwargs = make_ordered_dict(keys, locals())
-        return kwargs
+        context.user = kwargs
+
+    def filter_user(self, filter_name, filter_value):
+        filter_element = getattr(self, filter_name)
+        filter_element.clear()
+        filter_element.send_keys(filter_value)
+        if filter_name == 'registration_at_filter':
+            self.active_date_in_date_picker.click()
+        self.wait_for_loading()

@@ -13,7 +13,10 @@ PAGES_MAP = {
     'Create Product': pages.CreateProductPage,
     'View Product': pages.ViewProductPage,
     'Manage Users': pages.ManageUsersPage,
+    'Create User': pages.CreateUserPage,
     'Manage Partners': pages.ManagePartnersPage,
+    'Update User Account Details': pages.UpdateUserAccountDetailsPage,
+    'Update User Profile Details': pages.UpdateUserProfileDetailsPage,
 }
 
 
