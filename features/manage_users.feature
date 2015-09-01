@@ -66,19 +66,20 @@ Feature: Manage users module
 #  Scenario: Update user. Delete user
 #
 #  Scenario: Update user. Block user
-  @wip @delete_users
+  @wip @delete_user
   Scenario: Delete user
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I delete created user
     Then I want to see dialog box and click No
-    Then I want to see user in list is not deleted 
+    Then I want to see user in list is not deleted
     When I delete created user
     Then I want to see dialog box and click Yes
     Then I want to see user is deleted
 
-  Scenario: Block user
+  @wip @block_unblock_user
+  Scenario: Block\unblock user
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -88,6 +89,20 @@ Feature: Manage users module
     When I block created user
     Then I want to see dialog box and click Yes
     Then I want to see user is blocked
+    When I click on Logout link
+    Then I want to login with these user
+    And  I want to see error message "Your account has been blocked"
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    When I unblock created user
+    Then I want to see dialog box and click No
+    Then I want to see user in list is blocked
+    When I unblock created user
+    Then I want to see dialog box and click Yes
+    Then I want to see user is unblocked
+    When I click on Logout link
+    Then I want to login with these user
+    Then I want to see Main page
 #
 #  Scenario: View roles
 #
@@ -98,15 +113,6 @@ Feature: Manage users module
 #  Scenario: Update role
 #
 #  Scenario: Delete role
-
-
-
-
-
-
-
-
-
 
 #  Scenario: View permissions
 

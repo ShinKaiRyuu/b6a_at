@@ -47,9 +47,9 @@ class ManageUsersPage(BasePage):
             {
                 column_name: self._get_user_column_value(data_key, column_name)
                 for column_name in USER_COLUMNS_MAP.values()
-            }
+                }
             for data_key in self._get_data_keys()
-        ]
+            ]
 
         return users
 
@@ -70,7 +70,7 @@ class ManageUsersPage(BasePage):
                     link.get_attribute('title').lower(): link.get_attribute('href')
                 }
                 for link in links
-            ]
+                ]
 
         else:
             column_xpath = self.user_column_xpath.format(data_key, column_num)
@@ -85,6 +85,12 @@ class ManageUsersPage(BasePage):
         self.filter_user('username_filter', context.user_data['username'])
         block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id), context=self)
         block_link.click()
+
+    def unblock_user(self, context):
+        self.filter_user('username_filter', context.user_data['username'])
+        unblock_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id),
+                            context=self)
+        unblock_link.click()
 
     def filter_user(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
