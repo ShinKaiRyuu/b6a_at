@@ -95,12 +95,10 @@ def step_impl(context):
 
 @then("I want to see created user in list")
 def step_impl(context):
-    result = 0
-    for user in context.page.get_users():
-        if user['username'] == context.user['username']:
-            assert_equal(user['email'], context.user['email'])
-            result = 1
-    assert_equal(result, 1)
+    user = [user for user in context.page.get_users() if user['username'] == context.user['username']]
+    assert_equal(len(user), 1)
+    user = user[0]
+    assert_equal(user['email'], context.user['email'])
 
 
 @then("I want to be able to login created user")
