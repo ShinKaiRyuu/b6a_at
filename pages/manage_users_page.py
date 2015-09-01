@@ -97,4 +97,6 @@ class ManageUsersPage(BasePage):
         filter_element.send_keys(filter_value)
         if filter_name == 'registration_at_filter':
             self.active_date_in_date_picker.click()
+        elif filter_name != 'registration_at_filter':
+            filter_element.send_keys(keys.Keys.RETURN)
         self.wait_for_loading()
