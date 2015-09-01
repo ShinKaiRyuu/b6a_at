@@ -14,9 +14,9 @@ class CreateUserPage(BasePage):
     # create button
     save = Find(value=".btn")
 
-    def create_new_user(self, **kwargs):
-        self.clear_send_keys('username', kwargs)
-        self.clear_send_keys('email', kwargs)
-        self.clear_send_keys('password', kwargs)
+    def create_new_user(self, **user):
+        self.clear_send_keys('username', user)
+        self.clear_send_keys('email', user)
+        self.clear_send_keys('password', user)
         self.save.click()
         self.wait_for_loading()

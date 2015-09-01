@@ -13,10 +13,8 @@ use_step_matcher("re")
     "I create new user")
 def step_impl(context):
     user = create_user_data()
-    keys = ['username', 'email', 'password']
-    kwargs = make_ordered_dict(keys, locals())
-    context.page.create_new_user(**kwargs)
-    context.user = kwargs
+    context.page.create_new_user(**user)
+    context.user = user
 
 
 @step("I want to see all users")
