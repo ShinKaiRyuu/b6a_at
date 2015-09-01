@@ -30,3 +30,4 @@ def step_impl(context):
 def save_item_id(item_id, entity_name, context):
     items = context.created_items.get(entity_name, [])
     items.append(item_id)
+    context.created_items[entity_name] = items
