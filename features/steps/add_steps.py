@@ -4,9 +4,12 @@ from helpers import app_helpers
 from helpers.data_helpers import create_user_data, create_product_data
 
 use_step_matcher("re")
-data_from_table = lambda context: [
-    {head: row[head] for head in context.table.headings if row[head]}
-    for row in context.table.rows
+
+
+def data_from_table(context):
+    return [
+        {head: row[head] for head in context.table.headings if row[head]}
+        for row in context.table.rows
     ]
 
 

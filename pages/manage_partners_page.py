@@ -44,9 +44,9 @@ class ManagePartnersPage(BasePage):
             {
                 column_name: self._get_partner_column_value(data_key, column_name)
                 for column_name in PARTNER_COLUMNS_MAP.values()
-                }
+            }
             for data_key in self._get_data_keys()
-            ]
+        ]
 
         return partners
 
@@ -67,7 +67,7 @@ class ManagePartnersPage(BasePage):
                     link.get_attribute('title').lower(): link.get_attribute('href')
                 }
                 for link in links
-                ]
+            ]
 
         else:
             column_xpath = self.partner_column_xpath.format(data_key, column_num)

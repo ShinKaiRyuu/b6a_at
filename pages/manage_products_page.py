@@ -45,9 +45,9 @@ class ManageProductsPage(BasePage):
             {
                 column_name: self._get_product_column_value(data_key, column_name)
                 for column_name in PRODUCT_COLUMNS_MAP.values()
-                }
+            }
             for data_key in self._get_data_keys()
-            ]
+        ]
         return products
 
     def _get_data_keys(self):
@@ -67,7 +67,7 @@ class ManageProductsPage(BasePage):
                     link.get_attribute('title').lower(): link.get_attribute('href')
                 }
                 for link in links
-                ]
+            ]
 
         else:
             column_xpath = self.product_column_xpath.format(data_key, column_num)
@@ -75,7 +75,7 @@ class ManageProductsPage(BasePage):
 
     def view_product(self, context, number):
         link = ''
-        #TODO NO ENABLED INFO IN TABLE
+        # TODO NO ENABLED INFO IN TABLE
         enabled = '1'
         for product in self.get_products():
             if product['#'] == str(number):
@@ -95,7 +95,7 @@ class ManageProductsPage(BasePage):
 
     def update_product(self, context, number):
         link = ''
-        #TODO NO ENABLED INFO IN TABLE
+        # TODO NO ENABLED INFO IN TABLE
         enabled = '1'
         for product in self.get_products():
             if product['#'] == str(number):
