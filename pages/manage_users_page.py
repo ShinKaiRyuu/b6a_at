@@ -32,6 +32,8 @@ class ManageUsersPage(BasePage):
     # links
     create_link = Find(by=By.XPATH, value='//a[contains(text(),"Create")]')
     create_user_link = Find(by=By.XPATH, value='//a[@href="/user/admin/create"]')
+    block_user_link = Find(by=By.XPATH, value='//a[text()="Block"]')
+    unblock_user_link = Find(by=By.XPATH, value='//a[text()="Unblock"]')
 
     user_record_xpath = '//tr[@data-key]'
     user_column_xpath = '//tr[@data-key="{}"]/td[{}]'
@@ -75,21 +77,14 @@ class ManageUsersPage(BasePage):
             return Find(by=By.XPATH, value=column_xpath, context=self).text
 
     def delete_user(self, context):
-        for user in self.get_users():
-            if user['data_key'] == str(context.user_id):
-                username = user['username']
-                email = user['email']
-                registration_ip = user['registration_ip']
-                registration_time = user['registration_time']
-                confirmation = user['confirmation']
-                # enabled = product['enabled']
-                link = next(b['delete'] for b in user['links'] if 'delete' in b)
-        link = link.replace(context.app_url, '')
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
+        self.filter_user('username_filter', context.user_data['username'])
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.user_id), context=self)
         delete_link.click()
-        keys = ['username', 'email', 'registration_ip', 'registration_time', 'confirmation']
-        kwargs = make_ordered_dict(keys, locals())
-        context.user = kwargs
+
+    def block_user(self, context):
+        self.filter_user('username_filter', context.user_data['username'])
+        block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id), context=self)
+        block_link.click()
 
     def filter_user(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
