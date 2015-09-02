@@ -8,8 +8,10 @@ from .update_user_account_details_page import UpdateUserAccountDetailsPage
 from .user_information_page import UserInformationPage
 from .user_assignments_page import UserAssignmentsPage
 
+from .manage_permissions_page import ManagePermissionPage
 from .create_permission_page import CreatePermissionPage
 
+from .manage_roles_page import ManageRolesPage
 from .create_role_page import CreateRolePage
 
 from .manage_partners_page import ManagePartnersPage

@@ -62,7 +62,7 @@ def step_impl(context, status):
 def step_impl(context, filter_text, filter_name):
     context.filter_name = filter_name + '_filter'
     context.filter_text = filter_text
-    context.page.filter_user(context.filter_name, context.filter_text)
+    context.page.filter_data(context.filter_name, context.filter_text)
 
 
 @then("I want to see filtered users")
@@ -200,3 +200,31 @@ def step_impl(context, text):
 @then("I must see '(?P<text>.+)' text")
 def step_impl(context, text):
     assert_true(text in context.driver.page_source)
+
+
+@step("I want to see all roles")
+def step_impl(context):
+    roles = context.page.get_roles()
+    assert_true(len(roles) >= 1)
+
+
+@then("I want to see filtered roles")
+def step_impl(context):
+    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
+    roles = context.page.get_roles()
+    for role in roles:
+        assert_in(context.filter_text, role[filter_name])
+
+
+@step("I want to see all permissions")
+def step_impl(context):
+    permissions = context.page.get_permissions()
+    assert_true(len(permissions) >= 1)
+
+
+@then("I want to see filtered permissions")
+def step_impl(context):
+    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
+    permissions = context.page.get_permissions()
+    for permission in permissions:
+        assert_in(context.filter_text, permission[filter_name])

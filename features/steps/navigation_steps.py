@@ -20,7 +20,9 @@ PAGES_MAP = {
     'User Information': pages.UserInformationPage,
     'User Assignments': pages.UserAssignmentsPage,
     'Create Role': pages.CreateRolePage,
+    'Manage Roles': pages.ManageRolesPage,
     'Create Permission': pages.CreatePermissionPage,
+    'Manage Permissions': pages.ManagePermissionPage,
 }
 
 

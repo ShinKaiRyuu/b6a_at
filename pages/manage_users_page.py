@@ -32,6 +32,8 @@ class ManageUsersPage(BasePage):
     create_user_link = Find(by=By.XPATH, value='//a[@href="/user/admin/create"]')
     block_user_link = Find(by=By.XPATH, value='//a[text()="Block"]')
     unblock_user_link = Find(by=By.XPATH, value='//a[text()="Unblock"]')
+    roles_link = Find(by=By.XPATH, value='//a[@href="/rbac/role/index"]')
+    permissions_link = Find(by=By.XPATH, value='//a[@href="/rbac/permission/index"]')
 
     user_record_xpath = '//tr[@data-key]'
     user_column_xpath = '//tr[@data-key="{}"]/td[{}]'
@@ -89,7 +91,7 @@ class ManageUsersPage(BasePage):
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.user_id), context=self)
         update_link.click()
 
-    def filter_user(self, filter_name, filter_value):
+    def filter_data(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
         filter_element.clear()
         filter_element.send_keys(filter_value)

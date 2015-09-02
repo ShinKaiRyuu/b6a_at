@@ -174,16 +174,30 @@ Feature: Manage users module
 
   Scenario: View roles
     Given I am logged in as Administrator
-    When I open Create Role page
-    Then I must see '            Access denied        ' text
-    When I click on Logout link
-    Given I am logged in as root
+    When I click on Manage Site link
+    When I click on Manage Users link
+    Then I want to see Manage Users page
+    When I click on Roles link
+    Then I want to see Manage Roles page
+    And I want to see all roles
 
-  Scenario: View roles. Filter roles
+  Scenario: View roles. Filter roles by name
     Given I am logged in as root
     And I am on Manage Roles page
-    Then I write admin in username Filter
-    Then I want to see filtered users
+    Then I write admin in name Filter
+    Then I want to see filtered roles
+
+  Scenario: View roles. Filter roles by description
+    Given I am logged in as root
+    And I am on Manage Roles page
+    Then I write Editor in description Filter
+    Then I want to see filtered roles
+
+  Scenario: View roles. Filter roles by role name
+    Given I am logged in as root
+    And I am on Manage Roles page
+    Then I write Role name in role name Filter
+    Then I want to see filtered roles
 #
 #  Scenario: Create new role
 #
@@ -193,16 +207,30 @@ Feature: Manage users module
 
   Scenario: View permissions
     Given I am logged in as Administrator
-    When I open Create Permission page
-    Then I must see '            Access denied        ' text
-    When I click on Logout link
-    Given I am logged in as root
+    When I click on Manage Site link
+    When I click on Manage Users link
+    Then I want to see Manage Users page
+    When I click on Permissions link
+    Then I want to see Manage Permissions page
+    And I want to see all permissions
 
   Scenario: View permissions. Filter permissions
     Given I am logged in as root
-    And I am on Manage Roles page
-    Then I write admin in username Filter
-    Then I want to see filtered users
+    And I am on Manage Permissions page
+    Then I write admin in name Filter
+    Then I want to see filtered permissions
+
+  Scenario: View permissions. Filter permissions
+    Given I am logged in as root
+    And I am on Manage Permissions page
+    Then I write Delete own goods in description Filter
+    Then I want to see filtered permissions
+
+  Scenario: View permissions. Filter permissions
+    Given I am logged in as root
+    And I am on Manage Permissions page
+    Then I write isOwnGoods in role name Filter
+    Then I want to see filtered permissions
 
 #  Scenario: Create new permission
 
