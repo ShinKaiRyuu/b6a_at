@@ -164,6 +164,12 @@ def step_impl(context):
     assert_equal(len(assignments), 0)
 
 
+@then("I want to see not empty user assignmnets")
+def step_impl(context):
+    assignments = context.page.view_assignments()
+    assert_true(len(assignments) > 0)
+
+
 @then("I want to add (?P<assignment_value>.+) assignmnet")
 def step_impl(context, assignment_value):
     context.page.add_assignment(assignment_value)
@@ -188,9 +194,9 @@ def step_impl(context):
 
 @then("I must not see '(?P<text>.+)' text")
 def step_impl(context, text):
-    assert_true(not context.page.is_element_present())
+    assert_true(text not in context.driver.page_source)
 
 
 @then("I must see '(?P<text>.+)' text")
 def step_impl(context, text):
-    assert_true(context.page.is_element_present())
+    assert_true(text in context.driver.page_source)

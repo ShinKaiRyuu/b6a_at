@@ -7,4 +7,3 @@ from pages.base_page import BasePage
 class CreatePermissionPage(BasePage):
     url_path = '/rbac/permission/create'
 
-    access_denied = Find(by=By.XPATH, value="")

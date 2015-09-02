@@ -25,6 +25,7 @@ class UserAssignmentsPage(BasePage):
     new_permission = Find(by=By.XPATH, value='//a[contains(text(),"New permission")]')
 
     def view_assignments(self):
+        self.wait_for_loading()
         assignments_text = []
         assignments_elements = self.assignments
         for assignment in assignments_elements:
@@ -40,7 +41,8 @@ class UserAssignmentsPage(BasePage):
         self.wait_for_loading()
 
     def remove_assignment(self, assignment_value):
-        remove_assignment_button = Find(value='//li[contains(text(),"{}")]/span').format(assignment_value, context=self)
+        remove_assignment_button = Find(by=By.XPATH, value='//li[contains(text(),"{}")]/span'.format(assignment_value),
+                                        context=self)
         remove_assignment_button.click()
         self.update.click()
         self.wait_for_loading()
