@@ -21,12 +21,12 @@ Feature: Manage users module
     Then I write admin@nomail.com in email Filter
     Then I want to see filtered users
 
-#  @wip @filter_users @filter_users_by_ip
-#  Scenario: View users. Filter records by registration ip
-#    Given I am logged in as Administrator
-#    And I am on Manage Users page
-#    Then I write ::1 in registration_ip Filter
-#    Then I want to see filtered users
+  @wip @filter_users @filter_users_by_ip
+  Scenario: View users. Filter records by registration ip
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    Then I write ::1 in registration_ip Filter
+    Then I want to see filtered users
 
   @wip @filter_users @filter_users_by_registration_date
   Scenario: View users. Filter records by registration date
@@ -161,10 +161,18 @@ Feature: Manage users module
     When I click on Logout link
     Then I want to login with these user
     Then I want to see Main page
-#
-#  Scenario: View roles
-#
-#  Scenario: View roles. Filter roles
+
+  Scenario: View roles
+    Given I am logged in as Administrator
+    When I open Create Role page
+    Then I must see '            Access denied        ' text
+
+
+  Scenario: View roles. Filter roles
+    Given I am logged in as root
+    And I am on Manage Roles page
+    Then I write admin in username Filter
+    Then I want to see filtered users
 #
 #  Scenario: Create new role
 #
@@ -172,9 +180,12 @@ Feature: Manage users module
 #
 #  Scenario: Delete role
 
-#  Scenario: View permissions
+  Scenario: View permissions
+    Given I am logged in as Administrator
+    When I open Create Permission page
+    Then I must see '            Access denied        ' text
 
-#  Scenario: View permissions. Filter permissions
+  Scenario: View permissions. Filter permissions
 
 #  Scenario: Create new permission
 
