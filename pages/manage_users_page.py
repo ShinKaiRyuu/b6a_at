@@ -2,18 +2,16 @@ from selenium.webdriver.common import keys
 from selenium.webdriver.common.by import By
 from webium import Finds, Find
 
-from helpers.data_helpers import make_ordered_dict
 from pages.base_page import BasePage
 
 USER_COLUMNS_MAP = {
     '1': 'username',
     '2': 'email',
-    '3': 'registration_ip',
-    '4': 'registration_time',
-    '5': 'confirmation',
-    '6': 'block_status',
-    '7': 'links',
-    '8': 'data_key'
+    '3': 'registration_time',
+    '4': 'confirmation',
+    '5': 'block_status',
+    '6': 'links',
+    '7': 'data_key'
 }
 
 
@@ -85,6 +83,11 @@ class ManageUsersPage(BasePage):
         self.filter_user('username_filter', context.user_data['username'])
         block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id), context=self)
         block_link.click()
+
+    def update_user(self, context):
+        self.filter_user('username_filter', context.user_data['username'])
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.user_id), context=self)
+        update_link.click()
 
     def filter_user(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)

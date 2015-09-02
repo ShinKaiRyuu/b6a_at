@@ -5,6 +5,12 @@ from .manage_users_page import ManageUsersPage
 from .create_user_page import CreateUserPage
 from .update_user_profile_details_page import UpdateUserProfileDetailsPage
 from .update_user_account_details_page import UpdateUserAccountDetailsPage
+from .user_information_page import UserInformationPage
+from .user_assignments_page import UserAssignmentsPage
+
+from .create_permission_page import CreatePermissionPage
+
+from .create_role_page import CreateRolePage
 
 from .manage_partners_page import ManagePartnersPage
 
