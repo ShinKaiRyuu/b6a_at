@@ -7,6 +7,7 @@ from pages import LoginPage, CreateUserPage, UpdateUserAccountDetailsPage, Updat
 
 APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
 ADMIN_CREDENTIALS = {'username': 'admin', 'password': '123456'}
+ROOT_CREDENTIALS = {'username': 'root', 'password': '123456'}
 
 
 def get_requests_app_cookies(credentials):

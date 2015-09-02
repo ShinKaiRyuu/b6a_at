@@ -189,3 +189,8 @@ def step_impl(context):
 @then("I must not see '(?P<text>.+)' text")
 def step_impl(context, text):
     assert_true(not context.page.is_element_present())
+
+
+@then("I must see '(?P<text>.+)' text")
+def step_impl(context, text):
+    assert_true(context.page.is_element_present())
