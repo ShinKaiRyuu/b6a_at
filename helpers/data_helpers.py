@@ -55,11 +55,12 @@ def create_user_data():
 
 def create_product_data():
     faker = get_faker()
-    return {
-        'title': faker.company(),
-        'slug': faker.pystr(max_chars=10),
-        'description': faker.pystr(max_chars=20),
-        'price': faker.pyint(),
+    product_data = {
+        'title': faker.name(),
+        'description': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
+        'price': ''.join([str(faker.pyint()), '.00']),
         'enabled': random.getrandbits(1),
 
     }
+    product_data['slug'] = product_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
+    return product_data

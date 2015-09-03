@@ -1,13 +1,15 @@
 import re
 
 import requests
-
-from pages import LoginPage, CreateUserPage, UpdateUserAccountDetailsPage, UpdateUserProfileDetailsPage, \
-    CreateProductPage
+import pages
 
 APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
 ADMIN_CREDENTIALS = {'username': 'admin', 'password': '123456'}
 ROOT_CREDENTIALS = {'username': 'root', 'password': '123456'}
+URL_PREFIXES = {
+    'create_product': '/admin/goods/create',
+    'delete_product': '/admin/goods/delete/{}',
+}
 
 
 def get_requests_app_cookies(credentials):
@@ -15,12 +17,12 @@ def get_requests_app_cookies(credentials):
     return s.cookies
 
 
-def _get_url(page):
-    return ''.join([APP_URL, page.url_path])
+def _get_url(url_path):
+    return ''.join([APP_URL, url_path])
 
 
 def _get_logged_session(credentials):
-    url = _get_url(LoginPage)
+    url = _get_url(pages.LoginPage.url_path)
     s = requests.Session()
     r = s.get(url)
 
@@ -37,7 +39,7 @@ def _get_logged_session(credentials):
 
 def _get_csrf_token(response):
     response_content = response.text
-    csrf_pattern = re.compile('<input type="hidden" name="_csrf" value="(.*?)">')
+    csrf_pattern = re.compile('<meta name="csrf-token" content="(.*?)">')
     return csrf_pattern.findall(response_content)[0]
 
 
@@ -53,7 +55,7 @@ def create_user(user_data):
 
 
 def _create_user_record(session, user_data):
-    url = _get_url(CreateUserPage)
+    url = _get_url(pages.CreateUserPage.url_path)
     r = session.get(url)
 
     payload = {
@@ -70,7 +72,7 @@ def _create_user_record(session, user_data):
 
 def _update_user_record(session, user_id, user_data):
     params = {'id': user_id}
-    url = _get_url(UpdateUserProfileDetailsPage)
+    url = _get_url(pages.UpdateUserProfileDetailsPage.url_path)
     r = session.get(url, params=params)
 
     payload = {
@@ -88,7 +90,7 @@ def _update_user_record(session, user_id, user_data):
 def delete_user(user_id):
     s = _get_admin_session()
     params = {'id': user_id}
-    r = s.get(_get_url(UpdateUserProfileDetailsPage), params=params)
+    r = s.get(_get_url(pages.UpdateUserProfileDetailsPage.url_path), params=params)
 
     if 'The requested page does not exist' in r.text:
         return
@@ -101,22 +103,37 @@ def delete_user(user_id):
 
 def create_product(product_data):
     s = _get_admin_session()
-    url = _get_url(CreateProductPage)
+    url = _get_url(URL_PREFIXES['create_product'])
     r = s.get(url)
+    product_id = r.url.split('/')[-1]
+    url = r.url
 
     payload = {
         '_csrf': _get_csrf_token(r),
-        'Product[title]': product_data['title'],
-        'Product[slug]': product_data['slug'],
-        'Product[description]': product_data['description'],
-        'Product[price]': product_data['price'],
-        'Product[enabled]': product_data['enabled'],
+        'Goods[title]': product_data['title'],
+        'Goods[slug]': product_data['slug'],
+        'Goods[description]': product_data['description'],
+        'Goods[price]': product_data['price'],
+        'Goods[enabled]': product_data['enabled'],
     }
     r = s.post(url, data=payload)
-    assert 'Product has been created' in r.text
-    product_id = r.url.split('/')[-1]
+    assert 'successfully.' in r.text
     return product_id
 
 
 def delete_product(product_id):
-    raise NotImplementedError
+    s = _get_admin_session()
+    url = _get_url(pages.ManageProductsPage.url_path)
+    r = s.get(url)
+
+    payload = {
+        '_csrf': _get_csrf_token(r),
+    }
+
+    url = _get_url(URL_PREFIXES['delete_product']).format(product_id)
+    r = s.post(url, data=payload)
+
+    if 'The requested page does not exist' in r.text:
+        return
+
+    assert 'Deleted successfully.' in r.text
