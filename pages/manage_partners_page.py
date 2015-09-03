@@ -1,3 +1,5 @@
+from selenium.webdriver.common import keys
+
 from selenium.webdriver.common.by import By
 from webium import Finds, Find
 
@@ -5,10 +7,10 @@ from pages.base_page import BasePage
 
 PARTNER_COLUMNS_MAP = {
     '1': 'order',
-    '2': 'id',
-    '3': 'name',
-    '4': 'star Name',
-    '5': 'status Name',
+    '2': 'name',
+    '3': 'created_by',
+    '4': 'updated_by',
+    '5': 'partner_status',
     '6': 'links',
     '7': 'data_key'
 }
@@ -25,13 +27,13 @@ class ManagePartnersPage(BasePage):
 
     # filters
     order_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[sort_order]"]')
-    id_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[id]"]')
     name_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[name]"]')
-    star_name_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[star_name]"]')
-    status_filter = Find(by=By.XPATH, value='//select[@name="SearchPartner[status]"]')
+    created_by_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[user_created_id]"]')
+    updated_by_filter = Find(by=By.XPATH, value='SearchPartner[user_updated_id]')
+    status_name_filter = Find(by=By.XPATH, value='//select[@name="SearchPartner[status]"]')
 
     # buttons
-    create_new_partner_btn = Find(by=By.XPATH, value='//a[@href="/admin/partner/create"]')
+    create_partner_btn = Find(by=By.XPATH, value='//a[@href="/admin/partner/create"]')
 
     # table
     partner_record_xpath = '//tr[@data-key]'
@@ -72,3 +74,10 @@ class ManagePartnersPage(BasePage):
         else:
             column_xpath = self.partner_column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text
+
+    def filter_data(self, filter_name, filter_value):
+        filter_element = getattr(self, filter_name)
+        filter_element.clear()
+        filter_element.send_keys(filter_value)
+        filter_element.send_keys(keys.Keys.RETURN)
+        self.wait_for_loading()

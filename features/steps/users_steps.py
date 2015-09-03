@@ -32,7 +32,7 @@ def step_impl(context, status):
     user = [user for user in context.page.get_users() if user['username'] == context.user_data['username']]
     assert_equal(len(user), 1)
     if status == 'not deleted':
-        assert_equal(user['email'], context.user_data['email'])
+        assert_equal(user[0]['email'], context.user_data['email'])
     if status == 'not blocked':
         assert_true(context.page.is_element_present('block_user_link'))
     if status == 'blocked':

@@ -1,7 +1,7 @@
 from behave import *
 
 from helpers import app_helpers
-from helpers.data_helpers import create_user_data, create_product_data
+from helpers.data_helpers import create_user_data, create_product_data, create_partner_data
 
 use_step_matcher("re")
 
@@ -10,7 +10,7 @@ def data_from_table(context):
     return [
         {head: row[head] for head in context.table.headings if row[head]}
         for row in context.table.rows
-    ]
+        ]
 
 
 @given("created user")
@@ -22,9 +22,16 @@ def step_impl(context):
 
 @given("created product")
 def step_impl(context):
-    product_data = create_product_data()
-    product_id = app_helpers.create_product(product_data)
-    save_item_id(product_id, 'products', context)
+    context.product_data = create_product_data()
+    context.product_id = app_helpers.create_product(context.product_data)
+    save_item_id(context.product_id, 'products', context)
+
+
+@given("created partner")
+def step_impl(context):
+    context.user_data = create_partner_data()
+    context.user_id = app_helpers.create_user(context.user_data)
+    save_item_id(context.user_id, 'users', context)
 
 
 def save_item_id(item_id, entity_name, context):

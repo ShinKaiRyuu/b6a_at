@@ -15,6 +15,7 @@ PAGES_MAP = {
     'Manage Users': pages.ManageUsersPage,
     'Create User': pages.CreateUserPage,
     'Manage Partners': pages.ManagePartnersPage,
+    'Create Partner': pages.CreatePartnerPage,
     'Update User Account Details': pages.UpdateUserAccountDetailsPage,
     'Update User Profile Details': pages.UpdateUserProfileDetailsPage,
     'User Information': pages.UserInformationPage,
