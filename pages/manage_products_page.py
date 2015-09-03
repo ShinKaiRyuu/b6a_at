@@ -75,7 +75,7 @@ class ManageProductsPage(BasePage, TableMixin):
             value = Find(by=By.XPATH, value='//option[text()="{}"]'.format(filter_value), context=self)
             value.click()
             self.enabled_filter.send_keys(keys.Keys.RETURN)
-        elif filter_name != "enabled_filter":
+        else:
             filter_element.clear()
             filter_element.send_keys(filter_value)
             filter_element.send_keys(keys.Keys.RETURN)

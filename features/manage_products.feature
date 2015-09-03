@@ -61,43 +61,43 @@ Feature: Manage products module
     Then I want to see filtered products
 
   Scenario: Filter products by title
-      Given I am logged in as Administrator
-      And I am on Manage Products page
-      Then I write New in title Filter
-      Then I want to see filtered products
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    Then I write New in title Filter
+    Then I want to see filtered products
 
   Scenario: Filter products by price
-      Given I am logged in as Administrator
-      And I am on Manage Products page
-      Then I write 1025 in price Filter
-      Then I want to see filtered products
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    Then I write 1025 in price Filter
+    Then I want to see filtered products
 
   Scenario: Filter products by created_by
-      Given I am logged in as Administrator
-      And I am on Manage Products page
-      Then I write admin in created_by Filter
-      Then I want to see filtered products
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    Then I write admin in created_by Filter
+    Then I want to see filtered products
 
   Scenario: Filter products by updated_by
-      Given I am logged in as Administrator
-      And I am on Manage Products page
-      Then I write admin in updated_by Filter
-      Then I want to see filtered products
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    Then I write admin in updated_by Filter
+    Then I want to see filtered products
 
   Scenario: Filter products by enabled
-      Given I am logged in as Administrator
-      And I am on Manage Products page
-      Then I select Enabled in enabled Filter
-      Then I want to see filtered products
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    Then I select Enabled in enabled Filter
+    Then I want to see filtered products
 
-    Scenario: Filter products by disabled
-      Given I am logged in as Administrator
-      And I am on Manage Products page
-      Then I select Disabled in enabled Filter
-      Then I want to see filtered products
+  Scenario: Filter products by disabled
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    Then I select Disabled in enabled Filter
+    Then I want to see filtered products
 
 
-    @wip
+  @wip
 #  Scenario: Sorting products
 #   Given I am logged in as Administrator
 #   Given I am on Manage Products page

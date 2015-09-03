@@ -10,7 +10,7 @@ PARTNER_COLUMNS_MAP = {
     '2': 'name',
     '3': 'created_by',
     '4': 'updated_by',
-    '5': 'partner_status',
+    '5': 'status',
     '6': 'links',
     '7': 'data_key'
 }
@@ -35,8 +35,16 @@ class ManagePartnersPage(BasePage, TableMixin):
     # buttons
     create_partner_btn = Find(by=By.XPATH, value='//a[@href="/admin/partner/create"]')
 
+    success_message = Find(value='#w0')
+
     def get_partners(self):
         return self.get_table_records(PARTNER_COLUMNS_MAP)
+
+    def delete_partner(self, context):
+        self.filter_data('name_filter', context.partner_data['name'])
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.partner_id),
+                           context=self)
+        delete_link.click()
 
     def filter_data(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
