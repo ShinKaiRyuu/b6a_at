@@ -1,6 +1,6 @@
 Feature: Manage products module
   # Test all stuff connected with products(add,view,update,delete,sort,etc...)
-  @done
+  @wip
   Scenario: Open products page
     Given I am logged in as Administrator
     When I click on Manage Site link
@@ -8,14 +8,14 @@ Feature: Manage products module
     Then I want to see Manage Products page
     And I want to see all products
 
- @done
+ @wip
   Scenario: Create new product
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on Create new product button
     Then I want to see Create Product page
-    When I create new product with UnicTitle, UnicSlug, <p>UnicDescription</p>, 1025.00, true
-    Then I want to see View Product page
+    When I create new product
+    Then I want to see Manage Products page
     And I want to see  product details
     When I click on Manage products menu link
     Then I want to see Manage Products page
@@ -51,11 +51,15 @@ Feature: Manage products module
 
   @wip
   Scenario: Delete product
-    Given I am logged in as Administrator
     Given created product
+    Given I am logged in as Administrator
     And I am on Manage Products page
-    When I click on delete link
+    When I delete created product
     Then I want to see dialog box and click No
+    Then I want to see product in list is not deleted
+    When I delete created product
+    Then I want to see dialog box and click Yes
+    Then I want to see product is deleted
 
 #    Given created product
 #   When I click no

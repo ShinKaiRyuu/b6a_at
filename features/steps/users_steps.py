@@ -41,7 +41,7 @@ def step_impl(context, status):
 
 @then("I want to see user is (?P<status>.+)")
 def step_impl(context, status):
-    context.page.filter_user('username_filter', context.user_data['username'])
+    context.page.filter_data('username_filter', context.user_data['username'])
     user = [user for user in context.page.get_users() if user['username'] == context.user_data['username']]
     context.page.replace_bad_elements('.close')
     success_message = context.page.success_message.text
@@ -213,7 +213,7 @@ def step_impl(context):
     filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
     roles = context.page.get_roles()
     for role in roles:
-        assert_in(context.filter_text, role[filter_name])
+        assert_in(context.filter_text.lower(), role[filter_name].lower())
 
 
 @step("I want to see all permissions")
@@ -227,4 +227,4 @@ def step_impl(context):
     filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
     permissions = context.page.get_permissions()
     for permission in permissions:
-        assert_in(context.filter_text, permission[filter_name])
+        assert_in(context.filter_text.lower(), permission[filter_name].lower())

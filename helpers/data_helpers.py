@@ -64,3 +64,16 @@ def create_product_data():
     }
     product_data['slug'] = product_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
     return product_data
+
+
+def create_partner_data():
+    faker = get_faker()
+    partner_data = {
+        'title': faker.name(),
+        'description': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
+        'price': ''.join([str(faker.pyint()), '.00']),
+        'enabled': random.getrandbits(1),
+
+    }
+    partner_data['slug'] = partner_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
+    return partner_data

@@ -1,28 +1,21 @@
 import random
-import time
 
 from behave import *
-from nose.tools import assert_equal, assert_true
+from nose.tools import assert_equal, assert_true, assert_in
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
-from helpers.data_helpers import make_ordered_dict
+from helpers.data_helpers import create_product_data
 
 use_step_matcher("re")
 
 
 @when(
-    "I create new product with (?P<title>.+), (?P<slug>.+), (?P<description>.+), "
-    "(?P<price>.+), (?P<enabled>.+)")
-def step_impl(context, title, slug, description, price, enabled):
-    keys = ['title', 'slug', 'description', 'price']
-    kwargs = make_ordered_dict(keys, locals())
-    context.page.create_new_product(enabled, **kwargs)
-    context.product = kwargs
-    if enabled:
-        context.product['enabled'] = '1'
-    if not enabled:
-        context.product['enabled'] = '0'
+    "I create new product")
+def step_impl(context):
+    product = create_product_data()
+    context.page.create_new_product(**product)
+    context.product_data = product
 
 
 # TODO DESCRIPTION FIX
@@ -73,3 +66,27 @@ def step_impl(context):
 def step_impl(context):
     product_number = random.randint(1, len(context.page.get_products()))
     context.product = context.page.update_product(context, product_number)
+
+
+@when("I delete created product")
+def step_impl(context):
+    context.page.delete_product(context)
+
+
+@then("I want to see product in list is (?P<status>.+)")
+def step_impl(context, status):
+    product = [product for product in context.page.get_products() if product['title'] == context.product_data['title']]
+    assert_equal(len(product), 1)
+    if status == 'not deleted':
+        assert_equal(product[0]['price'], context.product_data['price'])
+
+
+@then("I want to see product is (?P<status>.+)")
+def step_impl(context, status):
+    context.page.filter_data('title_filter', context.product_data['title'])
+    product = [product for product in context.page.get_products() if product['title'] == context.product_data['title']]
+    context.page.replace_bad_elements('.close')
+    success_message = context.page.success_message.text
+    if status == 'deleted':
+        assert_equal(len(product), 0)
+        assert_in('Deleted successfully.', success_message)

@@ -18,7 +18,7 @@ class ManageRolesPage(BasePage):
 
     name_filter = Find(by=By.XPATH, value='//input[@name="Search[name]"]')
     description_filter = Find(by=By.XPATH, value='//input[@name="Search[description]"]')
-    rule_name_filter = Find(by=By.XPATH, value='//input[@name="Search[rule_name]"]')
+    rulename_filter = Find(by=By.XPATH, value='//input[@name="Search[rule_name]"]')
 
     role_record_xpath = '//tr[@data-key]'
     role_column_xpath = '//tr[@data-key="{}"]/td[{}]'

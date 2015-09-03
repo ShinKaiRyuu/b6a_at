@@ -189,10 +189,10 @@ Feature: Manage users module
     Then I write Editor in description Filter
     Then I want to see filtered roles
 
-  Scenario: View roles. Filter roles by role name
+  Scenario: View roles. Filter roles by rule name
     Given I am logged in as root
     And I am on Manage Roles page
-    Then I write Role name in role name Filter
+    Then I write Rule name in rulename Filter
     Then I want to see filtered roles
 #
 #  Scenario: Create new role
@@ -210,22 +210,22 @@ Feature: Manage users module
     Then I want to see Manage Permissions page
     And I want to see all permissions
 
-  Scenario: View permissions. Filter permissions
+  Scenario: View permissions. Filter permissions by name
     Given I am logged in as root
     And I am on Manage Permissions page
     Then I write admin in name Filter
     Then I want to see filtered permissions
 
-  Scenario: View permissions. Filter permissions
+  Scenario: View permissions. Filter permissions by description
     Given I am logged in as root
     And I am on Manage Permissions page
     Then I write Delete own goods in description Filter
     Then I want to see filtered permissions
 
-  Scenario: View permissions. Filter permissions
+  Scenario: View permissions. Filter permissions by rule name
     Given I am logged in as root
     And I am on Manage Permissions page
-    Then I write isOwnGoods in role name Filter
+    Then I write isOwnGoods in rulename Filter
     Then I want to see filtered permissions
 
 #  Scenario: Create new permission

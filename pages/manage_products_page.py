@@ -1,3 +1,5 @@
+from selenium.webdriver.common import keys
+
 from selenium.webdriver.common.by import By
 from webium import Finds, Find
 
@@ -5,12 +7,12 @@ from pages.base_page import BasePage
 from helpers.data_helpers import make_ordered_dict
 
 PRODUCT_COLUMNS_MAP = {
-    '1': '#',
-    '2': 'id',
-    '3': 'title',
-    '4': 'slug',
-    '5': 'description',
-    '6': 'price',
+    '1': 'order',
+    '2': 'title',
+    '3': 'price',
+    '4': 'created_by',
+    '5': 'updated_by',
+    '6': 'enabled',
     '7': 'links',
     '8': 'data_key'
 }
@@ -26,6 +28,14 @@ class ManageProductsPage(BasePage):
     description_link = Find(by=By.XPATH, value='//a[text()="Description"]')
     price_link = Find(by=By.XPATH, value='//a[text()="Price"]')
 
+    # filters
+    orser_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[sort_order]"]')
+    title_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[title]"]')
+    price_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[price]"]')
+    created_by_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_created_id]"]')
+    updated_by_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_updated_id]"]')
+    enabled_filter = Find(by=By.XPATH, value='//select[@name="GoodsSearch[enabled]"]')
+
     # buttons
     create_new_product_btn = Find(by=By.XPATH, value='//a[@href="/admin/goods/create"]')
 
@@ -39,6 +49,8 @@ class ManageProductsPage(BasePage):
     view_link = Find(value='.table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(7) > a:nth-child(1)')
     update_link = Find(value='.table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(7) > a:nth-child(2)')
     delete_link = Find(value='.table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(7) > a:nth-child(3)')
+
+    success_message = Find(value='#w0')
 
     def get_products(self):
         products = [
@@ -72,6 +84,11 @@ class ManageProductsPage(BasePage):
         else:
             column_xpath = self.product_column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text
+
+    def delete_product(self, context):
+        self.filter_data('title_filter', context.product_data['title'])
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.product_id), context=self)
+        delete_link.click()
 
     def view_product(self, context, number):
         link = ''
@@ -112,3 +129,12 @@ class ManageProductsPage(BasePage):
         keys = ['title', 'slug', 'description', 'price', 'enabled']
         kwargs = make_ordered_dict(keys, locals())
         return kwargs
+
+    def filter_data(self, filter_name, filter_value):
+        filter_element = getattr(self, filter_name)
+        filter_element.clear()
+        filter_element.send_keys(filter_value)
+        filter_element.send_keys(keys.Keys.RETURN)
+        self.wait_for_loading()
+
+

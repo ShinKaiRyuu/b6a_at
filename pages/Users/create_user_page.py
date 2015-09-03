@@ -1,3 +1,4 @@
+from selenium.webdriver.common.by import By
 from webium import Find
 
 from pages.base_page import BasePage
@@ -12,7 +13,7 @@ class CreateUserPage(BasePage):
     password = Find(value="input#user-password")
 
     # create button
-    save = Find(value=".btn")
+    save = Find(by=By.XPATH, value="//button[contains(text(),'Save')]")
 
     def create_new_user(self, **user):
         self.clear_send_keys('username', user)

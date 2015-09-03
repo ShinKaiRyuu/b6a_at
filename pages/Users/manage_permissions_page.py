@@ -7,7 +7,7 @@ from pages.base_page import BasePage
 PERMISSION_COLUMNS_MAP = {
     '1': 'name',
     '2': 'description',
-    '3': 'rule_name',
+    '3': 'rulename',
     '4': 'data_key'
 }
 
@@ -17,7 +17,7 @@ class ManagePermissionPage(BasePage):
 
     name_filter = Find(by=By.XPATH, value='//input[@name="Search[name]"]')
     description_filter = Find(by=By.XPATH, value='//input[@name="Search[description]"]')
-    rule_name_filter = Find(by=By.XPATH, value='//input[@name="Search[rule_name]"]')
+    rulename_filter = Find(by=By.XPATH, value='//input[@name="Search[rule_name]"]')
 
     permission_record_xpath = '//tr[@data-key]'
     permission_column_xpath = '//tr[@data-key="{}"]/td[{}]'
