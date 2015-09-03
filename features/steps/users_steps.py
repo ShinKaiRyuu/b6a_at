@@ -8,8 +8,7 @@ from helpers.data_helpers import create_user_data
 use_step_matcher("re")
 
 
-@when(
-    "I create new user")
+@when("I create new user")
 def step_impl(context):
     user = create_user_data()
     context.page.create_new_user(**user)
