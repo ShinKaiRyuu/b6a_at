@@ -9,6 +9,7 @@ ROOT_CREDENTIALS = {'username': 'root', 'password': '123456'}
 URL_PREFIXES = {
     'create_product': '/admin/goods/create',
     'delete_product': '/admin/goods/delete/{}',
+    'block_user': '/user/admin/block'
 }
 
 

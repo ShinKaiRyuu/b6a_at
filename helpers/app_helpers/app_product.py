@@ -27,10 +27,7 @@ def delete_product(product_id):
     url = get_url(pages.ManageProductsPage.url_path)
     r = s.get(url)
 
-    payload = {
-        '_csrf': get_csrf_token(r),
-    }
-
+    payload = {'_csrf': get_csrf_token(r)}
     url = get_url(URL_PREFIXES['delete_product']).format(product_id)
     r = s.post(url, data=payload)
 

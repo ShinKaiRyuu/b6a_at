@@ -1,4 +1,4 @@
-from helpers.app_helpers.app_session import get_admin_session, get_url, get_csrf_token, APP_URL
+from helpers.app_helpers.app_session import get_admin_session, get_url, get_csrf_token, APP_URL, URL_PREFIXES
 import pages
 
 
@@ -54,3 +54,20 @@ def delete_user(user_id):
     url = ''.join([APP_URL, '/user/admin/delete/{}'.format(user_id)])
     r = s.post(url, data=payload)
     assert 'User has been deleted' in r.text
+
+def create_blocked_user(user_data):
+    s = get_admin_session()
+    user_id = _create_user_record(s, user_data)
+    _update_user_record(s, user_id, user_data)
+    _block_user(s, user_id)
+    return user_id
+
+def _block_user(session, user_id):
+    params = {'id': user_id}
+    url = get_url(pages.UpdateUserProfileDetailsPage.url_path)
+    r = session.get(url, params=params)
+
+    payload = {'_csrf': get_csrf_token(r)}
+    url = get_url(URL_PREFIXES['block_user'])
+    r = session.post(url, params=params, data=payload)
+    assert 'User has been blocked' in r.text

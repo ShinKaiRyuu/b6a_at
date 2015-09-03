@@ -13,10 +13,16 @@ def data_from_table(context):
         ]
 
 
+@given("created blocked user")
 @given("created user")
 def step_impl(context):
+    if 'blocked' not in context.step_name:
+        create_user = app_helpers.create_user
+    else:
+        create_user = app_helpers.create_blocked_user
+
     context.user_data = create_user_data()
-    context.user_id = app_helpers.create_user(context.user_data)
+    context.user_id = create_user(context.user_data)
     save_item_id(context.user_id, 'users', context)
 
 
