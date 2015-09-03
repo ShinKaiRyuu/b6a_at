@@ -1,5 +1,4 @@
 import random
-import time
 
 from behave import *
 from nose.tools import assert_equal, assert_true

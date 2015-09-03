@@ -1,8 +1,5 @@
 from behave import *
 from nose.tools import assert_true, assert_equal
-
-from helpers import app_helpers
-
 from helpers.data_helpers import create_partner_data
 
 use_step_matcher("re")
