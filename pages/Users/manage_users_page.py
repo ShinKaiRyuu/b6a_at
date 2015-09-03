@@ -1,8 +1,9 @@
 from selenium.webdriver.common import keys
 from selenium.webdriver.common.by import By
-from webium import Finds, Find
+from webium import Find
 
 from pages.base_page import BasePage
+from pages.table_mixin import TableMixin
 
 USER_COLUMNS_MAP = {
     '1': 'username',
@@ -15,7 +16,7 @@ USER_COLUMNS_MAP = {
 }
 
 
-class ManageUsersPage(BasePage):
+class ManageUsersPage(BasePage, TableMixin):
     url_path = '/user/admin/index'
 
     # filters
@@ -35,46 +36,11 @@ class ManageUsersPage(BasePage):
     roles_link = Find(by=By.XPATH, value='//a[@href="/rbac/role/index"]')
     permissions_link = Find(by=By.XPATH, value='//a[@href="/rbac/permission/index"]')
 
-    user_record_xpath = '//tr[@data-key]'
-    user_column_xpath = '//tr[@data-key="{}"]/td[{}]'
-    user_column_links_xpath = '//tr[@data-key="{}"]/td/a[@title]'
-    user_records = Finds(by=By.XPATH, value=user_record_xpath)
     # TODO change selector
     success_message = Find(value='#w4')
 
     def get_users(self):
-        users = [
-            {
-                column_name: self._get_user_column_value(data_key, column_name)
-                for column_name in USER_COLUMNS_MAP.values()
-                }
-            for data_key in self._get_data_keys()
-            ]
-
-        return users
-
-    def _get_data_keys(self):
-        return [u.get_attribute('data-key') for u in self.user_records]
-
-    def _get_user_column_value(self, data_key, column_name):
-        column_num = next((c_num for c_num, c_name in USER_COLUMNS_MAP.items() if c_name == column_name), None)
-
-        if column_name == 'data_key':
-            return data_key
-
-        elif column_name == 'links':
-            column_xpath = self.user_column_links_xpath.format(data_key)
-            links = Finds(by=By.XPATH, value=column_xpath, context=self)
-            return [
-                {
-                    link.get_attribute('title').lower(): link.get_attribute('href')
-                }
-                for link in links
-                ]
-
-        else:
-            column_xpath = self.user_column_xpath.format(data_key, column_num)
-            return Find(by=By.XPATH, value=column_xpath, context=self).text
+        return self.get_table_records(USER_COLUMNS_MAP)
 
     def delete_user(self, context):
         self.filter_data('username_filter', context.user_data['username'])
