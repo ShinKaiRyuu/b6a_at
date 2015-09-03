@@ -26,9 +26,13 @@ def step_impl(context):
     save_item_id(context.user_id, 'users', context)
 
 
+@given("created disabled product")
 @given("created product")
 def step_impl(context):
     context.product_data = create_product_data()
+    if 'disabled' in context.step_name:
+        context.product_data['enabled'] = 0
+
     context.product_id = app_helpers.create_product(context.product_data)
     save_item_id(context.product_id, 'products', context)
 

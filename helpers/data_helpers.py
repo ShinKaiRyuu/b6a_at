@@ -59,7 +59,7 @@ def create_product_data():
         'title': faker.name(),
         'description': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
         'price': ''.join([str(faker.pyint()), '.00']),
-        'enabled': random.getrandbits(1),
+        'enabled': 1,
 
     }
     product_data['slug'] = product_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
