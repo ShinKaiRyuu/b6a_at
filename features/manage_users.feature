@@ -20,13 +20,13 @@ Feature: Manage users module
     And I am on Manage Users page
     Then I write admin@nomail.com in email Filter
     Then I want to see filtered users
-
-  @wip @filter_users @filter_users_by_ip
-  Scenario: View users. Filter records by registration ip
-    Given I am logged in as Administrator
-    And I am on Manage Users page
-    Then I write ::1 in registration_ip Filter
-    Then I want to see filtered users
+#
+#  @wip @filter_users @filter_users_by_ip
+#  Scenario: View users. Filter records by registration ip
+#    Given I am logged in as Administrator
+#    And I am on Manage Users page
+#    Then I write ::1 in registration_ip Filter
+#    Then I want to see filtered users
 
   @wip @filter_users @filter_users_by_registration_date
   Scenario: View users. Filter records by registration date
