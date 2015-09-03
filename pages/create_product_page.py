@@ -5,7 +5,6 @@ from pages.base_page import BasePage
 
 
 class CreateProductPage(BasePage):
-    # url_path = '/admin/goods/create'
     url_path = 'admin/goods/update/'
 
     # inputs
@@ -37,6 +36,5 @@ def get_product_details(self):
     price = self.price.get_attribute("value")
     enabled = self.enabled.get_attribute("value")
     keys = ['title', 'slug', 'description', 'price', 'enabled']
-    # kwargs = make_ordered_dict(keys, locals())
     kwargs = {k: locals().get(k) for k in keys}
     return kwargs
