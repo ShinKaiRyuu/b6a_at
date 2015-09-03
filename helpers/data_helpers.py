@@ -59,4 +59,10 @@ def create_product_data():
 
 
 def create_partner_data():
-    pass
+    faker = get_faker()
+    return {
+        'name': faker.user_name(),
+        'star_name': faker.user_name(),
+        'star_email': faker.email(),
+        'status': 1,
+    }

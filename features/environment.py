@@ -56,6 +56,7 @@ def delete_created_items(context):
     delete_map = {
         'users': app_helpers.delete_user,
         'products': app_helpers.delete_product,
+        'partners': app_helpers.delete_partner,
     }
 
     if context.created_items:

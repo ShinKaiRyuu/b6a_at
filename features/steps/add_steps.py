@@ -37,11 +37,15 @@ def step_impl(context):
     save_item_id(context.product_id, 'products', context)
 
 
+@given("created disabled partner")
 @given("created partner")
 def step_impl(context):
-    context.user_data = create_partner_data()
-    context.user_id = app_helpers.create_user(context.user_data)
-    save_item_id(context.user_id, 'users', context)
+    context.partner_data = create_partner_data()
+    if 'disabled' in context.step_name:
+        context.product_data['status'] = 0
+
+    context.partner_id = app_helpers.create_partner(context.partner_data)
+    save_item_id(context.partner_id, 'partners', context)
 
 
 def save_item_id(item_id, entity_name, context):
