@@ -21,22 +21,20 @@ def step_impl(context):
 # TODO DESCRIPTION FIX
 @step("I want to see  product details")
 def step_impl(context):
-    assert_equal(context.page.get_product_details(), context.product)
-    if 'Update Products:' not in context.driver.title:
-        context.product['id'] = context.page.id.text
+    assert_equal(context.page.get_product_details(), context.product_data)
 
 
 @then("I want to see created product in list")
+@then("I want to see updated product in list")
 def step_impl(context):
-    result = 0
-    for product in context.page.get_products():
-        if product['title'] == context.product['title']:
-            assert_equal(product['title'], context.product['title'])
-            assert_equal(product['slug'], context.product['slug'])
-            assert_equal(product['description'], context.product['description'])
-            assert_equal(product['price'], context.product['price'])
-            result = 1
-    assert_equal(result, 1)
+    context.page.filter_data('title_filter', context.product_data['title'])
+    product = [product for product in context.page.get_products() if product['title'] == context.product_data['title']]
+    assert_equal(len(product), 1)
+    product = product[0]
+    assert_equal(product['price'], context.product_data['price'])
+    assert_equal(int(product['enabled'].replace('Enabled', '1').replace('Disabled','2')), context.product_data['enabled'])
+    context.product_data['created_by'] = product['created_by']
+    context.product_data['updated_by'] = product['updated_by']
 
 
 @step("I want to see all products")
@@ -90,3 +88,25 @@ def step_impl(context, status):
     if status == 'deleted':
         assert_equal(len(product), 0)
         assert_in('Deleted successfully.', success_message)
+
+
+@when("I view product")
+@when("I update product")
+def step_impl(context):
+    context.page.view_product(context)
+
+
+@then("I want to change title description price enabled")
+def step_impl(context):
+    product = create_product_data()
+    context.page.update_product_details(**product)
+    context.old_product_data = context.product_data
+    context.product_data = product
+
+
+@then("I want to see filtered products")
+def step_impl(context):
+    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
+    products = context.page.get_products()
+    for product in products:
+        assert_in(context.filter_text.lower(), product[filter_name].lower())

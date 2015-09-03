@@ -54,7 +54,7 @@ def create_product_data():
         'enabled': 1,
 
     }
-    product_data['slug'] = product_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
+    product_data['seourl'] = product_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
     return product_data
 
 

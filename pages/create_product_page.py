@@ -5,11 +5,12 @@ from pages.base_page import BasePage
 
 
 class CreateProductPage(BasePage):
+    # url_path = '/admin/goods/create'
     url_path = 'admin/goods/update/'
 
     # inputs
     title = Find(value="input#goods-title")
-    # slug = Find(value="input#goods-slug")
+    seourl = Find(value="input#goods-slug")
     description = Find(value="#goods-description")
     price = Find(value="input#goods-price")
     enabled = Find(value="input#goods-enabled")
@@ -28,13 +29,25 @@ class CreateProductPage(BasePage):
         self.update.click()
         self.wait_for_loading()
 
+    def get_product_details(self):
+        kwargs = {}
+        kwargs.update(title=self.title.get_attribute("value"))
+        kwargs.update(seourl=self.seourl.get_attribute("value"))
+        kwargs.update(description=self.description.get_attribute("value"))
+        kwargs.update(price=self.price.get_attribute("value"))
+        kwargs.update(enabled=int(self.enabled.get_attribute("value")))
+        return kwargs
 
-def get_product_details(self):
-    title = self.title.get_attribute("value")
-    slug = self.slug.get_attribute("value")
-    description = self.description.get_attribute("value")
-    price = self.price.get_attribute("value")
-    enabled = self.enabled.get_attribute("value")
-    keys = ['title', 'slug', 'description', 'price', 'enabled']
-    kwargs = {k: locals().get(k) for k in keys}
-    return kwargs
+    def update_product_details(self, **product):
+        self.clear_send_keys('title', product)
+        self.html.click()
+        self.clear_send_keys('description', product)
+        self.clear_send_keys('price', product)
+        if product['enabled']:
+            if self.enabled.get_attribute('value') == 0:
+                self.enabled.click()
+        elif product['enabled'] == 0:
+            if self.enabled.get_attribute('value') == 1:
+                self.enabled.click()
+        self.update.click()
+        self.wait_for_loading()

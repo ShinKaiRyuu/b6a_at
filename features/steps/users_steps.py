@@ -58,6 +58,7 @@ def step_impl(context, status):
 
 
 @then("I write (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
+@then("I select (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
 def step_impl(context, filter_text, filter_name):
     context.filter_name = filter_name + '_filter'
     context.filter_text = filter_text
@@ -227,3 +228,5 @@ def step_impl(context):
     permissions = context.page.get_permissions()
     for permission in permissions:
         assert_in(context.filter_text.lower(), permission[filter_name].lower())
+
+

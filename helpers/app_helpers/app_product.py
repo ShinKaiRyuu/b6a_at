@@ -12,7 +12,7 @@ def create_product(product_data):
     payload = {
         '_csrf': get_csrf_token(r),
         'Goods[title]': product_data['title'],
-        'Goods[slug]': product_data['slug'],
+        'Goods[slug]': product_data['seourl'],
         'Goods[description]': product_data['description'],
         'Goods[price]': product_data['price'],
         'Goods[enabled]': product_data['enabled'],

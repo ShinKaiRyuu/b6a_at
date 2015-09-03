@@ -1,5 +1,4 @@
 from selenium.webdriver.common import keys
-
 from selenium.webdriver.common.by import By
 from webium import Finds, Find
 
@@ -28,7 +27,7 @@ class ManageProductsPage(BasePage):
     price_link = Find(by=By.XPATH, value='//a[text()="Price"]')
 
     # filters
-    orser_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[sort_order]"]')
+    order_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[sort_order]"]')
     title_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[title]"]')
     price_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[price]"]')
     created_by_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_created_id]"]')
@@ -56,9 +55,9 @@ class ManageProductsPage(BasePage):
             {
                 column_name: self._get_product_column_value(data_key, column_name)
                 for column_name in PRODUCT_COLUMNS_MAP.values()
-            }
+                }
             for data_key in self._get_data_keys()
-        ]
+            ]
         return products
 
     def _get_data_keys(self):
@@ -78,7 +77,7 @@ class ManageProductsPage(BasePage):
                     link.get_attribute('title').lower(): link.get_attribute('href')
                 }
                 for link in links
-            ]
+                ]
 
         else:
             column_xpath = self.product_column_xpath.format(data_key, column_num)
@@ -86,49 +85,31 @@ class ManageProductsPage(BasePage):
 
     def delete_product(self, context):
         self.filter_data('title_filter', context.product_data['title'])
-        delete_link = Find(
-            by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.product_id), context=self)
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.product_id),
+                           context=self)
         delete_link.click()
 
-    def view_product(self, context, number):
-        link = ''
-        # TODO NO ENABLED INFO IN TABLE
-        enabled = '1'
-        for product in self.get_products():
-            if product['#'] == str(number):
-                title = product['title']
-                slug = product['slug']
-                description = product['description']
-                price = product['price']
-                # enabled = product['enabled']
-                link = next(b['view'] for b in product['links'] if 'view' in b)
-        link = link.replace(context.app_url, '')
-        view_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
-        view_link.click()
-        kwargs = {k: locals().get(k) for k in ['title', 'slug', 'description', 'price', 'enabled']}
-        return kwargs
-
-    def update_product(self, context, number):
-        link = ''
-        # TODO NO ENABLED INFO IN TABLE
-        enabled = '1'
-        for product in self.get_products():
-            if product['#'] == str(number):
-                title = product['title']
-                slug = product['slug']
-                description = product['description']
-                price = product['price']
-                # enabled = product['enabled']
-                link = next(b['update'] for b in product['links'] if 'update' in b)
-        link = link.replace(context.app_url, '')
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
+    def view_product(self, context):
+        self.filter_data('title_filter', context.product_data['title'])
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.product_id),
+                           context=self)
         update_link.click()
-        kwargs = {k: locals().get(k) for k in ['title', 'slug', 'description', 'price', 'enabled']}
-        return kwargs
+
+    def update_product(self, context):
+        self.filter_data('title_filter', context.product_data['title'])
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.product_id),
+                           context=self)
+        update_link.click()
 
     def filter_data(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
-        filter_element.clear()
-        filter_element.send_keys(filter_value)
-        filter_element.send_keys(keys.Keys.RETURN)
+        if filter_name == 'enabled_filter':
+            self.enabled_filter.click()
+            value = Find(by=By.XPATH, value='//option[text()="{}"]'.format(filter_value), context=self)
+            value.click()
+            self.enabled_filter.send_keys(keys.Keys.RETURN)
+        elif filter_name != "enabled_filter":
+            filter_element.clear()
+            filter_element.send_keys(filter_value)
+            filter_element.send_keys(keys.Keys.RETURN)
         self.wait_for_loading()
