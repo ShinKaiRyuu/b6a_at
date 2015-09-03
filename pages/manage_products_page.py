@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from webium import Finds, Find
 
 from pages.base_page import BasePage
-from helpers.data_helpers import make_ordered_dict
 
 PRODUCT_COLUMNS_MAP = {
     '1': 'order',
@@ -87,7 +86,8 @@ class ManageProductsPage(BasePage):
 
     def delete_product(self, context):
         self.filter_data('title_filter', context.product_data['title'])
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.product_id), context=self)
+        delete_link = Find(
+            by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.product_id), context=self)
         delete_link.click()
 
     def view_product(self, context, number):
@@ -96,7 +96,6 @@ class ManageProductsPage(BasePage):
         enabled = '1'
         for product in self.get_products():
             if product['#'] == str(number):
-                id = product['id']
                 title = product['title']
                 slug = product['slug']
                 description = product['description']
@@ -106,8 +105,7 @@ class ManageProductsPage(BasePage):
         link = link.replace(context.app_url, '')
         view_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
         view_link.click()
-        keys = ['title', 'slug', 'description', 'price', 'enabled']
-        kwargs = make_ordered_dict(keys, locals())
+        kwargs = {k: locals().get(k) for k in ['title', 'slug', 'description', 'price', 'enabled']}
         return kwargs
 
     def update_product(self, context, number):
@@ -116,7 +114,6 @@ class ManageProductsPage(BasePage):
         enabled = '1'
         for product in self.get_products():
             if product['#'] == str(number):
-                id = product['id']
                 title = product['title']
                 slug = product['slug']
                 description = product['description']
@@ -126,8 +123,7 @@ class ManageProductsPage(BasePage):
         link = link.replace(context.app_url, '')
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'{}')]".format(link), context=self)
         update_link.click()
-        keys = ['title', 'slug', 'description', 'price', 'enabled']
-        kwargs = make_ordered_dict(keys, locals())
+        kwargs = {k: locals().get(k) for k in ['title', 'slug', 'description', 'price', 'enabled']}
         return kwargs
 
     def filter_data(self, filter_name, filter_value):
@@ -136,5 +132,3 @@ class ManageProductsPage(BasePage):
         filter_element.send_keys(filter_value)
         filter_element.send_keys(keys.Keys.RETURN)
         self.wait_for_loading()
-
-

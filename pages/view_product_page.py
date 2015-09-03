@@ -1,11 +1,9 @@
 from webium import Find
 
 from pages.base_page import BasePage
-from helpers.data_helpers import make_ordered_dict
 
 
 class ViewProductPage(BasePage):
-    # url_path = '/admin/goods/create'
     url_path = 'admin/goods/view'
 
     # links
@@ -26,5 +24,5 @@ class ViewProductPage(BasePage):
         price = self.price.text
         enabled = self.enabled.text
         keys = ['title', 'slug', 'description', 'price', 'enabled']
-        kwargs = make_ordered_dict(keys, locals())
+        kwargs = {k: locals().get(k) for k in keys}
         return kwargs

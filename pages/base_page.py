@@ -1,6 +1,5 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from webium import BasePage as WebiumBasePage, Find
-from selenium.webdriver.common.by import By
 
 
 class BasePage(WebiumBasePage):

@@ -55,12 +55,14 @@ def delete_user(user_id):
     r = s.post(url, data=payload)
     assert 'User has been deleted' in r.text
 
+
 def create_blocked_user(user_data):
     s = get_admin_session()
     user_id = _create_user_record(s, user_data)
     _update_user_record(s, user_id, user_data)
     _block_user(s, user_id)
     return user_id
+
 
 def _block_user(session, user_id):
     params = {'id': user_id}

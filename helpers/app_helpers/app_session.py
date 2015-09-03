@@ -12,6 +12,8 @@ URL_PREFIXES = {
     'block_user': '/user/admin/block'
 }
 
+_admin_session = None
+
 
 def get_requests_app_cookies(credentials):
     s = _get_logged_session(credentials)
@@ -45,4 +47,7 @@ def get_csrf_token(response):
 
 
 def get_admin_session():
-    return _get_logged_session(ADMIN_CREDENTIALS)
+    global _admin_session
+    if not _admin_session:
+        _admin_session = _get_logged_session(ADMIN_CREDENTIALS)
+    return _admin_session

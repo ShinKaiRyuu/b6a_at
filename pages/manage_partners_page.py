@@ -17,7 +17,7 @@ PARTNER_COLUMNS_MAP = {
 
 
 class ManagePartnersPage(BasePage):
-    url_path = 'admin/partner/index'
+    url_path = '/admin/partner/index'
 
     # sorting
     order_link = Find(by=By.XPATH, value='//a[text()="Order"]')

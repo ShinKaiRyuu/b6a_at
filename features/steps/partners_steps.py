@@ -25,5 +25,3 @@ def step_impl(context):
     partner = create_partner_data()
     context.page.create_new_partner(**partner)
     context.partner_data = partner
-
-

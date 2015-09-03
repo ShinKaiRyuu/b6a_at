@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 from webium import Find
 
 from pages.base_page import BasePage
-from helpers.data_helpers import make_ordered_dict
 
 
 class CreateProductPage(BasePage):
@@ -38,5 +37,6 @@ def get_product_details(self):
     price = self.price.get_attribute("value")
     enabled = self.enabled.get_attribute("value")
     keys = ['title', 'slug', 'description', 'price', 'enabled']
-    kwargs = make_ordered_dict(keys, locals())
+    # kwargs = make_ordered_dict(keys, locals())
+    kwargs = {k: locals().get(k) for k in keys}
     return kwargs

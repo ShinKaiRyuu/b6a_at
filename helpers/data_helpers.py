@@ -1,8 +1,8 @@
 from ast import literal_eval
-from collections import OrderedDict
 import random
 from tempmail import TempMail
 from faker import Faker
+from helpers.app_helpers.app_partner import get_enabled_partners_ids
 
 _faker = None
 
@@ -12,14 +12,6 @@ def get_faker():
     if not _faker:
         _faker = Faker()
     return _faker
-
-
-def make_ordered_dict(keys, _locals):
-    kwargs = OrderedDict()
-    for key in keys:
-        value = _locals.get(key)
-        kwargs[key] = modify_value(value)
-    return kwargs
 
 
 def modify_value(value):
@@ -49,7 +41,7 @@ def create_user_data():
         'public_email': faker.email(),
         'location': faker.city(),
         'bio': faker.user_name(),
-        'partner_id': random.choice(['1', '2'])  # TODO get partners ids
+        'partner_id': random.choice(get_enabled_partners_ids())
     }
 
 
@@ -67,13 +59,4 @@ def create_product_data():
 
 
 def create_partner_data():
-    faker = get_faker()
-    partner_data = {
-        'title': faker.name(),
-        'description': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
-        'price': ''.join([str(faker.pyint()), '.00']),
-        'enabled': random.getrandbits(1),
-
-    }
-    partner_data['slug'] = partner_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
-    return partner_data
+    pass
