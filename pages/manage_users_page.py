@@ -77,17 +77,17 @@ class ManageUsersPage(BasePage):
             return Find(by=By.XPATH, value=column_xpath, context=self).text
 
     def delete_user(self, context):
-        self.filter_user('username_filter', context.user_data['username'])
+        self.filter_data('username_filter', context.user_data['username'])
         delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.user_id), context=self)
         delete_link.click()
 
     def block_user(self, context):
-        self.filter_user('username_filter', context.user_data['username'])
+        self.filter_data('username_filter', context.user_data['username'])
         block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id), context=self)
         block_link.click()
 
     def update_user(self, context):
-        self.filter_user('username_filter', context.user_data['username'])
+        self.filter_data('username_filter', context.user_data['username'])
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.user_id), context=self)
         update_link.click()
 

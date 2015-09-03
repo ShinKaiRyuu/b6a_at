@@ -92,7 +92,7 @@ Feature: Manage users module
     When I click on Information link
     Then I want to see User Information page
     And i want to see user information details
- # TODO FIX SCENARIO ( assert text )
+
   @wip @update_users @update_user_assignments
   Scenario: Update user. Update assignments
     Given created user
@@ -108,9 +108,7 @@ Feature: Manage users module
     Then I want to see not empty user assignmnets
     When I click on Logout link
     Then I want to login with these user
-    When I open Create Role page
-    Then I must not see 'Access denied' text
-    When I open Create Permission page
+    When I open Manage Users page
     Then I must not see 'Access denied' text
     When I click on Logout link
     Given I am logged in as Administrator
@@ -124,9 +122,7 @@ Feature: Manage users module
     Then I want to see empty user assignmnets
     When I click on Logout link
     Then I want to login with these user
-    When I open Create Role page
-    Then I must see 'Access denied' text
-    When I open Create Permission page
+    When I open Manage Users page
     Then I must see 'Access denied' text
 
 

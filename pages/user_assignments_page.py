@@ -27,8 +27,11 @@ class UserAssignmentsPage(BasePage):
     def view_assignments(self):
         self.wait_for_loading()
         assignments_text = []
-        assignments_elements = self.assignments
-        for assignment in assignments_elements:
+        assignments = \
+            Finds(by=By.XPATH,
+                  value='//ul[@class="select2-selection__rendered"]/li[@class="select2-selection__choice"]',
+                  context=self)
+        for assignment in assignments:
             text = assignment.text
             assignments_text.append(text)
         return assignments_text
