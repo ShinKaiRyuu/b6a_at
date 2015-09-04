@@ -27,7 +27,7 @@ class CreatePartnerPage(BasePage):
         partner_status_select.select_by_index(kwargs['status'])
         self.update.click()
         wait = WebDriverWait(self._driver, 10)
-        wait.until(lambda x: (context.driver.title == 'Products') is True)
+        wait.until(lambda x: (context.driver.title == 'Partners') is True)
         self.wait_for_loading()
 
     def get_partner_details(self):

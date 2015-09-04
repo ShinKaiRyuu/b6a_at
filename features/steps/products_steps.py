@@ -15,6 +15,7 @@ def step_impl(context):
     context.page.create_new_product(**product)
     context.product_data = product
 
+
 @step("I want to see product details")
 def step_impl(context):
     assert_equal(context.page.get_product_details(), context.product_data)
@@ -38,6 +39,7 @@ def step_impl(context):
 def step_impl(context):
     products = context.page.get_products()
     assert_true(len(products) >= 1)
+
 
 @then("I want to see dialog box and click (?P<dialogbox_answer>.+)")
 def step_impl(context, dialogbox_answer):
