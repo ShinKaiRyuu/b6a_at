@@ -20,13 +20,6 @@ Feature: Manage users module
     And I am on Manage Users page
     Then I write admin@nomail.com in email Filter
     Then I want to see filtered users
-#
-#  @wip @filter_users @filter_users_by_ip
-#  Scenario: View users. Filter records by registration ip
-#    Given I am logged in as Administrator
-#    And I am on Manage Users page
-#    Then I write ::1 in registration_ip Filter
-#    Then I want to see filtered users
 
   @wip @filter_users @filter_users_by_registration_date
   Scenario: View users. Filter records by registration date
@@ -34,10 +27,6 @@ Feature: Manage users module
     And I am on Manage Users page
     Then I write 2015-08-07 in registration_at Filter
     Then I want to see filtered users
-
-
-#  Scenario: View users. Sort records
-#
 
   @wip @create_user
   Scenario: Create new user
@@ -125,7 +114,23 @@ Feature: Manage users module
     When I open Manage Users page
     Then I must see 'Access denied' text
 
+  Scenario Outline: Testing creating form
+    Given I am logged in as Administrator
+    And I am on Create User page
+    When I fill create user form with <username>,<email>,<password>
+    Then I want to get result - <result>
+    Examples:
+      | username           | email              | password | result                                                                        |
+      | empty              | faker.email        | 123456   | I want to see error message "Username cannot be blank."                       |
+      | faker.user_name    | empty              | 123456   | I want to see error message "Email cannot be blank."                          |
+      | admin              | faker.email        | 123456   | I want to see error message "Username "admin" has already been taken."        |
+      | faker.user_name    | root@nomail.com    | 123456   | I want to see error message "Email "root@nomail.com" has already been taken." |
+      | faker.user_name    | faker.email        | 1234     | I want to see error message "Password should contain at least 6 characters."  |
+      | script alert('aaa' | faker.email        | 123456   | I want to see error message "Username is invalid."                            |
+      | faker.user_name    | script alert('aaa' | 123456   | I want to see error message "Email is not a valid email address."             |
 
+#  Scenario: View users. Sort records
+#
 #  Scenario: Update user. Delete user
 #
 #  Scenario: Update user. Block user
@@ -194,12 +199,6 @@ Feature: Manage users module
     And I am on Manage Roles page
     Then I write Rule name in rulename Filter
     Then I want to see filtered roles
-#
-#  Scenario: Create new role
-#
-#  Scenario: Update role
-#
-#  Scenario: Delete role
 
   Scenario: View permissions
     Given I am logged in as Administrator
@@ -227,9 +226,3 @@ Feature: Manage users module
     And I am on Manage Permissions page
     Then I write isOwnGoods in rulename Filter
     Then I want to see filtered permissions
-
-#  Scenario: Create new permission
-
-#  Scenario: Update permission
-
-#  Scenario: Delete permission

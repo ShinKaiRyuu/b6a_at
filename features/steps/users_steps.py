@@ -3,7 +3,7 @@ import time
 from behave import *
 from nose.tools import assert_equal, assert_true, assert_in
 
-from helpers.data_helpers import create_user_data
+from helpers.data_helpers import create_user_data, modify_value
 
 use_step_matcher("re")
 
@@ -230,3 +230,10 @@ def step_impl(context):
         assert_in(context.filter_text.lower(), permission[filter_name].lower())
 
 
+@when("I fill create user form with (?P<username>.+),(?P<email>.+),(?P<password>.+)")
+def step_impl(context, username, email, password):
+    user = {}
+    user.update(username=modify_value(username))
+    user.update(email=modify_value(email))
+    user.update(password=modify_value(password))
+    context.page.create_new_user(**user)
