@@ -66,3 +66,17 @@ def create_partner_data():
         'star_email': faker.email(),
         'status': 1,
     }
+
+def create_page_data():
+    faker = get_faker()
+    page_data = {
+        'name': faker.name(),
+        'parent_id': '',
+        'content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
+        'status': 'published',
+        'title': faker.pystr(max_chars=10),
+        'keywords': faker.pystr(max_chars=10),
+        'description': faker.pystr(max_chars=10),
+    }
+    page_data['slug'] = page_data['name'].lower().replace(' ', '-').replace('.', '').replace(',', '')
+    return page_data

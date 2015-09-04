@@ -13,7 +13,7 @@ PAGES_COLUMNS_MAP = {
 
 
 class ManagePagesPage(BasePage, TableMixin):
-    url_path = 'admin/page/index'
+    url_path = '/admin/page/index'
 
     def get_pages(self):
         return self.get_table_records(PAGES_COLUMNS_MAP)

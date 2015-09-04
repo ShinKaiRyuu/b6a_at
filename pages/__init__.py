@@ -22,5 +22,3 @@ from .manage_products_page import ManageProductsPage
 from .view_product_page import ViewProductPage
 
 from .manage_pages_page import ManagePagesPage
-
-

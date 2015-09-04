@@ -12,6 +12,8 @@ URL_PREFIXES = {
     'block_user': '/user/admin/block',
     'create_partner': '/admin/partner/create',
     'delete_partner': '/admin/partner/delete/{}',
+    'create_page': '/admin/page/create',
+    'delete_page': '/admin/page/delete/{}',
 }
 
 _admin_session = None

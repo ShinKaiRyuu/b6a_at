@@ -1,7 +1,7 @@
 from behave import *
 
 from helpers import app_helpers
-from helpers.data_helpers import create_user_data, create_product_data, create_partner_data
+from helpers.data_helpers import create_user_data, create_product_data, create_partner_data, create_page_data
 
 use_step_matcher("re")
 
@@ -48,7 +48,29 @@ def step_impl(context):
     save_item_id(context.partner_id, 'partners', context)
 
 
+# @given('created parent page with draft additional page')
+# @given('created parent page with additional page')
+@given('created draft parent page')
+@given('created parent page')
+def step_impl(context):
+    context.parent_page_data = create_page_data()
+
+    if 'draft parent' in context.step_name:
+        context.page_data['status'] = 'draft'
+
+    context.parent_page_id = app_helpers.create_page(context.parent_page_data)
+    save_item_id(context.parent_page_id, 'pages', context)
+
+    if 'additional page' in context.step_name:
+        context.additional_page_data = create_page_data()
+        context.additional_page_data['parent_id'] = context.parent_page_id
+        if 'draft additional' in context.step_name:
+            context.additional_page_data['status'] = 'draft'
+        context.additional_page_id = app_helpers.create_page(context.additional_page_data)
+        save_item_id(context.additional_page_id, 'pages', context)
+
+
 def save_item_id(item_id, entity_name, context):
     items = context.created_items.get(entity_name, [])
-    items.append(item_id)
+    items.insert(0, item_id)
     context.created_items[entity_name] = items
