@@ -24,6 +24,7 @@ PAGES_MAP = {
     'Manage Roles': pages.ManageRolesPage,
     'Create Permission': pages.CreatePermissionPage,
     'Manage Permissions': pages.ManagePermissionPage,
+    'Manage Pages': pages.ManagePagesPage,
 }
 
 
