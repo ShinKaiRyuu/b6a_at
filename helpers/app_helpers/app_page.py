@@ -1,17 +1,10 @@
 from bs4 import BeautifulSoup
-from helpers.app_helpers.app_session import get_admin_session, get_url, get_csrf_token, URL_PREFIXES
+from helpers.app_helpers.app_session import get_admin_session, get_url, create_source, delete_source
 import pages
 
 
 def create_page(page_data):
-    s = get_admin_session()
-    url = get_url(URL_PREFIXES['create_page'])
-    r = s.get(url)
-    page_id = r.url.split('/')[-1]
-    url = r.url
-
-    payload = {
-        '_csrf': get_csrf_token(r),
+    page_payload = {
         'Page[name]': page_data['name'],
         'Page[slug]': page_data['slug'],
         'Page[parent_id]': page_data['parent_id'],
@@ -22,25 +15,11 @@ def create_page(page_data):
         'Page[description]': page_data['description'],
         'user_created_id': 1,
     }
-
-    r = s.post(url, data=payload)
-    assert 'successfully.' in r.text
-    return page_id
+    return create_source(source_name='page', source_payload=page_payload)
 
 
 def delete_page(page_id):
-    s = get_admin_session()
-    url = get_url(pages.ManagePagesPage.url_path)
-    r = s.get(url)
-
-    payload = {'_csrf': get_csrf_token(r)}
-    url = get_url(URL_PREFIXES['delete_page']).format(page_id)
-    r = s.post(url, data=payload)
-
-    if 'The requested page does not exist' in r.text:
-        return
-
-    assert 'Deleted successfully.' in r.text
+    delete_source(source_name='page', source_id=page_id)
 
 
 def get_published_parent_pages_ids():
