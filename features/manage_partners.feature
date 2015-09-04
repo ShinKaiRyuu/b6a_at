@@ -1,6 +1,6 @@
 Feature: Manage partners module
-  # Test all stuff connected with products(add,view,update,delete,sort,etc...)
-@done @partner @partner_open_partners_page
+
+  @done @partner @partner_open_partners_page
   Scenario: Open partners page
     Given I am logged in as Administrator
     When I click on Manage Site link
@@ -8,7 +8,7 @@ Feature: Manage partners module
     Then I want to see Manage Partners page
     And I want to see all partners
 
-@done @partner @create_partner
+  @done @partner @create_partner
   Scenario: Create partner
     Given I am logged in as Administrator
     When I click on Manage Site link
@@ -20,7 +20,7 @@ Feature: Manage partners module
     Then I want to see Manage Partners page
     And I want to see created partner in list
 
-@done @partner @delete_partner
+  @done @partner @delete_partner
   Scenario: Delete partner
     Given created partner
     Given I am logged in as Administrator
@@ -32,7 +32,7 @@ Feature: Manage partners module
     Then I want to see dialog box and click Yes
     Then I want to see partner is deleted
 
-@done @partner @view_partner
+  @done @partner @view_partner
   Scenario: View partner
     Given created partner
     Given I am logged in as Administrator
@@ -41,7 +41,7 @@ Feature: Manage partners module
     Then I want to see Create Partner page
     And I want to see partner details
 
-@done @partner @update_partner
+  @done @partner @update_partner
   Scenario: Update partner
     Given created partner
     Given I am logged in as Administrator
@@ -81,14 +81,14 @@ Feature: Manage partners module
     Then I write root in updated_by Filter
     Then I want to see filtered partners
 
- @done @partner @filter_partner_by_status_enabled
+  @done @partner @filter_partner_by_status_enabled
   Scenario: Filter products by enabled
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I select Enabled in status Filter
     Then I want to see filtered partners
 
- @done @partner @filter_partner_by_status_disabled
+  @done @partner @filter_partner_by_status_disabled
   Scenario: Filter products by disabled
     Given I am logged in as Administrator
     And I am on Manage Partners page

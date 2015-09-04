@@ -1,6 +1,8 @@
 from datetime import datetime
 from sys import platform
+
 from webium.driver import get_driver
+
 from helpers.app_helpers import APP_URL
 from helpers.driver_helpers import get_updated_driver
 from helpers import app_helpers

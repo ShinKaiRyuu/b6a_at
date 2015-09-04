@@ -1,5 +1,3 @@
-import random
-
 from behave import *
 from nose.tools import assert_equal, assert_true, assert_in
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,8 +15,6 @@ def step_impl(context):
     context.page.create_new_product(**product)
     context.product_data = product
 
-
-# TODO DESCRIPTION FIX
 @step("I want to see product details")
 def step_impl(context):
     assert_equal(context.page.get_product_details(), context.product_data)
@@ -32,7 +28,8 @@ def step_impl(context):
     assert_equal(len(product), 1)
     product = product[0]
     assert_equal(product['price'], context.product_data['price'])
-    assert_equal(int(product['enabled'].replace('Enabled', '1').replace('Disabled','2')), context.product_data['enabled'])
+    assert_equal(int(product['enabled'].replace('Enabled', '1').replace('Disabled', '2')),
+                 context.product_data['enabled'])
     context.product_data['created_by'] = product['created_by']
     context.product_data['updated_by'] = product['updated_by']
 
@@ -42,8 +39,6 @@ def step_impl(context):
     products = context.page.get_products()
     assert_true(len(products) >= 1)
 
-
-# TODO make choise dismiss\accept
 @then("I want to see dialog box and click (?P<dialogbox_answer>.+)")
 def step_impl(context, dialogbox_answer):
     WebDriverWait(context.driver, 3).until(ec.alert_is_present())

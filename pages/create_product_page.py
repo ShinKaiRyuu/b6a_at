@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 from webium import Find
 
 from pages.base_page import BasePage
@@ -27,6 +28,8 @@ class CreateProductPage(BasePage):
         if kwargs['enabled']:
             self.enabled.click()
         self.update.click()
+        wait = WebDriverWait(self._driver, 10)
+        wait.until(lambda x: (self._driver.title == 'Products') is True)
         self.wait_for_loading()
 
     def get_product_details(self):

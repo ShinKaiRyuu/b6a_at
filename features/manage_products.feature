@@ -1,5 +1,5 @@
 Feature: Manage products module
-  # Test all stuff connected with products(add,view,update,delete,sort,etc...)
+
   @wip
   Scenario: View products
     Given I am logged in as Administrator
@@ -15,9 +15,6 @@ Feature: Manage products module
     When I click on Create new product button
     Then I want to see Create Product page
     When I create new product
-    Then I want to see Manage Products page
-    And I want to see  product details
-    When I click on Manage products menu link
     Then I want to see Manage Products page
     Then I want to see created product in list
 
