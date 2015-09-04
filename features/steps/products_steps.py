@@ -19,7 +19,7 @@ def step_impl(context):
 
 
 # TODO DESCRIPTION FIX
-@step("I want to see  product details")
+@step("I want to see product details")
 def step_impl(context):
     assert_equal(context.page.get_product_details(), context.product_data)
 
@@ -52,18 +52,6 @@ def step_impl(context, dialogbox_answer):
         alert.dismiss()
     elif dialogbox_answer == "Yes":
         alert.accept()
-
-
-@when("I view random product")
-def step_impl(context):
-    product_number = random.randint(1, len(context.page.get_products()))
-    context.product = context.page.view_product(context, product_number)
-
-
-@when("I update random product")
-def step_impl(context):
-    product_number = random.randint(1, len(context.page.get_products()))
-    context.product = context.page.update_product(context, product_number)
 
 
 @when("I delete created product")

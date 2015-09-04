@@ -29,3 +29,24 @@ class CreatePartnerPage(BasePage):
         wait = WebDriverWait(self._driver, 10)
         wait.until(lambda x: (context.driver.title == 'Partners') is True)
         self.wait_for_loading()
+
+    def get_partner_details(self):
+            kwargs = {}
+            kwargs.update(name=self.name.get_attribute("value"))
+            kwargs.update(star_name=self.star_name.get_attribute("value"))
+            kwargs.update(star_email=self.star_email.get_attribute("value"))
+            kwargs.update(status=int(self.partner_status.get_attribute("value")))
+            return kwargs
+
+    def update_partner_details(self, **partner):
+        self.clear_send_keys('name', partner)
+        self.clear_send_keys('star_name', partner)
+        self.clear_send_keys('star_email', partner)
+        if partner['status']:
+            if self.partner_status.get_attribute('value') == 0:
+                self.partner_status.click()
+        elif partner['status'] == 0:
+            if self.partner_status.get_attribute('value') == 1:
+                self.partner_status.click()
+        self.update.click()
+        self.wait_for_loading()

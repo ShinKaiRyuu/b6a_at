@@ -60,14 +60,6 @@ class ManageProductsPage(BasePage, TableMixin):
                            context=self)
         update_link.click()
 
-    def update_product(self, context):
-        self.filter_data('title_filter', context.product_data['title'])
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.product_id),
-                           context=self)
-        update_link.click()
-        kwargs = {k: locals().get(k) for k in ['title', 'slug', 'description', 'price', 'enabled']}
-        return kwargs
-
     def filter_data(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
         if filter_name == 'enabled_filter':

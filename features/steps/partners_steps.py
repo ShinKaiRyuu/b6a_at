@@ -13,6 +13,7 @@ def step_impl(context):
 
 
 @step("I want to see created partner in list")
+@step("I want to see updated partner in list")
 def step_impl(context):
     context.page.filter_data('name_filter', context.partner_data['name'])
     partner = [partner for partner in context.page.get_partners() if partner['name'] == context.partner_data['name']]
@@ -53,3 +54,31 @@ def step_impl(context, status):
     if status == 'deleted':
         assert_equal(len(partner), 0)
         assert_in('Deleted successfully.', success_message)
+
+
+@when("I view partner")
+@when("I update partner")
+def step_impl(context):
+    context.page.view_partner(context.partner_data, context.partner_id)
+
+
+@step("I want to see partner details")
+def step_impl(context):
+    actual_partner_data = context.page.get_partner_details()
+    assert_equal(actual_partner_data, context.partner_data)
+
+
+@then("I want to change name starname staremail status")
+def step_impl(context):
+    partner = create_partner_data()
+    context.page.update_partner_details(**partner)
+    context.old_partner_data = context.partner_data
+    context.partner_data = partner
+
+
+@then("I want to see filtered partners")
+def step_impl(context):
+    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
+    partners = context.page.get_partners()
+    for partner in partners:
+        assert_in(context.filter_text.lower(), partner[filter_name].lower())

@@ -29,8 +29,8 @@ class ManagePartnersPage(BasePage, TableMixin):
     order_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[sort_order]"]')
     name_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[name]"]')
     created_by_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[user_created_id]"]')
-    updated_by_filter = Find(by=By.XPATH, value='SearchPartner[user_updated_id]')
-    status_name_filter = Find(by=By.XPATH, value='//select[@name="SearchPartner[status]"]')
+    updated_by_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[user_updated_id]"]')
+    status_filter = Find(by=By.XPATH, value='//select[@name="SearchPartner[status]"]')
 
     # buttons
     create_partner_btn = Find(by=By.XPATH, value='//a[@href="/admin/partner/create"]')
@@ -46,9 +46,21 @@ class ManagePartnersPage(BasePage, TableMixin):
                            context=self)
         delete_link.click()
 
+    def view_partner(self, product_data, product_id):
+        self.filter_data('name_filter', product_data['name'])
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(product_id),
+                           context=self)
+        update_link.click()
+
     def filter_data(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name)
-        filter_element.clear()
-        filter_element.send_keys(filter_value)
-        filter_element.send_keys(keys.Keys.RETURN)
+        if filter_name == 'status_filter':
+            self.status_filter.click()
+            value = Find(by=By.XPATH, value='//option[text()="{}"]'.format(filter_value), context=self)
+            value.click()
+            self.status_filter.send_keys(keys.Keys.RETURN)
+        else:
+            filter_element.clear()
+            filter_element.send_keys(filter_value)
+            filter_element.send_keys(keys.Keys.RETURN)
         self.wait_for_loading()

@@ -40,7 +40,7 @@ Feature: Manage products module
     And I am on Manage Products page
     When I view product
     Then I want to see Create Product page
-    And I want to see  product details
+    And I want to see product details
 
   @wip
   Scenario: Update product
@@ -49,7 +49,7 @@ Feature: Manage products module
     And I am on Manage Products page
     When I update product
     Then I want to see Create Product page
-    And I want to see  product details
+    And I want to see product details
     Then I want to change title description price enabled
     And I am on Manage Products page
     Then I want to see updated product in list
