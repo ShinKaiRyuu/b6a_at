@@ -5,7 +5,7 @@ Feature: Manage partners module
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Partners link
-    Then I want to see Manage Partners page
+    Then I want to see 'Manage Partners' page
     And I want to see all partners
 
   @done @partner @create_partner
@@ -13,11 +13,11 @@ Feature: Manage partners module
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Partners link
-    Then I want to see Manage Partners page
+    Then I want to see 'Manage Partners' page
     When I click on Create Partner button
-    Then I want to see Create Partner page
+    Then I want to see 'Create Partner' page
     When I create new partner
-    Then I want to see Manage Partners page
+    Then I want to see 'Manage Partners' page
     And I want to see created partner in list
 
   @done @partner @delete_partner
@@ -38,7 +38,7 @@ Feature: Manage partners module
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I view partner
-    Then I want to see Create Partner page
+    Then I want to see 'Create Partner' page
     And I want to see partner details
 
   @done @partner @update_partner
@@ -47,7 +47,7 @@ Feature: Manage partners module
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I update partner
-    Then I want to see Create Partner page
+    Then I want to see 'Create Partner' page
     And I want to see partner details
     Then I want to change name starname staremail status
     And I am on Manage Partners page

@@ -237,3 +237,14 @@ def step_impl(context, username, email, password):
     user.update(email=modify_value(email))
     user.update(password=modify_value(password))
     context.page.create_new_user(**user)
+
+
+@then("i want to see sorted users by (?P<sort_by>.+) and (?P<sort_order>.+)")
+def step_impl(context, sort_by, sort_order):
+        context.page.wait_for_loading()
+        sorted_users = context.page.get_users()
+        if sort_order == 'ascending':
+            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)])
+        else:
+            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)], reverse=True)
+        assert_equal(sorted_users, actual_sorted_users)

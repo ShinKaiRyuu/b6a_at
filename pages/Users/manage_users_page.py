@@ -8,7 +8,7 @@ from pages.table_mixin import TableMixin
 USER_COLUMNS_MAP = {
     '1': 'username',
     '2': 'email',
-    '3': 'registration_time',
+    '3': 'registrationtime',
     '4': 'confirmation',
     '5': 'block_status',
     '6': 'links',
@@ -18,6 +18,12 @@ USER_COLUMNS_MAP = {
 
 class ManageUsersPage(BasePage, TableMixin):
     url_path = '/user/admin/index'
+    # sorting
+    username_link = Find(by=By.XPATH, value='//a[contains(@data-sort,"username")]')
+    email_link = Find(by=By.XPATH, value='//a[contains(@data-sort,"email")]')
+    registrationtime_link = Find(by=By.XPATH, value='//a[contains(@data-sort,"created_at")]')
+    description_link = Find(by=By.XPATH, value='//a[text()="Description"]')
+    price_link = Find(by=By.XPATH, value='//a[text()="Price"]')
 
     # filters
     username_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[username]"]')

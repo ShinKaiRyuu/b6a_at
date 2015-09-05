@@ -37,7 +37,7 @@ def step_impl(context, page_name):
     context.page.open()
 
 
-@then("I want to see (?P<page_name>.+) page")
+@then("I want to see '(?P<page_name>.+)' page")
 def step_impl(context, page_name):
     page = PAGES_MAP[page_name]
     assert_in(page.url_path, get_driver().current_url)

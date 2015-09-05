@@ -5,7 +5,7 @@ Feature: Manage products module
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Products link
-    Then I want to see Manage Products page
+    Then I want to see 'Manage Products' page
     And I want to see all products
 
   @wip
@@ -13,9 +13,9 @@ Feature: Manage products module
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on Create new product button
-    Then I want to see Create Product page
+    Then I want to see 'Create Product' page
     When I create new product
-    Then I want to see Manage Products page
+    Then I want to see 'Manage Products' page
     Then I want to see created product in list
 
   @wip
@@ -36,7 +36,7 @@ Feature: Manage products module
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I view product
-    Then I want to see Create Product page
+    Then I want to see 'Create Product' page
     And I want to see product details
 
   @wip
@@ -45,7 +45,7 @@ Feature: Manage products module
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I update product
-    Then I want to see Create Product page
+    Then I want to see 'Create Product' page
     And I want to see product details
     Then I want to change title description price enabled
     And I am on Manage Products page

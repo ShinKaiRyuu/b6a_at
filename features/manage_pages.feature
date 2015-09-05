@@ -5,5 +5,5 @@ Feature: Manage pages module
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Pages link
-    Then I want to see Manage Pages page
-    And I want to see all pages
+    Then I want to see 'Manage Pages' page
+    And I want to see table with all pages in it

@@ -4,7 +4,7 @@ Feature: Manage users module
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Users link
-    Then I want to see Manage Users page
+    Then I want to see 'Manage Users' page
     And I want to see all users
 
   @wip @filter_users @filter_users_by_username
@@ -34,9 +34,9 @@ Feature: Manage users module
     And I am on Manage Users page
     When I click on Create link
     And I click on Create User link
-    Then I want to see Create User page
+    Then I want to see 'Create User' page
     When I create new user
-    Then I want to see Update User Account Details page
+    Then I want to see 'Update User Account Details' page
     And I am on Manage Users page
     Then I want to see created user in list
     When I click on Logout link
@@ -48,7 +48,7 @@ Feature: Manage users module
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I update created user
-    Then I want to see Update User Account Details page
+    Then I want to see 'Update User Account Details' page
     Then I want to change my username  & email & password
     And I am on Manage Users page
     Then I want to see updated user in list
@@ -63,9 +63,9 @@ Feature: Manage users module
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I update created user
-    Then I want to see Update User Account Details page
+    Then I want to see 'Update User Account Details' page
     When I click on Profile details link
-    Then I want to see Update User Profile Details page
+    Then I want to see 'Update User Profile Details' page
     And I want to see user profile details
     Then I want to change my name public email bio location partner
     And I want to see user profile details
@@ -77,9 +77,9 @@ Feature: Manage users module
     And I am on Manage Users page
     Then I want to see created user in list
     When I view created user information
-    Then I want to see Update User Account Details page
+    Then I want to see 'Update User Account Details' page
     When I click on Information link
-    Then I want to see User Information page
+    Then I want to see 'User Information' page
     And i want to see user information details
 
   @wip @update_users @update_user_assignments
@@ -89,9 +89,9 @@ Feature: Manage users module
     And I am on Manage Users page
     Then I want to see created user in list
     When I view created user information
-    Then I want to see Update User Account Details page
+    Then I want to see 'Update User Account Details' page
     When I click on Assignments link
-    Then I want to see User Assignments page
+    Then I want to see 'User Assignments' page
     Then I want to see empty user assignmnets
     Then I want to add root assignmnet
     Then I want to see not empty user assignmnets
@@ -104,9 +104,9 @@ Feature: Manage users module
     And I am on Manage Users page
     Then I want to see created user in list
     When I view created user information
-    Then I want to see Update User Account Details page
+    Then I want to see 'Update User Account Details' page
     When I click on Assignments link
-    Then I want to see User Assignments page
+    Then I want to see 'User Assignments' page
     Then I want to remove root assignmnet
     Then I want to see empty user assignmnets
     When I click on Logout link
@@ -129,8 +129,31 @@ Feature: Manage users module
       | script alert('aaa' | faker.email        | 123456   | I want to see error message "Username is invalid."                            |
       | faker.user_name    | script alert('aaa' | 123456   | I want to see error message "Email is not a valid email address."             |
 
-#  Scenario: View users. Sort records
-#
+  Scenario: View users. Sort records by username ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    When I click on username link
+    Then i want to see sorted users by username and ascending
+    When I click on username link
+    Then i want to see sorted users by username and descending
+
+  Scenario: View users. Sort records by username ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    When I click on email link
+    Then i want to see sorted users by email and ascending
+    When I click on email link
+    Then i want to see sorted users by email and descending
+
+    # TODO fix time sort
+  Scenario: View users. Sort records by registration time ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Users page
+    When I click on registrationtime link
+    Then i want to see sorted users by registrationtime and ascending
+    When I click on registrationtime link
+    Then i want to see sorted users by registrationtime and descending
+
 #  Scenario: Update user. Delete user
 #
 #  Scenario: Update user. Block user
@@ -171,15 +194,15 @@ Feature: Manage users module
     Then I want to see user is unblocked
     When I click on Logout link
     Then I want to login with these user
-    Then I want to see Main page
+    Then I want to see 'Main' page
 
   Scenario: View roles
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Users link
-    Then I want to see Manage Users page
+    Then I want to see 'Manage Users' page
     When I click on Roles link
-    Then I want to see Manage Roles page
+    Then I want to see 'Manage Roles' page
     And I want to see all roles
 
   Scenario: View roles. Filter roles by name
@@ -204,9 +227,9 @@ Feature: Manage users module
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Users link
-    Then I want to see Manage Users page
+    Then I want to see 'Manage Users' page
     When I click on Permissions link
-    Then I want to see Manage Permissions page
+    Then I want to see 'Manage Permissions' page
     And I want to see all permissions
 
   Scenario: View permissions. Filter permissions by name
