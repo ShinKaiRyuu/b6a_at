@@ -114,6 +114,10 @@ Feature: Manage users module
     When I open Manage Users page
     Then I must see 'Access denied' text
 
+    #  Scenario: Update user. Delete user
+    #
+    #  Scenario: Update user. Block user
+
   Scenario Outline: Testing creating form
     Given I am logged in as Administrator
     And I am on Create User page
@@ -128,6 +132,9 @@ Feature: Manage users module
       | faker.user_name    | faker.email        | 1234     | I want to see error message "Password should contain at least 6 characters."  |
       | script alert('aaa' | faker.email        | 123456   | I want to see error message "Username is invalid."                            |
       | faker.user_name    | script alert('aaa' | 123456   | I want to see error message "Email is not a valid email address."             |
+
+
+
 
   Scenario: View users. Sort records by username ascending/descending
     Given I am logged in as Administrator
@@ -144,7 +151,6 @@ Feature: Manage users module
     Then i want to see sorted users by email and ascending
     When I click on email link
     Then i want to see sorted users by email and descending
-
     # TODO fix time sort
   Scenario: View users. Sort records by registration time ascending/descending
     Given I am logged in as Administrator
@@ -154,9 +160,6 @@ Feature: Manage users module
     When I click on registrationtime link
     Then i want to see sorted users by registrationtime and descending
 
-#  Scenario: Update user. Delete user
-#
-#  Scenario: Update user. Block user
 
   @wip @delete_user
   Scenario: Delete user

@@ -82,3 +82,14 @@ def step_impl(context):
     partners = context.page.get_partners()
     for partner in partners:
         assert_in(context.filter_text.lower(), partner[filter_name].lower())
+
+
+@then("i want to see sorted partners by (?P<sort_by>.+) and (?P<sort_order>.+)")
+def step_impl(context, sort_by, sort_order):
+        context.page.wait_for_loading()
+        sorted_users = context.page.get_users()
+        if sort_order == 'ascending':
+            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)])
+        else:
+            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)], reverse=True)
+        assert_equal(sorted_users, actual_sorted_users)

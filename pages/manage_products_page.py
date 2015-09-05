@@ -20,30 +20,38 @@ PRODUCT_COLUMNS_MAP = {
 class ManageProductsPage(BasePage, TableMixin):
     url_path = '/admin/goods/index'
 
-    # sorting
-    id_link = Find(by=By.XPATH, value='//a[text()="ID"]')
-    title_link = Find(by=By.XPATH, value='//a[text()="Title"]')
-    slug_link = Find(by=By.XPATH, value='//a[text()="Slug"]')
-    description_link = Find(by=By.XPATH, value='//a[text()="Description"]')
-    price_link = Find(by=By.XPATH, value='//a[text()="Price"]')
+    # region page elements
+    # region sorting
+    order_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"sort_order")]')
+    name_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"name")]')
+    createdby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_created_id")]')
+    updatedby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_updated_id")]')
+    # endregion
 
-    # filters
+    # region filters
     order_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[sort_order]"]')
     title_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[title]"]')
     price_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[price]"]')
     created_by_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_created_id]"]')
     updated_by_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_updated_id]"]')
     enabled_filter = Find(by=By.XPATH, value='//select[@name="GoodsSearch[enabled]"]')
+    # endregion
 
-    # buttons
+    # region buttons
     create_new_product_btn = Find(by=By.XPATH, value='//a[@href="/admin/goods/create"]')
+    # endregion
 
+    # region work with table
     table = Find(value='.table')
     view_link = Find(value='.table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(7) > a:nth-child(1)')
     update_link = Find(value='.table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(7) > a:nth-child(2)')
     delete_link = Find(value='.table > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(7) > a:nth-child(3)')
+    # endregion
 
+    # region success message
     success_message = Find(value='#w0')
+    # endregion
+    # endregion
 
     def get_products(self):
         return self.get_table_records(PRODUCT_COLUMNS_MAP)

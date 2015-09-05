@@ -53,6 +53,38 @@ Feature: Manage partners module
     And I am on Manage Partners page
     Then I want to see updated partner in list
 
+  Scenario: View pages. Sort records by order ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Partners page
+    When I click on order sort
+    Then i want to see sorted partners by order and ascending
+    When I click on order sort
+    Then i want to see sorted partners by order and descending
+
+  Scenario: View users. Sort records by name ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Partners page
+    When I click on name sort
+    Then i want to see sorted partners by name and ascending
+    When I click on name sort
+    Then i want to see sorted partners by name and descending
+
+  Scenario: View users. Sort records by createdby  ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Partners page
+    When I click on createdby sort
+    Then i want to see sorted partners by createdby and ascending
+    When I click on createdby sort
+    Then i want to see sorted partners by createdby and descending
+
+  Scenario: View users. Sort records by updatedby time ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Partners page
+    When I click on updatedby sort
+    Then i want to see sorted partners by updatedby and ascending
+    When I click on updatedby sort
+    Then i want to see sorted partners by updatedby and descending
+
   @done @partner @filter_partner_by_order
   Scenario: Filter partner by order
     Given I am logged in as Administrator

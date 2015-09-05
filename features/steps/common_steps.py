@@ -7,6 +7,7 @@ use_step_matcher("re")
 def step_impl(context, element_name, element_type):
     types_map = {
         'link': 'link',
+        'sort': 'sort',
         'button': 'btn',
         'product': 'product'
     }

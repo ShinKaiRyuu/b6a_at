@@ -93,14 +93,34 @@ Feature: Manage products module
     Then I select Disabled in enabled Filter
     Then I want to see filtered products
 
+  Scenario: View products. Sort records by order ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    When I click on order sort
+    Then i want to see sorted products by order and ascending
+    When I click on order sort
+    Then i want to see sorted products by order and descending
 
-  @wip
-#  Scenario: Sorting products
-#   Given I am logged in as Administrator
-#   Given I am on Manage Products page
-#   When I click on ID link
-#   Then I want to see nothing changed
-#   When I click on ID link
-#   Then I want to see sorted by *ID* *descent* products
-#   When I click on ID link
-#   Then I want to see sorted by *ID* *ascent* products
+  Scenario: View products. Sort records by name ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    When I click on name sort
+    Then i want to see sorted products by name and ascending
+    When I click on name sort
+    Then i want to see sorted products by name and descending
+
+  Scenario: View products. Sort records by createdby  ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    When I click on createdby sort
+    Then i want to see sorted products by createdby and ascending
+    When I click on createdby sort
+    Then i want to see sorted products by createdby and descending
+
+  Scenario: View products. Sort records by updatedby time ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    When I click on updatedby sort
+    Then i want to see sorted products by updatedby and ascending
+    When I click on updatedby sort
+    Then i want to see sorted products by updatedby and descending

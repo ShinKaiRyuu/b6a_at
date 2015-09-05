@@ -18,12 +18,11 @@ PARTNER_COLUMNS_MAP = {
 
 class ManagePartnersPage(BasePage, TableMixin):
     url_path = '/admin/partner/index'
-
     # sorting
-    order_link = Find(by=By.XPATH, value='//a[text()="Order"]')
-    id_link = Find(by=By.XPATH, value='//a[text()="ID"]')
-    name_link = Find(by=By.XPATH, value='//a[text()="Name"]')
-    star_name_link = Find(by=By.XPATH, value='//a[text()="Star Name"]')
+    order_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"sort_order")]')
+    name_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"name")]')
+    createdby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_created_id")]')
+    updatedby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_updated_id")]')
 
     # filters
     order_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[sort_order]"]')
