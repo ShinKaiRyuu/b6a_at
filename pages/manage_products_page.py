@@ -9,8 +9,8 @@ PRODUCT_COLUMNS_MAP = {
     '1': 'order',
     '2': 'title',
     '3': 'price',
-    '4': 'created_by',
-    '5': 'updated_by',
+    '4': 'createdby',
+    '5': 'updatedby',
     '6': 'enabled',
     '7': 'links',
     '8': 'data_key'
@@ -23,17 +23,19 @@ class ManageProductsPage(BasePage, TableMixin):
     # region page elements
     # region sorting
     order_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"sort_order")]')
-    name_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"name")]')
+    title_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"title")]')
+    price_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"price")]')
     createdby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_created_id")]')
     updatedby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_updated_id")]')
+    enabled_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"enabled")]')
     # endregion
 
     # region filters
     order_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[sort_order]"]')
     title_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[title]"]')
     price_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[price]"]')
-    created_by_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_created_id]"]')
-    updated_by_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_updated_id]"]')
+    createdby_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_created_id]"]')
+    updatedby_filter = Find(by=By.XPATH, value='//input[@name="GoodsSearch[user_updated_id]"]')
     enabled_filter = Find(by=By.XPATH, value='//select[@name="GoodsSearch[enabled]"]')
     # endregion
 
@@ -53,24 +55,24 @@ class ManageProductsPage(BasePage, TableMixin):
     # endregion
     # endregion
 
-    def get_products(self):
+    def get_data(self):
         return self.get_table_records(PRODUCT_COLUMNS_MAP)
 
     def delete_product(self, context):
-        self.filter_data('title_filter', context.product_data['title'])
+        self.filter_data('title', context.product_data['title'])
         delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.product_id),
                            context=self)
         delete_link.click()
 
     def view_product(self, context):
-        self.filter_data('title_filter', context.product_data['title'])
+        self.filter_data('title', context.product_data['title'])
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.product_id),
                            context=self)
         update_link.click()
 
     def filter_data(self, filter_name, filter_value):
-        filter_element = getattr(self, filter_name)
-        if filter_name == 'enabled_filter':
+        filter_element = getattr(self, filter_name + '_filter')
+        if filter_name == 'enabled':
             self.enabled_filter.click()
             value = Find(by=By.XPATH, value='//option[text()="{}"]'.format(filter_value), context=self)
             value.click()

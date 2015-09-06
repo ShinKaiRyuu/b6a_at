@@ -26,9 +26,15 @@ class TableMixin(WebiumBasePage):
                 }
                 for link in links
                 ]
-        if column_name == 'order':
+
+        elif column_name == 'order':
             column_xpath = self.column_xpath.format(data_key, column_num)
             return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
+
+        elif column_name == 'price':
+            column_xpath = self.column_xpath.format(data_key, column_num)
+            return float(Find(by=By.XPATH, value=column_xpath, context=self).text)
+
         else:
             column_xpath = self.column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text

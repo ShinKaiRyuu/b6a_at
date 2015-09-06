@@ -14,6 +14,6 @@ class UserInformationPage(BasePage):
     block_status = Find(by=By.XPATH, value='//tr[4]/td[2]')
 
     def view_user_information(self):
-        user_data = {'registration_time': self.registration_time.text, 'registration_ip': self.registration_ip.text,
-                     'confirmation_status': self.confirmation_status.text, 'block_status': self.block_status.text, }
+        user_data = {'registrationtime': self.registration_time.text, 'registration_ip': self.registration_ip.text,
+                     'confirmation': self.confirmation_status.text, 'blockstatus': self.block_status.text, }
         return user_data

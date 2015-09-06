@@ -8,8 +8,8 @@ from pages.table_mixin import TableMixin
 PARTNER_COLUMNS_MAP = {
     '1': 'order',
     '2': 'name',
-    '3': 'created_by',
-    '4': 'updated_by',
+    '3': 'createdby',
+    '4': 'updatedby',
     '5': 'status',
     '6': 'links',
     '7': 'data_key'
@@ -36,24 +36,24 @@ class ManagePartnersPage(BasePage, TableMixin):
 
     success_message = Find(value='#w0')
 
-    def get_partners(self):
+    def get_data(self):
         return self.get_table_records(PARTNER_COLUMNS_MAP)
 
     def delete_partner(self, context):
-        self.filter_data('name_filter', context.partner_data['name'])
+        self.filter_data('name', context.partner_data['name'])
         delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.partner_id),
                            context=self)
         delete_link.click()
 
     def view_partner(self, product_data, product_id):
-        self.filter_data('name_filter', product_data['name'])
+        self.filter_data('name', product_data['name'])
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(product_id),
                            context=self)
         update_link.click()
 
     def filter_data(self, filter_name, filter_value):
-        filter_element = getattr(self, filter_name)
-        if filter_name == 'status_filter':
+        filter_element = getattr(self, filter_name + '_filter')
+        if filter_name == 'status':
             self.status_filter.click()
             value = Find(by=By.XPATH, value='//option[text()="{}"]'.format(filter_value), context=self)
             value.click()

@@ -28,5 +28,5 @@ class ManagePagesPage(BasePage, TableMixin):
     registration_ip_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[registration_ip]"]')
     registration_at_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[created_at]"]')
 
-    def get_pages(self):
+    def get_data(self):
         return self.get_table_records(PAGES_COLUMNS_MAP)

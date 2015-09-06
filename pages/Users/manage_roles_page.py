@@ -25,7 +25,7 @@ class ManageRolesPage(BasePage, TableMixin):
         return self.get_table_records(ROLE_COLUMNS_MAP)
 
     def filter_data(self, filter_name, filter_value):
-        filter_element = getattr(self, filter_name)
+        filter_element = getattr(self, filter_name + '_filter')
         filter_element.clear()
         filter_element.send_keys(filter_value)
         filter_element.send_keys(keys.Keys.RETURN)

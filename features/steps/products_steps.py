@@ -24,20 +24,20 @@ def step_impl(context):
 @then("I want to see created product in list")
 @then("I want to see updated product in list")
 def step_impl(context):
-    context.page.filter_data('title_filter', context.product_data['title'])
-    product = [product for product in context.page.get_products() if product['title'] == context.product_data['title']]
+    context.page.filter_data('title', context.product_data['title'])
+    product = [product for product in context.page.get_data() if product['title'] == context.product_data['title']]
     assert_equal(len(product), 1)
     product = product[0]
-    assert_equal(product['price'], context.product_data['price'])
+    assert_equal(product['price'], float(context.product_data['price']))
     assert_equal(int(product['enabled'].replace('Enabled', '1').replace('Disabled', '2')),
                  context.product_data['enabled'])
-    context.product_data['created_by'] = product['created_by']
-    context.product_data['updated_by'] = product['updated_by']
+    context.product_data['createdby'] = product['createdby']
+    context.product_data['updatedby'] = product['updatedby']
 
 
 @step("I want to see all products")
 def step_impl(context):
-    products = context.page.get_products()
+    products = context.page.get_data()
     assert_true(len(products) >= 1)
 
 
@@ -58,16 +58,16 @@ def step_impl(context):
 
 @then("I want to see product in list is (?P<status>.+)")
 def step_impl(context, status):
-    product = [product for product in context.page.get_products() if product['title'] == context.product_data['title']]
+    product = [product for product in context.page.get_data() if product['title'] == context.product_data['title']]
     assert_equal(len(product), 1)
     if status == 'not deleted':
-        assert_equal(product[0]['price'], context.product_data['price'])
+        assert_equal(product[0]['price'], float(context.product_data['price']))
 
 
 @then("I want to see product is (?P<status>.+)")
 def step_impl(context, status):
-    context.page.filter_data('title_filter', context.product_data['title'])
-    product = [product for product in context.page.get_products() if product['title'] == context.product_data['title']]
+    context.page.filter_data('title', context.product_data['title'])
+    product = [product for product in context.page.get_data() if product['title'] == context.product_data['title']]
     context.page.replace_bad_elements('.close')
     success_message = context.page.success_message.text
     if status == 'deleted':
@@ -89,20 +89,3 @@ def step_impl(context):
     context.product_data = product
 
 
-@then("I want to see filtered products")
-def step_impl(context):
-    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
-    products = context.page.get_products()
-    for product in products:
-        assert_in(context.filter_text.lower(), product[filter_name].lower())
-
-
-@then("i want to see sorted products by (?P<sort_by>.+) and (?P<sort_order>.+)")
-def step_impl(context, sort_by, sort_order):
-        context.page.wait_for_loading()
-        sorted_users = context.page.get_users()
-        if sort_order == 'ascending':
-            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)])
-        else:
-            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)], reverse=True)
-        assert_equal(sorted_users, actual_sorted_users)

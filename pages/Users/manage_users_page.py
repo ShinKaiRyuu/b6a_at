@@ -28,8 +28,7 @@ class ManageUsersPage(BasePage, TableMixin):
     # filters
     username_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[username]"]')
     email_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[email]"]')
-    registration_ip_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[registration_ip]"]')
-    registration_at_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[created_at]"]')
+    registrationtime_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[created_at]"]')
 
     # date picker
     active_date_in_date_picker = Find(value='.ui-state-active')
@@ -45,30 +44,30 @@ class ManageUsersPage(BasePage, TableMixin):
     # TODO change selector
     success_message = Find(value='#w4')
 
-    def get_users(self):
+    def get_data(self):
         return self.get_table_records(USER_COLUMNS_MAP)
 
     def delete_user(self, context):
-        self.filter_data('username_filter', context.user_data['username'])
+        self.filter_data('username', context.user_data['username'])
         delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.user_id), context=self)
         delete_link.click()
 
     def block_user(self, context):
-        self.filter_data('username_filter', context.user_data['username'])
+        self.filter_data('username', context.user_data['username'])
         block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(context.user_id), context=self)
         block_link.click()
 
     def update_user(self, context):
-        self.filter_data('username_filter', context.user_data['username'])
+        self.filter_data('username', context.user_data['username'])
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(context.user_id), context=self)
         update_link.click()
 
     def filter_data(self, filter_name, filter_value):
-        filter_element = getattr(self, filter_name)
+        filter_element = getattr(self, filter_name + '_filter')
         filter_element.clear()
         filter_element.send_keys(filter_value)
-        if filter_name == 'registration_at_filter':
+        if filter_name == 'registrationtime':
             self.active_date_in_date_picker.click()
-        elif filter_name != 'registration_at_filter':
+        else:
             filter_element.send_keys(keys.Keys.RETURN)
         self.wait_for_loading()

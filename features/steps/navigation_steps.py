@@ -35,10 +35,12 @@ def step_impl(context, page_name):
     page = PAGES_MAP[page_name]
     context.page = page(url=''.join([context.app_url, page.url_path]))
     context.page.open()
+    context.page.wait_for_loading()
 
 
 @then("I want to see '(?P<page_name>.+)' page")
 def step_impl(context, page_name):
+    context.page.wait_for_loading()
     page = PAGES_MAP[page_name]
     assert_in(page.url_path, get_driver().current_url)
     context.page = page()

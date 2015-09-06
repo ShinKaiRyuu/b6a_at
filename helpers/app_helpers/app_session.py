@@ -65,7 +65,7 @@ def get_admin_session():
 
 def create_source(source_name, source_payload):
     s = get_admin_session()
-    url = get_url(URL_PREFIXES['create_source'].format(name=source_name))
+    url = get_url(URL_PREFIXES['create_source'].format(name=SOURCE_NAMES_MAP[source_name]))
     r = s.get(url)
     source_payload['_csrf'] = get_csrf_token(r)
     source_id = r.url.split('/')[-1]
@@ -81,7 +81,7 @@ def delete_source(source_name, source_id):
     r = s.get(url)
 
     payload = {'_csrf': get_csrf_token(r)}
-    url = get_url(URL_PREFIXES['delete_source']).format(name=source_name, id=source_id)
+    url = get_url(URL_PREFIXES['delete_source']).format(name=SOURCE_NAMES_MAP[source_name], id=source_id)
     r = s.post(url, data=payload)
 
     if 'The requested page does not exist' in r.text:

@@ -17,7 +17,7 @@ def step_impl(context):
 
 @step("I want to see all users")
 def step_impl(context):
-    users = context.page.get_users()
+    users = context.page.get_data()
     assert_true(len(users) >= 1)
 
 
@@ -28,7 +28,7 @@ def step_impl(context):
 
 @then("I want to see user in list is (?P<status>.+)")
 def step_impl(context, status):
-    user = [user for user in context.page.get_users() if user['username'] == context.user_data['username']]
+    user = [user for user in context.page.get_data() if user['username'] == context.user_data['username']]
     assert_equal(len(user), 1)
     if status == 'not deleted':
         assert_equal(user[0]['email'], context.user_data['email'])
@@ -40,8 +40,8 @@ def step_impl(context, status):
 
 @then("I want to see user is (?P<status>.+)")
 def step_impl(context, status):
-    context.page.filter_data('username_filter', context.user_data['username'])
-    user = [user for user in context.page.get_users() if user['username'] == context.user_data['username']]
+    context.page.filter_data('username', context.user_data['username'])
+    user = [user for user in context.page.get_data() if user['username'] == context.user_data['username']]
     context.page.replace_bad_elements('.close')
     success_message = context.page.success_message.text
     if status == 'deleted':
@@ -60,38 +60,25 @@ def step_impl(context, status):
 @then("I write (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
 @then("I select (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
 def step_impl(context, filter_text, filter_name):
-    context.filter_name = filter_name + '_filter'
+    context.filter_name = filter_name
     context.filter_text = filter_text
     context.page.filter_data(context.filter_name, context.filter_text)
-
-
-@then("I want to see filtered users")
-def step_impl(context):
-    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
-    users = context.page.get_users()
-    for user in users:
-        if filter_name == 'registration_time':
-            registration_time = time.strftime('%Y-%m-%dT%H:%M:%SZ',
-                                              time.strptime(user[filter_name], '%B %d, %Y %I:%M'))
-            assert_in(context.filter_text, registration_time)
-        elif filter_name != "registration_time":
-            assert_in(context.filter_text, user[filter_name])
 
 
 @then("I want to see updated user in list")
 @then("I want to see created user in list")
 def step_impl(context):
-    context.page.filter_data('username_filter', context.user_data['username'])
-    user = [user for user in context.page.get_users() if user['username'] == context.user_data['username']]
+    context.page.filter_data('username', context.user_data['username'])
+    user = [user for user in context.page.get_data() if user['username'] == context.user_data['username']]
     assert_equal(len(user), 1)
     user = user[0]
     assert_equal(user['email'], context.user_data['email'])
-    context.user_data['registration_time'] = user['registration_time']
-    context.user_data['confirmation_status'] = user['confirmation']
+    context.user_data['registrationtime'] = user['registrationtime']
+    context.user_data['confirmation'] = user['confirmation']
     if context.page.is_element_present('block_user_link'):
-        context.user_data['block_status'] = "Not blocked"
+        context.user_data['blockstatus'] = "Not blocked"
     elif context.page.is_element_present('unblock_user_link'):
-        context.user_data['block_status'] = "Blocked"
+        context.user_data['blockstatus'] = "Blocked"
 
 
 @then("I want to be able to login with new data")
@@ -100,9 +87,9 @@ def step_impl(context):
     context.execute_steps('''
         Given I am on Main page
         When I click on Login link
-        Then I want to see Login page
+        Then I want to see 'Login' page
         When I login with username '{}' and password '{}'
-        Then I want to see Main page
+        Then I want to see 'Main' page
         And I want to see that I am logged in
         When I click on Logout link
         Then I want to see that I am logged out
@@ -153,9 +140,9 @@ def step_impl(context):
 @step("i want to see user information details")
 def step_impl(context):
     user_data = context.page.view_user_information()
-    assert_equal(context.user_data['registration_time'], user_data['registration_time'])
-    assert_in(context.user_data['confirmation_status'], user_data['confirmation_status'])
-    assert_equal(context.user_data['block_status'], user_data['block_status'])
+    assert_equal(context.user_data['registrationtime'], user_data['registrationtime'])
+    assert_in(context.user_data['confirmation'], user_data['confirmation'])
+    assert_equal(context.user_data['blockstatus'], user_data['blockstatus'])
 
 
 @then("I want to see empty user assignmnets")
@@ -237,14 +224,3 @@ def step_impl(context, username, email, password):
     user.update(email=modify_value(email))
     user.update(password=modify_value(password))
     context.page.create_new_user(**user)
-
-
-@then("i want to see sorted users by (?P<sort_by>.+) and (?P<sort_order>.+)")
-def step_impl(context, sort_by, sort_order):
-        context.page.wait_for_loading()
-        sorted_users = context.page.get_users()
-        if sort_order == 'ascending':
-            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)])
-        else:
-            actual_sorted_users = sorted(context.page.get_users(), key=lambda x: x['{}'.format(sort_by)], reverse=True)
-        assert_equal(sorted_users, actual_sorted_users)

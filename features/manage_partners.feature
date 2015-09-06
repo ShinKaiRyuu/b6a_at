@@ -1,6 +1,6 @@
 Feature: Manage partners module
 
-  @done @partner @partner_open_partners_page
+  @done @partners @open_partners_page
   Scenario: Open partners page
     Given I am logged in as Administrator
     When I click on Manage Site link
@@ -8,7 +8,7 @@ Feature: Manage partners module
     Then I want to see 'Manage Partners' page
     And I want to see all partners
 
-  @done @partner @create_partner
+  @done @partners @create_partner
   Scenario: Create partner
     Given I am logged in as Administrator
     When I click on Manage Site link
@@ -20,7 +20,7 @@ Feature: Manage partners module
     Then I want to see 'Manage Partners' page
     And I want to see created partner in list
 
-  @done @partner @delete_partner
+  @done @partners @delete_partner
   Scenario: Delete partner
     Given created partner
     Given I am logged in as Administrator
@@ -32,7 +32,7 @@ Feature: Manage partners module
     Then I want to see dialog box and click Yes
     Then I want to see partner is deleted
 
-  @done @partner @view_partner
+  @done @partners @view_partner
   Scenario: View partner
     Given created partner
     Given I am logged in as Administrator
@@ -41,7 +41,7 @@ Feature: Manage partners module
     Then I want to see 'Create Partner' page
     And I want to see partner details
 
-  @done @partner @update_partner
+  @done @partners @update_partner
   Scenario: Update partner
     Given created partner
     Given I am logged in as Administrator
@@ -53,76 +53,80 @@ Feature: Manage partners module
     And I am on Manage Partners page
     Then I want to see updated partner in list
 
-  Scenario: View pages. Sort records by order ascending/descending
+  @done @partners @sorting @sorting_by_order @sorting_partners
+  Scenario: Sort records by order ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on order sort
-    Then i want to see sorted partners by order and ascending
+    Then i want to see sorted data by order and ascending
     When I click on order sort
-    Then i want to see sorted partners by order and descending
+    Then i want to see sorted data by order and descending
 
-  Scenario: View users. Sort records by name ascending/descending
+  @done @partners @sorting @sorting_by_name @sorting_partners
+  Scenario: Sort records by name ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on name sort
-    Then i want to see sorted partners by name and ascending
+    Then i want to see sorted data by name and ascending
     When I click on name sort
-    Then i want to see sorted partners by name and descending
+    Then i want to see sorted data by name and descending
 
-  Scenario: View users. Sort records by createdby  ascending/descending
+  @done @partners @sorting @sorting_by_createdby @sorting_partners
+  Scenario: Sort records by createdby  ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on createdby sort
-    Then i want to see sorted partners by createdby and ascending
+    Then i want to see sorted data by createdby and ascending
     When I click on createdby sort
-    Then i want to see sorted partners by createdby and descending
+    Then i want to see sorted data by createdby and descending
 
-  Scenario: View users. Sort records by updatedby time ascending/descending
+  @done @partners @sorting @sorting_by_updatedby @sorting_partners
+  Scenario: Sort records by updatedby time ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on updatedby sort
-    Then i want to see sorted partners by updatedby and ascending
+    Then i want to see sorted data by updatedby and ascending
     When I click on updatedby sort
-    Then i want to see sorted partners by updatedby and descending
+    Then i want to see sorted data by updatedby and descending
 
-  @done @partner @filter_partner_by_order
-  Scenario: Filter partner by order
+  @done @partners @filtering @filtering_by_order @filtering_partners
+  Scenario: Filter partners by order
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I write 1 in order Filter
-    Then I want to see filtered partners
+    Then I want to see filtered data
 
-  @done @partner @filter_partner_by_name
-  Scenario: Filter products by name
+  @done @partners @filtering @filtering_partner_by_name @filtering_partners
+  Scenario: Filter partners by name
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I write New in name Filter
-    Then I want to see filtered partners
+    Then I want to see filtered data
 
-  @done @partner @filter_partner_by_created_by
-  Scenario: Filter products by created_by
+  @done @partners @filtering @filtering_partner_by_createdby @filtering_partners
+  Scenario: Filter partners by created_by
     Given I am logged in as Administrator
     And I am on Manage Partners page
-    Then I write admin in created_by Filter
-    Then I want to see filtered partners
+    Then I write admin in createdby Filter
+    Then I want to see filtered data
 
-  @done @partner @filter_partner_by_updated_by
-  Scenario: Filter products by updated_by
+  @done @partners @filtering @filtering_partner_by_updatedby @filtering_partners
+  Scenario: Filter partners by updated_by
     Given I am logged in as Administrator
     And I am on Manage Partners page
-    Then I write root in updated_by Filter
-    Then I want to see filtered partners
+    Then I write root in updatedby Filter
+    Then I want to see filtered data
 
-  @done @partner @filter_partner_by_status_enabled
-  Scenario: Filter products by enabled
+  @done @partners @filtering @filtering_partner_by_enabled @filtering_partners
+  Scenario: Filter partners by enabled
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I select Enabled in status Filter
-    Then I want to see filtered partners
+    Then I want to see filtered data
 
-  @done @partner @filter_partner_by_status_disabled
-  Scenario: Filter products by disabled
+  @done @partners @filtering @filtering_partner_by_disabled @filtering_partners
+  Scenario: Filter partners by disabled
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I select Disabled in status Filter
-    Then I want to see filtered partners
+    Then I want to see filtered data

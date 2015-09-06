@@ -50,7 +50,7 @@ def step_impl(context):
     context.execute_steps('''
             Given I am on Main page
             When I click on Login link
-            Then I want to see Login page
+            Then I want to see 'Login' page
             When I login with username '{}' and password '{}'
             '''.format(context.user_data['username'], context.user_data['password']))
 
@@ -60,6 +60,6 @@ def step_impl(context):
     context.execute_steps('''
             Given I am on Main page
             When I click on Login link
-            Then I want to see Login page
+            Then I want to see 'Login' page
             When I login with username '{}' and password '{}'
             '''.format(context.old_user_data['username'], context.old_user_data['password']))
