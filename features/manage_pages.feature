@@ -43,3 +43,30 @@ Feature: Manage pages module
     Then i want to see sorted data by updatedby and ascending
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and descending
+
+  @wip
+  Scenario: Create new parent page
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I click on Create Page button
+    Then I want to see 'Create Page' page
+    When I create new page
+    Then I want to see 'Manage Pages' page
+    And I want to see created page in list
+    When I click on Public pages link
+    Then I want to see created page in link list
+    Then I want to see created page and it content
+    When I click on logout link
+    Then I want to see 'Main' page
+    And I want to see create page in header
+
+  @wip
+  Scenario: Drag n drop
+    Given created parent page
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I dragndrop created page to top position
+    Then I want to see created page in top position
+    When I click on Public pages link
+    Then I want to see created page in top of list
+

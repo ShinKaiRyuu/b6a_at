@@ -11,8 +11,7 @@ Feature: Manage partners module
   @done @partners @create_partner
   Scenario: Create partner
     Given I am logged in as Administrator
-    When I click on Manage Site link
-    When I click on Manage Partners link
+    And I am on Manage Partners page
     Then I want to see 'Manage Partners' page
     When I click on Create Partner button
     Then I want to see 'Create Partner' page

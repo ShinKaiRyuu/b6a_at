@@ -67,6 +67,7 @@ def create_partner_data():
         'status': 1,
     }
 
+
 def create_page_data():
     faker = get_faker()
     page_data = {
