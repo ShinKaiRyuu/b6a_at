@@ -21,7 +21,7 @@ class ManageRolesPage(BasePage, TableMixin):
     description_filter = Find(by=By.XPATH, value='//input[@name="Search[description]"]')
     rulename_filter = Find(by=By.XPATH, value='//input[@name="Search[rule_name]"]')
 
-    def get_roles(self):
+    def get_data(self):
         return self.get_table_records(ROLE_COLUMNS_MAP)
 
     def filter_data(self, filter_name, filter_value):

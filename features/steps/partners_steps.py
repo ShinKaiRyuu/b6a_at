@@ -26,13 +26,13 @@ def step_impl(context):
 @when("I create new partner")
 def step_impl(context):
     partner = create_partner_data()
-    context.page.create_new_partner(context, **partner)
+    context.page.create_new_partner(**partner)
     context.partner_data = partner
 
 
 @when("I delete created partner")
 def step_impl(context):
-    context.page.delete_partner(context)
+    context.page.delete_partner(context.partner_data['name'], context.partner_id)
 
 
 @then("I want to see partner in list is (?P<status>.+)")

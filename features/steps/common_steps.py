@@ -1,4 +1,5 @@
 from behave import *
+from nose.tools import assert_true
 
 use_step_matcher("re")
 
@@ -20,6 +21,12 @@ def step_impl(context, result):
     context.execute_steps("""
         Then {}
     """.format(result))
+
+
+@step("I want to see table with data")
+def step_impl(context):
+    datas = context.page.get_data()
+    assert_true(len(datas) >= 1)
 
 
 @step("I reloading page")

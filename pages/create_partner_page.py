@@ -18,7 +18,7 @@ class CreatePartnerPage(BasePage):
     # buttons
     update = Find(by=By.XPATH, value='//button[text()="Update"]')
 
-    def create_new_partner(self, context, **kwargs):
+    def create_new_partner(self, **kwargs):
         self.clear_send_keys('name', kwargs)
         self.clear_send_keys('star_name', kwargs)
         self.clear_send_keys('star_email', kwargs)
@@ -27,7 +27,7 @@ class CreatePartnerPage(BasePage):
         partner_status_select.select_by_index(kwargs['status'])
         self.update.click()
         wait = WebDriverWait(self._driver, 10)
-        wait.until(lambda x: (context.driver.title == 'Partners') is True)
+        wait.until(lambda x: (self._driver.title == 'Partners') is True)
         self.wait_for_loading()
 
     def get_partner_details(self):

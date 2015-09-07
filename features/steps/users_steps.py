@@ -23,7 +23,7 @@ def step_impl(context):
 
 @when("I delete created user")
 def step_impl(context):
-    context.page.delete_user(context)
+    context.page.delete_user(context.user_data['username'], context.user_id)
 
 
 @then("I want to see user in list is (?P<status>.+)")
@@ -99,13 +99,13 @@ def step_impl(context):
 @when("I block created user")
 @when("I unblock created user")
 def step_impl(context):
-    context.page.block_user(context)
+    context.page.block_user(context.user_data['username'], context.user_id)
 
 
 @when("I view created user information")
 @when("I update created user")
 def step_impl(context):
-    context.page.update_user(context)
+    context.page.update_user(context.user_data['username'], context.user_id)
 
 
 @then("I want to change my username  & email & password")
@@ -171,14 +171,6 @@ def step_impl(context, assignment_value):
     assert_equal(len(assignments), 0)
 
 
-@then("I want to be able to add roles and permissions")
-def step_impl(context):
-    context.page.create.click()
-    assert_true(context.page.is_element_present('new_user'))
-    assert_true(context.page.is_element_present('new_role'))
-    assert_true(context.page.is_element_present('new_permission'))
-
-
 @then("I must not see '(?P<text>.+)' text")
 def step_impl(context, text):
     assert_true(text not in context.driver.page_source)
@@ -195,26 +187,10 @@ def step_impl(context):
     assert_true(len(roles) >= 1)
 
 
-@then("I want to see filtered roles")
-def step_impl(context):
-    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
-    roles = context.page.get_roles()
-    for role in roles:
-        assert_in(context.filter_text.lower(), role[filter_name].lower())
-
-
 @step("I want to see all permissions")
 def step_impl(context):
     permissions = context.page.get_permissions()
     assert_true(len(permissions) >= 1)
-
-
-@then("I want to see filtered permissions")
-def step_impl(context):
-    filter_name = context.filter_name.replace('_filter', '').replace('_at', '_time')
-    permissions = context.page.get_permissions()
-    for permission in permissions:
-        assert_in(context.filter_text.lower(), permission[filter_name].lower())
 
 
 @when("I fill create user form with (?P<username>.+),(?P<email>.+),(?P<password>.+)")

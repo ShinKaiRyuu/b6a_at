@@ -1,12 +1,12 @@
 Feature: Manage products module
 
   @done @products @view_products
-  Scenario: View products
+  Scenario: Open Manage products page and view products
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Products link
     Then I want to see 'Manage Products' page
-    And I want to see all products
+    And I want to see table with data
 
   @done @products @creating_new @create_new_product
   Scenario: Create new product
@@ -52,56 +52,56 @@ Feature: Manage products module
     Then I want to see updated product in list
 
   @done @products @filtering @filtering_by_order
-  Scenario: Filter products by order
+  Scenario: Filter products records by order
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I write 1 in order Filter
     Then I want to see filtered data
 
   @done @products @filtering @filtering_by_title
-  Scenario: Filter products by title
+  Scenario: Filter products records by title
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I write New in title Filter
     Then I want to see filtered data
 
   @done @products @filtering @filtering_by_price @filtering_products
-  Scenario: Filter products by price
+  Scenario: Filter products records by price
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I write 1000 in price Filter
     Then I want to see filtered data
 
   @done @products @filtering @filtering_by_created_by @filtering_products
-  Scenario: Filter products by created by
+  Scenario: Filter products records by created by
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I write admin in createdby Filter
     Then I want to see filtered data
 
   @done @products @filtering @filtering_by_updated_by @filtering_products
-  Scenario: Filter products by updated by
+  Scenario: Filter products records by updated by
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I write admin in updatedby Filter
     Then I want to see filtered data
 
   @done @products @filtering @filtering_by_enabled @filtering_products
-  Scenario: Filter products by enabled
+  Scenario: Filter products records by enabled
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I select Enabled in enabled Filter
     Then I want to see filtered data
 
   @done @products @filtering @filtering_by_disabled @filtering_products
-  Scenario: Filter products by disabled
+  Scenario: Filter products records by disabled
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I select Disabled in enabled Filter
     Then I want to see filtered data
 
   @done @products @sorting @sorting_by_order @sorting_products
-  Scenario: View products. Sort records by order ascending/descending
+  Scenario: Sort products records by order ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on order sort
@@ -110,7 +110,7 @@ Feature: Manage products module
     Then i want to see sorted data by order and descending
 
   @done @products @sorting @sorting_by_order @sorting_products
-  Scenario: View products. Sort records by title ascending/descending
+  Scenario: Sort products records by title ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on title sort
@@ -119,7 +119,7 @@ Feature: Manage products module
     Then i want to see sorted data by title and descending
 
   @done @products @sorting @sorting_by_order @sorting_products
-  Scenario: View products. Sort records by price ascending/descending
+  Scenario: Sort products records by price ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on price sort
@@ -128,7 +128,7 @@ Feature: Manage products module
     Then i want to see sorted data by price and descending
 
   @done @products @sorting @sorting_by_order @sorting_products
-  Scenario: View products. Sort records by createdby  ascending/descending
+  Scenario: Sort products records by createdby  ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on createdby sort
@@ -137,7 +137,7 @@ Feature: Manage products module
     Then i want to see sorted data by createdby and descending
 
   @done @products @sorting @sorting_by_order @sorting_products
-  Scenario: View products. Sort records by updatedby time ascending/descending
+  Scenario: Sort products records by updatedby time ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on updatedby sort

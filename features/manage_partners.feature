@@ -6,7 +6,7 @@ Feature: Manage partners module
     When I click on Manage Site link
     When I click on Manage Partners link
     Then I want to see 'Manage Partners' page
-    And I want to see all partners
+    And I want to see table with data
 
   @done @partners @create_partner
   Scenario: Create partner
@@ -54,7 +54,7 @@ Feature: Manage partners module
     Then I want to see updated partner in list
 
   @done @partners @sorting @sorting_by_order @sorting_partners
-  Scenario: Sort records by order ascending/descending
+  Scenario: Sort partners records by order ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on order sort
@@ -63,7 +63,7 @@ Feature: Manage partners module
     Then i want to see sorted data by order and descending
 
   @done @partners @sorting @sorting_by_name @sorting_partners
-  Scenario: Sort records by name ascending/descending
+  Scenario: Sort partners records by name ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on name sort
@@ -72,7 +72,7 @@ Feature: Manage partners module
     Then i want to see sorted data by name and descending
 
   @done @partners @sorting @sorting_by_createdby @sorting_partners
-  Scenario: Sort records by createdby  ascending/descending
+  Scenario: Sort partners records by createdby  ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on createdby sort
@@ -81,7 +81,7 @@ Feature: Manage partners module
     Then i want to see sorted data by createdby and descending
 
   @done @partners @sorting @sorting_by_updatedby @sorting_partners
-  Scenario: Sort records by updatedby time ascending/descending
+  Scenario: Sort partners records by updatedby time ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on updatedby sort
@@ -90,42 +90,42 @@ Feature: Manage partners module
     Then i want to see sorted data by updatedby and descending
 
   @done @partners @filtering @filtering_by_order @filtering_partners
-  Scenario: Filter partners by order
+  Scenario: Filter partners records by order
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I write 1 in order Filter
     Then I want to see filtered data
 
   @done @partners @filtering @filtering_partner_by_name @filtering_partners
-  Scenario: Filter partners by name
+  Scenario: Filter partners records by name
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I write New in name Filter
     Then I want to see filtered data
 
   @done @partners @filtering @filtering_partner_by_createdby @filtering_partners
-  Scenario: Filter partners by created_by
+  Scenario: Filter partners records by created_by
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I write admin in createdby Filter
     Then I want to see filtered data
 
   @done @partners @filtering @filtering_partner_by_updatedby @filtering_partners
-  Scenario: Filter partners by updated_by
+  Scenario: Filter partners records by updated_by
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I write root in updatedby Filter
     Then I want to see filtered data
 
   @done @partners @filtering @filtering_partner_by_enabled @filtering_partners
-  Scenario: Filter partners by enabled
+  Scenario: Filter partners records by enabled
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I select Enabled in status Filter
     Then I want to see filtered data
 
   @done @partners @filtering @filtering_partner_by_disabled @filtering_partners
-  Scenario: Filter partners by disabled
+  Scenario: Filter partners records by disabled
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I select Disabled in status Filter

@@ -27,8 +27,8 @@ class ManagePartnersPage(BasePage, TableMixin):
     # filters
     order_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[sort_order]"]')
     name_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[name]"]')
-    created_by_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[user_created_id]"]')
-    updated_by_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[user_updated_id]"]')
+    createdby_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[user_created_id]"]')
+    updatedby_filter = Find(by=By.XPATH, value='//input[@name="SearchPartner[user_updated_id]"]')
     status_filter = Find(by=By.XPATH, value='//select[@name="SearchPartner[status]"]')
 
     # buttons
@@ -39,9 +39,9 @@ class ManagePartnersPage(BasePage, TableMixin):
     def get_data(self):
         return self.get_table_records(PARTNER_COLUMNS_MAP)
 
-    def delete_partner(self, context):
-        self.filter_data('name', context.partner_data['name'])
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(context.partner_id),
+    def delete_partner(self, name, id):
+        self.filter_data('name', name)
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(id),
                            context=self)
         delete_link.click()
 

@@ -1,15 +1,15 @@
 Feature: Manage pages module
 
   @done @pages @open_pages_page
-  Scenario: Open pages page
+  Scenario: Open Manage pages page and view pages records
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Pages link
     Then I want to see 'Manage Pages' page
-    And I want to see table with all pages in it
+    And I want to see table with data
 
   @done @pages @sorting @sorting_by_order @sorting_pages
-  Scenario: Sort records by order ascending/descending
+  Scenario: Sort pages records by order ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Pages page
     When I click on order sort
@@ -18,7 +18,7 @@ Feature: Manage pages module
     Then i want to see sorted data by order and descending
 
   @done @pages  @sorting  @sorting_by_name @sorting_pages
-  Scenario: Sort records by name ascending/descending
+  Scenario: Sort pages records by name ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Pages page
     When I click on name sort
@@ -27,7 +27,7 @@ Feature: Manage pages module
     Then i want to see sorted data by name and descending
 
   @done @pages  @sorting @sorting_by_createdby @sorting_pages
-  Scenario: Sort records by createdby  ascending/descending
+  Scenario: Sort pages records by createdby ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Pages page
     When I click on createdby sort
@@ -36,7 +36,7 @@ Feature: Manage pages module
     Then i want to see sorted data by createdby and descending
 
   @done @pages  @sorting @sorting_by_updatedby @sorting_pages
-  Scenario: Sort records by updatedby time ascending/descending
+  Scenario: Sort pages records by updatedby ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Pages page
     When I click on updatedby sort

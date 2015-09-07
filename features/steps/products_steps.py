@@ -53,7 +53,7 @@ def step_impl(context, dialogbox_answer):
 
 @when("I delete created product")
 def step_impl(context):
-    context.page.delete_product(context)
+    context.page.delete_product(context.product_data['title'], context.product_id)
 
 
 @then("I want to see product in list is (?P<status>.+)")
@@ -78,7 +78,7 @@ def step_impl(context, status):
 @when("I view product")
 @when("I update product")
 def step_impl(context):
-    context.page.view_product(context)
+    context.page.view_product(context.product_data['title'], context.product_id)
 
 
 @then("I want to change title description price enabled")

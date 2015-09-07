@@ -1,36 +1,36 @@
 Feature: Manage users module
 
   @done @view_users
-  Scenario: View users
+  Scenario: Open manage users page and view all users
     Given I am logged in as Administrator
     When I click on Manage Site link
     When I click on Manage Users link
     Then I want to see 'Manage Users' page
-    And I want to see all users
+    And I want to see table with data
 
   @wip @filtering @filtering_users @filtering_users_by_username
-  Scenario: View users. Filter records by Username
+  Scenario: Filter user records by Username
     Given I am logged in as Administrator
     And I am on Manage Users page
     Then I write admin in username Filter
     Then I want to see filtered data
 
   @wip @filtering @filtering_users @filtering_users_by_email
-  Scenario: View users. Filter records by email
+  Scenario: Filter user records by email
     Given I am logged in as Administrator
     And I am on Manage Users page
     Then I write admin@nomail.com in email Filter
     Then I want to see filtered data
 
   @wip @filtering @filtering_users @filtering_users_by_registration_date
-  Scenario: View users. Filter records by registration date
+  Scenario: Filter user records by registration date
     Given I am logged in as Administrator
     And I am on Manage Users page
     Then I write 2015-08-07 in registrationtime Filter
     Then I want to see filtered data
 
   @wip @sorting @sorting_by_username @sorting_users
-  Scenario: View users. Sort records by username ascending/descending
+  Scenario: Sort user records by username ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I click on username link
@@ -39,7 +39,7 @@ Feature: Manage users module
     Then i want to see sorted data by username and descending
 
   @wip @sorting @sorting_by_email @sorting_users
-  Scenario: View users. Sort records by email ascending/descending
+  Scenario: Sort user records by email ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I click on email link
@@ -49,7 +49,7 @@ Feature: Manage users module
 
   @wip @sorting @sorting_by_registrationtime @sorting_users
   # TODO fix time sort
-  Scenario: View users. Sort records by registration time ascending/descending
+  Scenario: Sort user records by registration time ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I click on registrationtime link
@@ -72,7 +72,7 @@ Feature: Manage users module
     Then I want to be able to login created user
 
   @wip @update_users @update_user_account_details
-  Scenario: Update user. Update account details
+  Scenario: Update user account details
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -87,7 +87,7 @@ Feature: Manage users module
     And  I want to see error message "Invalid login or password"
 
   @wip @update_users @update_user_profile_details
-  Scenario: Update user. Update profile details
+  Scenario: Update user profile details
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -100,7 +100,7 @@ Feature: Manage users module
     And I want to see user profile details
 
   @wip @update_users @update_user_view_information
-  Scenario: Update user. View information
+  Scenario: View user information
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -112,7 +112,7 @@ Feature: Manage users module
     And i want to see user information details
 
   @wip @update_users @update_user_assignments
-  Scenario: Update user. Update assignments
+  Scenario: Update user assignments
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -221,28 +221,28 @@ Feature: Manage users module
     Then I want to see 'Manage Users' page
     When I click on Roles link
     Then I want to see 'Manage Roles' page
-    And I want to see all roles
+    And I want to see table with data
 
   @wip @filtering @filtering_by_name @filtering_roles
-  Scenario: View roles. Filter roles by name
+  Scenario: Filter roles records by name
     Given I am logged in as root
     And I am on Manage Roles page
     Then I write admin in name Filter
-    Then I want to see filtered roles
+    Then I want to see filtered data
 
   @wip @filtering @filtering_by_description @filtering_roles
-  Scenario: View roles. Filter roles by description
+  Scenario: Filter roles records by description
     Given I am logged in as root
     And I am on Manage Roles page
     Then I write Editor in description Filter
-    Then I want to see filtered roles
+    Then I want to see filtered data
 
   @wip @filtering @filtering_by_rule_name @filtering_roles
-  Scenario: View roles. Filter roles by rule name
+  Scenario: Filter roles records by rule name
     Given I am logged in as root
     And I am on Manage Roles page
     Then I write Rule name in rulename Filter
-    Then I want to see filtered roles
+    Then I want to see filtered data
 
   @wip @view_permissions @viewing
   Scenario: View permissions
@@ -252,24 +252,24 @@ Feature: Manage users module
     Then I want to see 'Manage Users' page
     When I click on Permissions link
     Then I want to see 'Manage Permissions' page
-    And I want to see all permissions
+    And I want to see table with data
 
   @wip @filtering @filtering_by_name @filtering_permissions
-  Scenario: View permissions. Filter permissions by name
+  Scenario: Filter permissions records by name
     Given I am logged in as root
     And I am on Manage Permissions page
     Then I write admin in name Filter
     Then I want to see filtered data
 
   @wip @filtering @filtering_by_description @filtering_permissions
-  Scenario: View permissions. Filter permissions by description
+  Scenario: Filter permissions records by description
     Given I am logged in as root
     And I am on Manage Permissions page
     Then I write Delete own goods in description Filter
     Then I want to see filtered data
 
   @wip @filtering @filtering_by_rule_name @filtering_permissions
-  Scenario: View permissions. Filter permissions by rule name
+  Scenario: Filter permissions records by rule name
     Given I am logged in as root
     And I am on Manage Permissions page
     Then I write isOwnGoods in rulename Filter
