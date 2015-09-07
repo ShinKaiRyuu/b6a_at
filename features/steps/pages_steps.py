@@ -34,15 +34,8 @@ def step_impl(context):
     links = context.page.get_links()
     link = context.page.get_link(context.page_data['name'])
     assert_in(links, link)
+    context.link = link
     link.click()
-
-
-@step("I want to see create page in header")
-def step_impl(context):
-    """
-    :type context behave.runner.Context
-    """
-    pass
 
 
 @then("I want to see created page and it content")
@@ -65,5 +58,32 @@ def step_impl(context):
 @then("I want to see created page in top of list")
 def step_impl(context):
     links = context.page.get_links()
-    assert_true(links[0].text , context.parent_page_data['name'])
+    assert_true(links[0].text, context.parent_page_data['name'])
     context.driver.refresh()
+
+
+@step("I want to see created page in header")
+def step_impl(context):
+    header_links = context.page.get_headers_links()
+    assert_true(header_links[0].text, context.parent_page_data['name'])
+
+
+@when("I open parent")
+def step_impl(context):
+    context.page.filter_data('name', context.parent_page_data['name'])
+    context.page.open_page(context.parent_page_data['slug'])
+
+
+@then("I want to see parent")
+def step_impl(context):
+    assert_in(context.parent_page_data['title'], context.driver.title)
+
+
+@step("I want to see additional link")
+def step_impl(context):
+    assert_true(context.additional_page_data['name'] in context.driver.page_source)
+
+
+@when("I open additional")
+def step_impl(context):
+    context.page.open_additional_page(context.additional_page_data['name'])

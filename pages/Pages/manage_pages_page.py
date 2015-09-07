@@ -41,6 +41,7 @@ class ManagePagesPage(BasePage, TableMixin):
     public_pages_link = Find(by=By.XPATH, value='//a[contains(text(),"Public Pages")]')
     link_list = Find(value="#w1")
     links = Finds(by=By.XPATH, value='//ul[@id="w1"]/li/a')
+    page_link = Find(by=By.XPATH, value='//a[contains(@href,"/site/page?slug=")]')
 
     def get_data(self):
         return self.get_table_records(PAGES_COLUMNS_MAP)
@@ -70,3 +71,9 @@ class ManagePagesPage(BasePage, TableMixin):
         dest_element = Find(by=By.XPATH, value='id("pages-grid")/table/tbody/tr[1]', context=self)
         ActionChains(self._driver).drag_and_drop(source_element, dest_element).perform()
         self.wait_for_loading()
+
+    def open_page(self, text):
+        self._driver.execute_script("$('a[target=_blank]').removeAttr('target')")
+        link = Find(by=By.XPATH, value='//td/a[@href="/site/page?slug={}"]'.format(text), context=self)
+        link.click()
+

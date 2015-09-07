@@ -44,7 +44,7 @@ Feature: Manage pages module
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and descending
 
-  @wip
+  @wip @pages @creating
   Scenario: Create new parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
@@ -56,12 +56,9 @@ Feature: Manage pages module
     When I click on Public pages link
     Then I want to see created page in link list
     Then I want to see created page and it content
-    When I click on logout link
-    Then I want to see 'Main' page
-    And I want to see create page in header
 
-  @wip
-  Scenario: Drag n drop
+  @wip @pages @drag_n_drop
+  Scenario: Drag n drop created parent page from bottom to top
     Given created parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
@@ -69,4 +66,52 @@ Feature: Manage pages module
     Then I want to see created page in top position
     When I click on Public pages link
     Then I want to see created page in top of list
+    When I click on logout link
+    Then I want to see 'Main' page
+    And I want to see created page in header
 
+  @done @pages @filtering @filtering_by_name @filtering_pages
+  Scenario: Filter pages records by name
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write partnership in name Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_createdby @filtering_pages
+  Scenario: Filter pages records by created_by
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write admin in createdby Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_updatedby @filtering_pages
+  Scenario: Filter pages records by updated_by
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write admin in updatedby Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_enabled @filtering_pages
+  Scenario: Filter pages records by enabled
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I select Published in status Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_disabled @filtering_pages
+  Scenario: Filter pages records by disabled
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I select Draft in status Filter
+    Then I want to see filtered data
+
+  @wip @pages @opening @open_parent_and_additional_page
+  Scenario: Open parent and additional pages
+    Given created parent page with additional page
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I open parent
+    Then I want to see 'Parent Page' page
+    And  I want to see additional link
+    When I open additional
+    Then I want to see 'Additional Page' page

@@ -48,8 +48,8 @@ def step_impl(context):
     save_item_id(context.partner_id, 'partners', context)
 
 
-# @given('created parent page with draft additional page')
-# @given('created parent page with additional page')
+@given('created parent page with draft additional page')
+@given('created parent page with additional page')
 @given('created draft parent page')
 @given('created parent page')
 def step_impl(context):

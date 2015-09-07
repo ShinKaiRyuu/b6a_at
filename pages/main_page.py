@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
-from webium import Find
+from webium import Find, Finds
+
 from .base_page import BasePage
 
 
 class MainPage(BasePage):
-
     url_path = '/'
 
     a_tag = "//a[contains(.,'{link_text}')]"
@@ -13,3 +13,7 @@ class MainPage(BasePage):
     manage_partners_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Partners'))
     manage_pages_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Pages'))
     manage_products_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Products'))
+    header_links = Finds(by=By.XPATH, value='//ul[@id="top-menu"]/li/a')
+
+    def get_headers_links(self):
+        return self.header_links
