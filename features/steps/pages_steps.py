@@ -1,5 +1,5 @@
 from behave import *
-from nose.tools import assert_true, assert_equal, assert_in
+from nose.tools import assert_true, assert_equal, assert_in, assert_false
 
 from helpers.data_helpers import create_page_data
 
@@ -31,8 +31,8 @@ def step_impl(context):
 
 @then("I want to see created page in link list")
 def step_impl(context):
-    links = context.page.get_links()
     link = context.page.get_link(context.page_data['name'])
+    links = context.page.get_links()
     assert_in(links, link)
     context.link = link
     link.click()
@@ -87,3 +87,44 @@ def step_impl(context):
 @when("I open additional")
 def step_impl(context):
     context.page.open_additional_page(context.additional_page_data['name'])
+
+
+@then("I want to see no link to draft parent page")
+def step_impl(context):
+    context.page.filter_data('name', context.parent_page_data['name'])
+    assert_false(context.page.is_element_present('link_to_page'))
+
+
+@then("I want to see no link to draft additional page")
+def step_impl(context):
+    context.page.filter_data('name', context.additional_page_data['name'])
+    assert_false(context.page.is_element_present('link_to_page'))
+
+
+@when("I open page from parent context_data")
+def step_impl(context):
+    context.driver.get(url=''.join([context.app_url, '/site/page?slug=', context.parent_page_data['slug']]))
+
+
+@when("I open page from additional context_data")
+def step_impl(context):
+    context.driver.get(url=''.join([context.app_url, '/site/page?slug=', context.additional_page_data['slug']]))
+
+
+@when("I update page")
+def step_impl(context):
+    context.page.view_page(context.parent_page_data, context.parent_page_id)
+
+
+@step("I want to see page details")
+def step_impl(context):
+    actual_page_data = context.page.get_page_details()
+    assert_equal(actual_page_data, context.parent_page_data)
+
+
+@then("I want to change page details")
+def step_impl(context):
+    page = create_page_data()
+    context.page.update_page_details(**page)
+    context.old_page_data = context.parent_page_data
+    context.page_data = page

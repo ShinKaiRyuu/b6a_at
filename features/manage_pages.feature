@@ -43,7 +43,7 @@ Feature: Manage pages module
     Then i want to see sorted data by updatedby and ascending
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and descending
-
+  # TODO REWRITE FROM SCRATCH
   @wip @pages @creating
   Scenario: Create new parent page
     Given I am logged in as Administrator
@@ -115,3 +115,43 @@ Feature: Manage pages module
     And  I want to see additional link
     When I open additional
     Then I want to see 'Additional Page' page
+
+  @wip @pages @opening
+  Scenario: open draft pages
+    Given created draft parent page
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I want to see no link to draft parent page
+    When I open page from parent context_data
+    Then I must see 'The requested page does not exist.' text
+    Given created parent page with draft additional page
+    And I am on Manage Pages page
+    Then I want to see no link to draft additional page
+    When I open page from additional context_data
+    Then I must see 'The requested page does not exist.' text
+  # TODO REWRITE FROM SCRATCH
+  @wip @pages @updating
+  Scenario: update parent page
+    Given created parent page
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I update page
+    Then I want to see 'Create Page' page
+    And I want to see page details
+    Then I want to change page details
+    And I am on Manage Pages page
+    And I want to see created page in list
+    When I click on Public pages link
+    Then I want to see created page in link list
+    Then I want to see created page and it content
+  # TODO REWRITE FROM SCRATCH
+  Scenario: Update partner
+    Given created partner
+    Given I am logged in as Administrator
+    And I am on Manage Partners page
+    When I update partner
+    Then I want to see 'Create Partner' page
+    And I want to see partner details
+    Then I want to change name starname staremail status
+    And I am on Manage Partners page
+    Then I want to see updated partner in list

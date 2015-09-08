@@ -1,7 +1,5 @@
 from selenium.webdriver import ActionChains
-
 from selenium.webdriver.common import keys
-
 from selenium.webdriver.common.by import By
 from webium import Find, Finds
 
@@ -39,9 +37,9 @@ class ManagePagesPage(BasePage, TableMixin):
 
     # links
     public_pages_link = Find(by=By.XPATH, value='//a[contains(text(),"Public Pages")]')
-    link_list = Find(value="#w1")
-    links = Finds(by=By.XPATH, value='//ul[@id="w1"]/li/a')
-    page_link = Find(by=By.XPATH, value='//a[contains(@href,"/site/page?slug=")]')
+    link_list = Find(value="#w2")
+    links = Finds(by=By.XPATH, value='//ul[@id="w2"]/li/a')
+    link_to_page = Find(by=By.XPATH, value='//a[contains(@href,"/site/page?slug=")]')
 
     def get_data(self):
         return self.get_table_records(PAGES_COLUMNS_MAP)
@@ -50,8 +48,14 @@ class ManagePagesPage(BasePage, TableMixin):
         return self.links
 
     def get_link(self, link_text):
-        link = Find(by=By.XPATH, value='id("w2")/li/a[contains(text(),"{}")]'.format(link_text), context=self)
+        link = Find(by=By.XPATH, value='//ul/li/a[contains(text(),"{}")]'.format(link_text), context=self)
         return link
+
+    def view_page(self, page_data, page_id):
+        self.filter_data('name', page_data['name'])
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(page_id),
+                           context=self)
+        update_link.click()
 
     def filter_data(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name + '_filter')
@@ -76,4 +80,3 @@ class ManagePagesPage(BasePage, TableMixin):
         self._driver.execute_script("$('a[target=_blank]').removeAttr('target')")
         link = Find(by=By.XPATH, value='//td/a[@href="/site/page?slug={}"]'.format(text), context=self)
         link.click()
-

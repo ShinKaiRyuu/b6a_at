@@ -43,3 +43,34 @@ class CreatePagePage(BasePage):
         wait = WebDriverWait(self._driver, 10)
         wait.until(lambda x: (self._driver.title == 'Pages') is True)
         self.wait_for_loading()
+
+    def get_page_details(self):
+        kwargs = {}
+        kwargs.update(name=self.name.get_attribute("value"))
+        kwargs.update(slug=self.seourl.get_attribute("value"))
+        kwargs.update(parent_id=self.parentid.get_attribute("value"))
+        kwargs.update(status=self.status.get_attribute("value"))
+        kwargs.update(content=self.content.get_attribute("value"))
+        self.seo.click()
+        kwargs.update(title=self.title.get_attribute("value"))
+        kwargs.update(keywords=self.keywords.get_attribute("value"))
+        kwargs.update(description=self.description.get_attribute("value"))
+        self.main.click()
+        return kwargs
+
+    def update_page_details(self, **page):
+        self.clear_send_keys('name', page)
+        self.seourl.click()
+        self.html.click()
+        self.clear_send_keys('content', page)
+        status_select = Select(self.status)
+        status_select.select_by_value(page['status'])
+        self.seo.click()
+        self.clear_send_keys('title', page)
+        self.clear_send_keys('keywords', page)
+        self.clear_send_keys('description', page)
+        self.main.click()
+        self.update.click()
+        wait = WebDriverWait(self._driver, 10)
+        wait.until(lambda x: (self._driver.title == 'Pages') is True)
+        self.wait_for_loading()

@@ -56,7 +56,7 @@ def step_impl(context):
     context.parent_page_data = create_page_data()
 
     if 'draft parent' in context.step_name:
-        context.page_data['status'] = 'draft'
+        context.parent_page_data['status'] = 'draft'
 
     context.parent_page_id = app_helpers.create_page(context.parent_page_data)
     save_item_id(context.parent_page_id, 'pages', context)
