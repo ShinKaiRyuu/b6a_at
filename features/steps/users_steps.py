@@ -2,7 +2,7 @@ from behave import *
 from nose.tools import assert_equal, assert_true, assert_in
 
 from helpers.data_helpers import create_user_data, modify_value
-
+from features.steps.add_steps import save_item_id
 use_step_matcher("re")
 
 
@@ -71,6 +71,7 @@ def step_impl(context):
     assert_equal(len(user), 1)
     user = user[0]
     assert_equal(user['email'], context.user_data['email'])
+    save_item_id(int(user['data_key']), 'users', context)
     context.user_data['registrationtime'] = user['registrationtime']
     context.user_data['confirmation'] = user['confirmation']
     if context.page.is_element_present('block_user_link'):

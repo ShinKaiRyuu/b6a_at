@@ -2,6 +2,7 @@ from behave import *
 from nose.tools import assert_equal, assert_true, assert_in
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from features.steps.add_steps import save_item_id
 
 from helpers.data_helpers import create_product_data
 
@@ -31,6 +32,7 @@ def step_impl(context):
     assert_equal(product['price'], float(context.product_data['price']))
     assert_equal(int(product['enabled'].replace('Enabled', '1').replace('Disabled', '2')),
                  context.product_data['enabled'])
+    save_item_id(product['data_key'], 'products', context)
     context.product_data['createdby'] = product['createdby']
     context.product_data['updatedby'] = product['updatedby']
 

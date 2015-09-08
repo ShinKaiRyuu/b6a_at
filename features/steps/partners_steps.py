@@ -1,5 +1,6 @@
 from behave import *
 from nose.tools import assert_true, assert_equal, assert_in
+from features.steps.add_steps import save_item_id
 
 from helpers.data_helpers import create_partner_data
 
@@ -21,6 +22,7 @@ def step_impl(context):
     partner = partner[0]
     assert_equal(int(partner['status'].replace('Enabled', '1').replace('Disabled', '0')),
                  context.partner_data['status'])
+    save_item_id(partner['data_key'], 'partners', context)
 
 
 @when("I create new partner")

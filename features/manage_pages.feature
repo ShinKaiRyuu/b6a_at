@@ -142,16 +142,6 @@ Feature: Manage pages module
     And I am on Manage Pages page
     And I want to see created page in list
     When I click on Public pages link
-    Then I want to see created page in link list
+    Then I want to see updated page in link list
     Then I want to see created page and it content
-  # TODO REWRITE FROM SCRATCH
-  Scenario: Update partner
-    Given created partner
-    Given I am logged in as Administrator
-    And I am on Manage Partners page
-    When I update partner
-    Then I want to see 'Create Partner' page
-    And I want to see partner details
-    Then I want to change name starname staremail status
-    And I am on Manage Partners page
-    Then I want to see updated partner in list
+

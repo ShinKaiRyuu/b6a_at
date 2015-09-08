@@ -33,7 +33,15 @@ def step_impl(context):
 def step_impl(context):
     link = context.page.get_link(context.page_data['name'])
     links = context.page.get_links()
-    assert_in(links, link)
+    assert_in(link, links)
+    context.link = link
+    link.click()
+
+@then("I want to see updated page in link list")
+def step_impl(context):
+    link = context.page.get_link2(context.page_data['name'])
+    links = context.page.get_links2()
+    assert_in(link, links)
     context.link = link
     link.click()
 
@@ -57,7 +65,7 @@ def step_impl(context):
 
 @then("I want to see created page in top of list")
 def step_impl(context):
-    links = context.page.get_links()
+    links = context.page.get_links2()
     assert_true(links[0].text, context.parent_page_data['name'])
     context.driver.refresh()
 

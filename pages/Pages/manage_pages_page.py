@@ -39,6 +39,7 @@ class ManagePagesPage(BasePage, TableMixin):
     public_pages_link = Find(by=By.XPATH, value='//a[contains(text(),"Public Pages")]')
     link_list = Find(value="#w2")
     links = Finds(by=By.XPATH, value='//ul[@id="w2"]/li/a')
+    links2 = Finds(by=By.XPATH, value='//ul[@id="w1"]/li/a')
     link_to_page = Find(by=By.XPATH, value='//a[contains(@href,"/site/page?slug=")]')
 
     def get_data(self):
@@ -47,8 +48,15 @@ class ManagePagesPage(BasePage, TableMixin):
     def get_links(self):
         return self.links
 
+    def get_links2(self):
+        return self.links2
+
     def get_link(self, link_text):
-        link = Find(by=By.XPATH, value='//ul/li/a[contains(text(),"{}")]'.format(link_text), context=self)
+        link = Find(by=By.XPATH, value='//ul[@id="w2"]/li/a[contains(text(),"{}")]'.format(link_text), context=self)
+        return link
+
+    def get_link2(self, link_text):
+        link = Find(by=By.XPATH, value='//ul[@id="w1"]/li/a[contains(text(),"{}")]'.format(link_text), context=self)
         return link
 
     def view_page(self, page_data, page_id):
