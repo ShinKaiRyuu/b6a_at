@@ -39,9 +39,9 @@ class ManagePartnersPage(BasePage, TableMixin):
     def get_data(self):
         return self.get_table_records(PARTNER_COLUMNS_MAP)
 
-    def delete_partner(self, name, id):
+    def delete_partner(self, name, partner_id):
         self.filter_data('name', name)
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(id),
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(partner_id),
                            context=self)
         delete_link.click()
 

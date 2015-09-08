@@ -1,5 +1,5 @@
 from behave import *
-from nose.tools import assert_true, assert_equal
+from nose.tools import assert_equal
 
 use_step_matcher("re")
 
@@ -9,7 +9,7 @@ def step_impl(context, sort_by, sort_order):
     context.page.wait_for_loading()
     sorted_data = context.page.get_data()
     if sort_order == 'ascending':
-            actual_sorted_data = sorted(context.page.get_data(), key=lambda x: x['{}'.format(sort_by)])
+        actual_sorted_data = sorted(context.page.get_data(), key=lambda x: x['{}'.format(sort_by)])
     else:
         actual_sorted_data = sorted(context.page.get_data(), key=lambda x: x['{}'.format(sort_by)], reverse=True)
     assert_equal(sorted_data, actual_sorted_data)

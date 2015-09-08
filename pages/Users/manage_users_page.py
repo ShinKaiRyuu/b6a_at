@@ -53,7 +53,7 @@ class ManageUsersPage(BasePage, TableMixin):
         delete_link.click()
 
     def block_user(self, user_username, user_id):
-        self.filter_data('username',user_username)
+        self.filter_data('username', user_username)
         block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(user_id), context=self)
         block_link.click()
 
