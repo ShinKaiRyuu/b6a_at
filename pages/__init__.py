@@ -26,3 +26,5 @@ from pages.Pages.create_page_page import CreatePagePage
 from pages.Pages.additional_page_page import AdditionalPagePage
 from pages.Pages.site_page_page import SitePagePage
 from pages.Pages.parent_page_page import ParentPagePage
+
+from pages.Inventorygroups.manage_inventory_groups_page import ManageInventorygroupsPage

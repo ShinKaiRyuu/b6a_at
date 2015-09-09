@@ -81,3 +81,14 @@ def create_page_data():
     }
     page_data['slug'] = page_data['name'].lower().replace(' ', '-').replace('.', '').replace(',', '')
     return page_data
+
+
+def create_inventorygroup_data():
+    faker = get_faker()
+    inventorygroup_data = {
+        'name': faker.name(),
+        'partner_id': random.choice(get_enabled_partners_ids()),
+        'content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
+    }
+    inventorygroup_data['slug'] = inventorygroup_data['name'].lower().replace(' ', '-').replace('.', '').replace(',', '')
+    return inventorygroup_data
