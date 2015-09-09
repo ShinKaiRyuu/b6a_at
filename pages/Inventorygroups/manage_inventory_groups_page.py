@@ -8,22 +8,23 @@ from pages.base_page import BasePage
 from pages.table_mixin import TableMixin
 
 INVENTORYGROUPS_COLUMNS_MAP = {
-    '1': 'order',
-    '2': 'name',
-    '3': 'createdby',
-    '4': 'updatedby',
-    '5': 'status',
-    '6': 'links',
-    '7': 'data_key'
+    '1': 'place',
+    '2': 'id',
+    '3': 'name',
+    '4': 'partner',
+    '5': 'createdby',
+    '6': 'updatedby',
+    '7': 'links',
+    '8': 'data_key'
 }
 
 
 class ManageInventorygroupsPage(BasePage, TableMixin):
     url_path = '/admin/groups/index'
     # sorting
-    id_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"id_order")]')
+    id_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"id")]')
     name_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"name")]')
-    partner = Find(by=By.XPATH, value='//a[contains(@data-sort,"partner_id")]')
+    partner_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"partner_id")]')
     createdby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_created_id")]')
     updatedby_sort = Find(by=By.XPATH, value='//a[contains(@data-sort,"user_updated_id")]')
 

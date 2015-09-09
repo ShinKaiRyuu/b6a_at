@@ -13,6 +13,7 @@ class MainPage(BasePage):
     manage_partners_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Partners'))
     manage_pages_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Pages'))
     manage_products_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Products'))
+    inventory_group_link =Find(by=By.XPATH, value=a_tag.format(link_text='Inventory Groups'))
     header_links = Finds(by=By.XPATH, value='//ul[@id="top-menu"]/li/a')
 
     def get_headers_links(self):

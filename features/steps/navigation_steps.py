@@ -28,6 +28,7 @@ PAGES_MAP = {
     'Create Page': pages.CreatePagePage,
     'Parent Page': pages.ParentPagePage,
     'Additional Page': pages.AdditionalPagePage,
+    'Inventory Group': pages.ManageInventorygroupsPage,
 }
 
 
