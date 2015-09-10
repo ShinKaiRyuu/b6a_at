@@ -103,5 +103,5 @@ def _get_data_key(payload, response):
     name = payload[[k for k in payload.keys() if '[name]' in k or '[title]' in k][0]]
     soup = BeautifulSoup(response.text)
     trs = soup.findAll(lambda tag: tag.name == 'tr' and 'data-key' in tag.attrs)
-    tr = next(iter([tr for tr in trs if name in str(tr)]))
+    tr = [tr for tr in trs if name in str(tr)][0]
     return tr['data-key']
