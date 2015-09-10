@@ -1,7 +1,7 @@
 from behave import *
 
 from helpers import app_helpers
-from helpers.data_helpers import create_user_data, create_product_data, create_partner_data, create_page_data, create_inventorygroup_data
+from helpers.data_helpers import create_user_data, create_product_data, create_partner_data, create_page_data, create_inventory_group_data
 
 use_step_matcher("re")
 
@@ -78,6 +78,6 @@ def save_item_id(item_info, entity_name, context):
 
 @given("created inventorygroup")
 def step_impl(context):
-    context.inventorygroup_data = create_inventorygroup_data()
-    context.inventorygroup_info = app_helpers.create_inventorygroup(context.inventorygroup_data)
-    save_item_id(context.inventorygroup_info, 'inventorygroup', context)
+    context.inventorygroup_data = create_inventory_group_data()
+    context.inventorygroup_info = app_helpers.create_inventory_group(context.inventorygroup_data)
+    save_item_id(context.inventorygroup_info, 'inventory_group', context)

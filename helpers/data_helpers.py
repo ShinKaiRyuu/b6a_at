@@ -54,7 +54,7 @@ def create_product_data():
         'enabled': 1,
 
     }
-    product_data['seourl'] = product_data['title'].lower().replace(' ', '-').replace('.', '').replace(',', '')
+    product_data['seourl'] = _prepare_for_slug(product_data['title'])
     return product_data
 
 
@@ -79,16 +79,20 @@ def create_page_data():
         'keywords': faker.pystr(max_chars=10),
         'description': faker.pystr(max_chars=10),
     }
-    page_data['slug'] = page_data['name'].lower().replace(' ', '-').replace('.', '').replace(',', '')
+    page_data['slug'] = _prepare_for_slug(page_data['name'])
     return page_data
 
 
-def create_inventorygroup_data():
+def create_inventory_group_data():
     faker = get_faker()
-    inventorygroup_data = {
+    inventory_group_data = {
         'name': faker.name(),
         'partner_id': random.choice(get_enabled_partners_data_keys()),
         'content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
     }
-    inventorygroup_data['slug'] = inventorygroup_data['name'].lower().replace(' ', '-').replace('.', '').replace(',', '')
-    return inventorygroup_data
+    inventory_group_data['slug'] = _prepare_for_slug(inventory_group_data['name'])
+    return inventory_group_data
+
+
+def _prepare_for_slug(some_text):
+    return some_text.lower().replace(' ', '-').replace('.', '').replace(',', '')

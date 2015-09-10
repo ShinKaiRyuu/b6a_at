@@ -17,13 +17,13 @@ SOURCE_NAMES_MAP = {
     'product': 'goods',
     'partner': 'partner',
     'page': 'page',
-    'inventorygroup': 'groups'
+    'inventory_group': 'groups'
 }
 SOURCE_URLS_MAP = {
     'product': pages.ManageProductsPage.url_path,
     'partner': pages.ManagePartnersPage.url_path,
     'page': pages.ManagePagesPage.url_path,
-    'inventorygroup': pages.ManageInventorygroupsPage.url_path,
+    'inventory_group': pages.ManageInventorygroupsPage.url_path,
 }
 
 _admin_session = None
