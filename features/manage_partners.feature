@@ -88,13 +88,6 @@ Feature: Manage partners module
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and descending
 
-  @done @partners @filtering @filtering_by_order @filtering_partners
-  Scenario: Filter partners records by order
-    Given I am logged in as Administrator
-    And I am on Manage Partners page
-    Then I write 1 in order Filter
-    Then I want to see filtered data
-
   @done @partners @filtering @filtering_partner_by_name @filtering_partners
   Scenario: Filter partners records by name
     Given I am logged in as Administrator

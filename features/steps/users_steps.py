@@ -21,7 +21,7 @@ def step_impl(context):
 
 @when("I delete created user")
 def step_impl(context):
-    context.page.delete_user(context.user_data['username'], context.user_id)
+    context.page.delete_user(context.user_data['username'], context.user_info)
 
 
 @then("I want to see user in list is (?P<status>.+)")
@@ -71,7 +71,12 @@ def step_impl(context):
     assert_equal(len(user), 1)
     user = user[0]
     assert_equal(user['email'], context.user_data['email'])
-    save_item_id(int(user['data_key']), 'users', context)
+    user_info = {}
+    user_data_key = user['data_key']
+    user_id = user['links'][0]['update'].replace('http://b6a.scoreboard-qa.selfip.com/admin/partner/update/', '')
+    user_info['id'] = user_id
+    user_info['data_key'] = user_data_key
+    save_item_id(user_info, 'users', context)
     context.user_data['registrationtime'] = user['registrationtime']
     context.user_data['confirmation'] = user['confirmation']
     if context.page.is_element_present('block_user_link'):
@@ -98,13 +103,13 @@ def step_impl(context):
 @when("I block created user")
 @when("I unblock created user")
 def step_impl(context):
-    context.page.block_user(context.user_data['username'], context.user_id)
+    context.page.block_user(context.user_data['username'], context.user_info)
 
 
 @when("I view created user information")
 @when("I update created user")
 def step_impl(context):
-    context.page.update_user(context.user_data['username'], context.user_id)
+    context.page.update_user(context.user_data['username'], context.user_info)
 
 
 @then("I want to change my username  & email & password")

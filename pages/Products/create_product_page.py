@@ -16,6 +16,7 @@ class CreateProductPage(BasePage):
     price = Find(value="input#goods-price")
     enabled = Find(value="input#goods-enabled")
     # buttons
+    create = Find(by=By.XPATH, value='//button[text()="Create"]')
     update = Find(by=By.XPATH, value='//button[text()="Update"]')
     html = Find(value=".re-html")
 
@@ -27,7 +28,7 @@ class CreateProductPage(BasePage):
         self.clear_send_keys('price', kwargs)
         if kwargs['enabled']:
             self.enabled.click()
-        self.update.click()
+        self.create.click()
         wait = WebDriverWait(self._driver, 10)
         wait.until(lambda x: (self._driver.title == 'Products') is True)
         self.wait_for_loading()

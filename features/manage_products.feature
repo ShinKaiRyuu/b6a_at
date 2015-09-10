@@ -51,13 +51,6 @@ Feature: Manage products module
     And I am on Manage Products page
     Then I want to see updated product in list
 
-  @done @products @filtering @filtering_by_order
-  Scenario: Filter products records by order
-    Given I am logged in as Administrator
-    And I am on Manage Products page
-    Then I write 1 in order Filter
-    Then I want to see filtered data
-
   @done @products @filtering @filtering_by_title
   Scenario: Filter products records by title
     Given I am logged in as Administrator

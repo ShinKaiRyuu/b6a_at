@@ -35,6 +35,10 @@ class TableMixin(WebiumBasePage):
             column_xpath = self.column_xpath.format(data_key, column_num)
             return float(Find(by=By.XPATH, value=column_xpath, context=self).text)
 
+        elif column_name == 'name':
+            column_xpath = self.column_xpath.format(data_key, column_num)
+            return Find(by=By.XPATH, value=column_xpath, context=self).text.lower()
+
         elif column_name == 'place':
             return ''
 

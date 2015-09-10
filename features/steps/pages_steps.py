@@ -23,7 +23,7 @@ def step_impl(context):
 @step("I want to see updated page in list")
 def step_impl(context):
     context.page.filter_data('name', context.page_data['name'])
-    page = [page for page in context.page.get_data() if page['name'] == context.page_data['name']]
+    page = [page for page in context.page.get_data() if page['name'].lower() == context.page_data['name'].lower()]
     assert_equal(len(page), 1)
     page = page[0]
     assert_equal(page['status'].lower(), context.page_data['status'])
@@ -53,7 +53,7 @@ def step_impl(context):
 
 @when("I dragndrop created page to top position")
 def step_impl(context):
-    context.page.dragndrop_page(context.parent_page_id)
+    context.page.dragndrop_page(context.parent_page_data)
 
 
 @then("I want to see created page in top position")
@@ -121,7 +121,7 @@ def step_impl(context):
 
 @when("I update page")
 def step_impl(context):
-    context.page.view_page(context.parent_page_data, context.parent_page_id)
+    context.page.view_page(context.parent_page_data, context.parent_page_info)
 
 
 @step("I want to see page details")

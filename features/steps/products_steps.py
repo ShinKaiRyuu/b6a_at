@@ -32,7 +32,12 @@ def step_impl(context):
     assert_equal(product['price'], float(context.product_data['price']))
     assert_equal(int(product['enabled'].replace('Enabled', '1').replace('Disabled', '2')),
                  context.product_data['enabled'])
-    save_item_id(product['data_key'], 'products', context)
+    product_info = {}
+    product_data_key = product['data_key']
+    product_id = product['links'][0]['update'].replace('http://b6a.scoreboard-qa.selfip.com/admin/partner/update/', '')
+    product_info['id'] = product_id
+    product_info['data_key'] = product_data_key
+    save_item_id(product_info, 'products', context)
     context.product_data['createdby'] = product['createdby']
     context.product_data['updatedby'] = product['updatedby']
 
@@ -55,7 +60,7 @@ def step_impl(context, dialogbox_answer):
 
 @when("I delete created product")
 def step_impl(context):
-    context.page.delete_product(context.product_data['title'], context.product_id)
+    context.page.delete_product(context.product_data['title'], context.product_info)
 
 
 @then("I want to see product in list is (?P<status>.+)")
@@ -80,7 +85,7 @@ def step_impl(context, status):
 @when("I view product")
 @when("I update product")
 def step_impl(context):
-    context.page.view_product(context.product_data['title'], context.product_id)
+    context.page.view_product(context.product_data['title'], context.product_info)
 
 
 @then("I want to change title description price enabled")

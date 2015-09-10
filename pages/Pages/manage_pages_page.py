@@ -59,9 +59,9 @@ class ManagePagesPage(BasePage, TableMixin):
         link = Find(by=By.XPATH, value='//ul[@id="w1"]/li/a[contains(text(),"{}")]'.format(link_text), context=self)
         return link
 
-    def view_page(self, page_data, page_id):
+    def view_page(self, page_data, page_info):
         self.filter_data('name', page_data['name'])
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(page_id),
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(page_info['id']),
                            context=self)
         update_link.click()
 
@@ -78,8 +78,12 @@ class ManagePagesPage(BasePage, TableMixin):
             filter_element.send_keys(keys.Keys.RETURN)
         self.wait_for_loading()
 
-    def dragndrop_page(self, page_id):
-        source_element = Find(by=By.XPATH, value='//tr[@data-key="{}"]'.format(page_id), context=self)
+    def dragndrop_page(self, page_data):
+        self.filter_data('name', page_data['name'])
+        page = self.get_data()
+        page = page[0]
+        self.filter_data('name', ' ')
+        source_element = Find(by=By.XPATH, value='//tr[@data-key="{}"]'.format(page['data_key']), context=self)
         dest_element = Find(by=By.XPATH, value='id("pages-grid")/table/tbody/tr[1]', context=self)
         ActionChains(self._driver).drag_and_drop(source_element, dest_element).perform()
         self.wait_for_loading()
