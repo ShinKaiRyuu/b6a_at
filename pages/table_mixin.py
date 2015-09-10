@@ -38,6 +38,10 @@ class TableMixin(WebiumBasePage):
         elif column_name == 'place':
             return ''
 
+        elif column_name == 'id':
+            column_xpath = self.column_xpath.format(data_key, column_num)
+            return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
+
         else:
             column_xpath = self.column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text
