@@ -78,9 +78,9 @@ def create_source(source_name, source_payload):
     source_id = r.url.split('/')[-1]
     url = r.url
     r = s.post(url, data=source_payload)
-    data_key = _get_data_key(source_payload, r)
     assert_equal(r.status_code, 200)
     assert_in('successfully.', r.text)
+    data_key = _get_data_key(source_name, source_payload, r)
     return {'id': source_id, 'data_key': data_key}
 
 
@@ -99,9 +99,15 @@ def delete_source(source_name, source_id):
         assert_equal(r.status_code, 404)
 
 
-def _get_data_key(payload, response):
-    name = payload[[k for k in payload.keys() if '[name]' in k or '[title]' in k][0]]
+def _get_data_key(source_name, payload, response):
+    name_key_source_map = {
+        'page': '[name]',
+        'partner': '[name]',
+        'product': '[title]',
+    }
+    key_part = name_key_source_map[source_name]
+    name = payload[[k for k in payload.keys() if key_part in k][0]]
     soup = BeautifulSoup(response.text)
     trs = soup.findAll(lambda tag: tag.name == 'tr' and 'data-key' in tag.attrs)
-    tr = [tr for tr in trs if name in str(tr)][0]
+    tr = [tr for tr in trs if name in tr.text][0]
     return tr['data-key']
