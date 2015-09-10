@@ -2,7 +2,7 @@ from ast import literal_eval
 import random
 from tempmail import TempMail
 from faker import Faker
-from helpers.app_helpers.app_partner import get_enabled_partners_ids
+from helpers.app_helpers.app_partner import get_enabled_partners_data_keys
 
 _faker = None
 
@@ -41,7 +41,7 @@ def create_user_data():
         'public_email': faker.email(),
         'location': faker.city(),
         'bio': faker.user_name(),
-        'partner_id': random.choice(get_enabled_partners_ids())
+        'partner_id': random.choice(get_enabled_partners_data_keys())
     }
 
 
@@ -87,7 +87,7 @@ def create_inventorygroup_data():
     faker = get_faker()
     inventorygroup_data = {
         'name': faker.name(),
-        'partner_id': random.choice(get_enabled_partners_ids()),
+        'partner_id': random.choice(get_enabled_partners_data_keys()),
         'content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
     }
     inventorygroup_data['slug'] = inventorygroup_data['name'].lower().replace(' ', '-').replace('.', '').replace(',', '')

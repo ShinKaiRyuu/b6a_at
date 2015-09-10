@@ -1,4 +1,6 @@
 import re
+from bs4 import BeautifulSoup
+from nose.tools import assert_equal, assert_in
 import pages
 
 import requests
@@ -15,7 +17,7 @@ SOURCE_NAMES_MAP = {
     'product': 'goods',
     'partner': 'partner',
     'page': 'page',
-    'inventorygroup': 'inventorygroup'
+    'inventorygroup': 'groups'
 }
 SOURCE_URLS_MAP = {
     'product': pages.ManageProductsPage.url_path,
@@ -48,13 +50,16 @@ def _get_logged_session(credentials):
         'login-form[password]': credentials['password']
     }
     r = s.post(url, data=payload)
-    assert '/user/logout' in r.text
+    assert_equal(r.status_code, 200)
+    assert_in('/user/logout', r.text)
     return s
 
 
-def get_csrf_token(response):
+def get_csrf_token(response, on_form=False):
     response_content = response.text
     csrf_pattern = re.compile('<meta name="csrf-token" content="(.*?)">')
+    if on_form:
+        csrf_pattern = re.compile('<input type="hidden" name="_csrf" value="(.*?)">')
     return csrf_pattern.findall(response_content)[0]
 
 
@@ -73,8 +78,10 @@ def create_source(source_name, source_payload):
     source_id = r.url.split('/')[-1]
     url = r.url
     r = s.post(url, data=source_payload)
-    assert 'successfully.' in r.text
-    return source_id
+    data_key = _get_data_key(source_payload, r)
+    assert_equal(r.status_code, 200)
+    assert_in('successfully.', r.text)
+    return {'id': source_id, 'data_key': data_key}
 
 
 def delete_source(source_name, source_id):
@@ -86,7 +93,15 @@ def delete_source(source_name, source_id):
     url = get_url(URL_PREFIXES['delete_source']).format(name=SOURCE_NAMES_MAP[source_name], id=source_id)
     r = s.post(url, data=payload)
 
-    if 'The requested page does not exist' in r.text:
-        return
+    if r.status_code == 200:
+        assert_in('Deleted successfully.', r.text)
+    else:
+        assert_equal(r.status_code, 404)
 
-    assert 'Deleted successfully.' in r.text
+
+def _get_data_key(payload, response):
+    name = payload[[k for k in payload.keys() if '[name]' in k or '[title]' in k][0]]
+    soup = BeautifulSoup(response.text)
+    trs = soup.findAll(lambda tag: tag.name == 'tr' and 'data-key' in tag.attrs)
+    tr = next(iter([tr for tr in trs if name in str(tr)]))
+    return tr['data-key']

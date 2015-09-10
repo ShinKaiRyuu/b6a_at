@@ -3,7 +3,7 @@ from helpers.app_helpers.app_session import get_admin_session, get_url, create_s
 import pages
 
 
-def get_enabled_partners_ids():
+def get_enabled_partners_data_keys():
     s = get_admin_session()
     url = get_url(pages.ManagePartnersPage.url_path)
     r = s.get(url)
