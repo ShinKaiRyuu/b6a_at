@@ -13,3 +13,4 @@ def step_impl(context, sort_by, sort_order):
     else:
         actual_sorted_data = sorted(context.page.get_data(), key=lambda x: x['{}'.format(sort_by)], reverse=True)
     assert_equal(sorted_data, actual_sorted_data)
+

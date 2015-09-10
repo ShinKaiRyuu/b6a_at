@@ -33,7 +33,8 @@ class ManageInventorygroupsPage(BasePage, TableMixin):
     content = Find(value="textarea#inventorygroup-content")
     partner_id = Find(value="select#inventorygroup-partner_id")
     # buttons
-    create_inventorygroup_btn = Find(by=By.XPATH, value='id("create_group")')
+    create_btn = Find(by=By.XPATH, value='id("create_group")')
+    update_btn = Find(by=By.XPATH, value='//button[text()="Update"]')
     html = Find(value=".re-html")
     success_message = Find(value='#w0')
 
@@ -51,12 +52,15 @@ class ManageInventorygroupsPage(BasePage, TableMixin):
         update_link.click()
 
     def create_inventory_group(self, **inventory_group):
-        self.create_inventorygroup_btn.click()
-        self.name.clear_send_keys('name', inventory_group)
-        partner = Select(self.partner_id)
-        partner.select_by_value(inventory_group['partner_id'])
+        self.clear_send_keys('name', inventory_group)
+        # self.name.clear()
+        # self.name.send_keys(inventory_group['name'])
+        # partner = Select(self.partner_id)
+        # partner.select_by_value(inventory_group['partner_id'])
         self.html.click()
-        self.content.clear_send_keys('content', inventory_group)
+        self.clear_send_keys('content', inventory_group)
+        self.update_btn.click()
+        self.wait_for_loading()
 
 
 

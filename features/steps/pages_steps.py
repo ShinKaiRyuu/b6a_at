@@ -1,5 +1,6 @@
 from behave import *
 from nose.tools import assert_true, assert_equal, assert_in, assert_false
+from features.steps.add_steps import save_item_id
 
 from helpers.data_helpers import create_page_data
 
@@ -27,6 +28,13 @@ def step_impl(context):
     assert_equal(len(page), 1)
     page = page[0]
     assert_equal(page['status'].lower(), context.page_data['status'])
+    page_info = {}
+    page_data_key = page['data_key']
+    page_list = page['links'][0]['update'].split('/')
+    page_id = page_list[len(page_list)-1]
+    page_info['id'] = page_id
+    page_info['data_key'] = page_data_key
+    save_item_id(page_info, 'pages', context)
 
 
 @then("I want to see created page in link list")

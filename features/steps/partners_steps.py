@@ -25,7 +25,8 @@ def step_impl(context):
                  context.partner_data['status'])
     partner_info = {}
     partner_data_key = partner['data_key']
-    partner_id = partner['links'][0]['update'].replace('http://b6a.scoreboard-qa.selfip.com/admin/partner/update/', '')
+    partner_list = partner['links'][0]['update'].split('/')
+    partner_id = partner_list[len(partner_list)-1]
     partner_info['id'] = partner_id
     partner_info['data_key'] = partner_data_key
     save_item_id(partner_info, 'partners', context)

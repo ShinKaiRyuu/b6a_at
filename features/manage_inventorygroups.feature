@@ -1,6 +1,6 @@
 Feature: Manage inventorygroups module
 
-    @done @pages @open_pages_page
+  @done @pages @open_pages_page
   Scenario: Open Manage inventory group page and view pages records
     Given I am logged in as Administrator
     When I click on Manage Site link
@@ -8,7 +8,7 @@ Feature: Manage inventorygroups module
     Then I want to see 'Inventory Group' page
     And I want to see table with data
 
-   @wip @sorting @sorting_by_id @sorting_inventorygroups
+  @wip @sorting @sorting_by_id @sorting_inventorygroups
   Scenario: Sort inventorygroup records by id ascending/descending
     Given I am logged in as Administrator
     And I am on Inventory Group page
@@ -44,7 +44,7 @@ Feature: Manage inventorygroups module
     When I click on createdby sort
     Then i want to see sorted data by createdby and descending
 
-      @wip @sorting @sorting_by_updatedby @sorting_inventorygroups
+  @wip @sorting @sorting_by_updatedby @sorting_inventorygroups
   Scenario: Sort inventorygroup records by partner ascending/descending
     Given I am logged in as Administrator
     And I am on Inventory Group page
@@ -52,3 +52,11 @@ Feature: Manage inventorygroups module
     Then i want to see sorted data by updatedby and ascending
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and descending
+
+  Scenario: Create inventorygroup
+    Given I am logged in as Administrator
+    And I am on Inventory Group page
+    When I click on create button
+    And fill form with inventory group data
+    And I am on Inventory Group page
+    And I want to see new inventory group in list

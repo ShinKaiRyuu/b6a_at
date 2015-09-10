@@ -34,7 +34,8 @@ def step_impl(context):
                  context.product_data['enabled'])
     product_info = {}
     product_data_key = product['data_key']
-    product_id = product['links'][0]['update'].replace('http://b6a.scoreboard-qa.selfip.com/admin/partner/update/', '')
+    product_list = product['links'][0]['update'].split('/')
+    product_id = product_list[len(product_list)-1]
     product_info['id'] = product_id
     product_info['data_key'] = product_data_key
     save_item_id(product_info, 'products', context)

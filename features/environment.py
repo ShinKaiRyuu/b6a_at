@@ -60,6 +60,7 @@ def delete_created_items(context):
         'products': app_helpers.delete_product,
         'partners': app_helpers.delete_partner,
         'pages': app_helpers.delete_page,
+        'inventory_group': app_helpers.delete_inventory_group,
     }
 
     if context.created_items:
