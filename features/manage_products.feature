@@ -39,6 +39,15 @@ Feature: Manage products module
     Then I want to see 'Create Product' page
     And I want to see product details
 
+  @done @products @viewing @view_new_product
+  Scenario: Open product page
+    Given created product
+    Given I am logged in as Administrator
+    And I am on Manage Products page
+    When I open product
+    Then I want to see 'Product' page
+    And I want to see product elements
+
   @done @products @updating @update_product
   Scenario: Update product
     Given created product

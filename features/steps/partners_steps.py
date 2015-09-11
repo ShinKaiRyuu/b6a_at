@@ -26,7 +26,7 @@ def step_impl(context):
     partner_info = {}
     partner_data_key = partner['data_key']
     partner_list = partner['links'][0]['update'].split('/')
-    partner_id = partner_list[len(partner_list)-1]
+    partner_id = partner_list[-1]
     partner_info['id'] = partner_id
     partner_info['data_key'] = partner_data_key
     save_item_id(partner_info, 'partners', context)

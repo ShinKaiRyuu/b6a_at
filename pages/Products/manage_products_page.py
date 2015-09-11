@@ -70,6 +70,12 @@ class ManageProductsPage(BasePage, TableMixin):
                            context=self)
         update_link.click()
 
+    def open_product(self, product_title):
+        self.filter_data('title', product_title)
+        self._driver.execute_script("$('a[target=_blank]').removeAttr('target')")
+        product_link = Find(by=By.XPATH, value='//a[text()="{}"]'.format(product_title), context=self)
+        product_link.click()
+
     def filter_data(self, filter_name, filter_value):
         filter_element = getattr(self, filter_name + '_filter')
         if filter_name == 'enabled':

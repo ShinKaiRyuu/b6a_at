@@ -20,5 +20,7 @@ def step_impl(context):
                       inventorygroup['name'].lower() == context.inventory_group_data['name'].lower()]
     assert_equal(len(inventorygroup), 1)
     inventorygroup = inventorygroup[0]
-    inventorygroup_info = {'id': inventorygroup['id'], 'data_key': inventorygroup['data_key']}
+    inventorygroup_list = inventorygroup['links'][0]['update'].split('/')
+    inventorygroup_id = inventorygroup_list[-1]
+    inventorygroup_info = {'id': inventorygroup_id, 'data_key': inventorygroup['data_key']}
     save_item_id(inventorygroup_info, 'inventory_group', context)

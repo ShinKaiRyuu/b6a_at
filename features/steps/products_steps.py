@@ -35,7 +35,7 @@ def step_impl(context):
     product_info = {}
     product_data_key = product['data_key']
     product_list = product['links'][0]['update'].split('/')
-    product_id = product_list[len(product_list)-1]
+    product_id = product_list[-1]
     product_info['id'] = product_id
     product_info['data_key'] = product_data_key
     save_item_id(product_info, 'products', context)
@@ -97,3 +97,12 @@ def step_impl(context):
     context.product_data = product
 
 
+@when("I open product")
+def step_impl(context):
+
+    context.page.open_product(context.product_data['title'])
+
+
+@step("I want to see product elements")
+def step_impl(context):
+    assert_true(context.product_data['description'] in context.driver.page_source)

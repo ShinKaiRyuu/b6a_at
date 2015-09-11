@@ -20,6 +20,7 @@ from pages.Partners.create_partner_page import CreatePartnerPage
 from pages.Products.create_product_page import CreateProductPage
 from pages.Products.manage_products_page import ManageProductsPage
 from pages.Products.view_product_page import ViewProductPage
+from pages.Products.product_page import ProductPage
 
 from pages.Pages.manage_pages_page import ManagePagesPage
 from pages.Pages.create_page_page import CreatePagePage

@@ -74,7 +74,7 @@ def step_impl(context):
     user_info = {}
     user_data_key = user['data_key']
     user_list = user['links'][0]['update'].split('/')
-    user_id = user_list[len(user_list)-1]
+    user_id = user_list[-1]
     user_info['id'] = user_id
     user_info['data_key'] = user_data_key
     save_item_id(user_info, 'users', context)
