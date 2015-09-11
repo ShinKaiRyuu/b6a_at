@@ -30,6 +30,7 @@ PAGES_MAP = {
     'Parent Page': pages.ParentPagePage,
     'Additional Page': pages.AdditionalPagePage,
     'Inventory Group': pages.ManageInventorygroupsPage,
+    'Update Inventory Group': pages.UpdateInventorygroupsPage,
 }
 
 

@@ -24,3 +24,49 @@ def step_impl(context):
     inventorygroup_id = inventorygroup_list[-1]
     inventorygroup_info = {'id': inventorygroup_id, 'data_key': inventorygroup['data_key']}
     save_item_id(inventorygroup_info, 'inventory_group', context)
+
+
+@when("I view inventory group")
+def step_impl(context):
+    context.page.open_inventory_group(context.inventorygroup_info)
+
+
+@step("I want to see inventory group details")
+def step_impl(context):
+    inventory_group_details = context.page.get_inventory_group_details()
+    assert_equal(context.inventorygroup_data['name'], inventory_group_details['name'])
+    assert_equal(context.inventorygroup_data['content'], inventory_group_details['content'])
+
+
+@then("I want to change name content")
+def step_impl(context):
+    inventory_group = create_inventory_group_data()
+    context.page.update_inventory_group_details(**inventory_group)
+    context.old_inventorygroup_data = context.inventorygroup_data
+    context.inventorygroup_data = inventory_group
+
+
+@then("I want to see updated inventory group in list")
+def step_impl(context):
+    inventorygroup = [inventorygroup for inventorygroup in context.page.get_data() if
+                      inventorygroup['name'].lower() == context.inventorygroup_data['name'].lower()]
+    assert_equal(len(inventorygroup), 1)
+
+
+@when("I delete created inventory group")
+def step_impl(context):
+    context.page.delete_inventory_group(context.inventorygroup_info)
+
+
+@step("I want to see inventory group in list")
+def step_impl(context):
+    inventorygroup = [inventorygroup for inventorygroup in context.page.get_data() if
+                      inventorygroup['name'].lower() == context.inventorygroup_data['name'].lower()]
+    assert_equal(len(inventorygroup), 1)
+
+
+@then("I want to see inventory group is deleted")
+def step_impl(context):
+    inventorygroup = [inventorygroup for inventorygroup in context.page.get_data() if
+                      inventorygroup['name'].lower() == context.inventorygroup_data['name'].lower()]
+    assert_equal(len(inventorygroup), 0)

@@ -1,8 +1,5 @@
-from selenium.webdriver.common import keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 from webium import Find
-
 
 from pages.base_page import BasePage
 from pages.table_mixin import TableMixin
@@ -41,13 +38,13 @@ class ManageInventorygroupsPage(BasePage, TableMixin):
     def get_data(self):
         return self.get_table_records(INVENTORYGROUPS_COLUMNS_MAP)
 
-    def delete_inventory_group(self, inventorygroup_id):
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(inventorygroup_id),
+    def delete_inventory_group(self, inventory_group_id):
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(inventory_group_id),
                            context=self)
         delete_link.click()
 
-    def view_inventory_group(self,  inventorygroup_id):
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(inventorygroup_id),
+    def view_inventory_group(self, inventory_group_id):
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(inventory_group_id),
                            context=self)
         update_link.click()
 
@@ -62,5 +59,12 @@ class ManageInventorygroupsPage(BasePage, TableMixin):
         self.update_btn.click()
         self.wait_for_loading()
 
+    def open_inventory_group(self, inventorygroup_info):
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(inventorygroup_info['id']),
+                           context=self)
+        update_link.click()
 
-
+    def delete_inventory_group(self, inventorygroup_info):
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(inventorygroup_info['id']),
+                           context=self)
+        delete_link.click()

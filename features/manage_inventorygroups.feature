@@ -60,3 +60,36 @@ Feature: Manage inventorygroups module
     And fill form with inventory group data
     And I am on Inventory Group page
     And I want to see new inventory group in list
+
+    @done @partners @view_partner
+  Scenario: View inventory group
+    Given created inventorygroup
+    Given I am logged in as Administrator
+    And I am on Inventory Group page
+    When I view inventory group
+    Then I want to see 'Update Inventory Group' page
+    And I want to see inventory group details
+
+  @done @partners @update_partner
+  Scenario: Update inventory group
+    Given created inventorygroup
+    Given I am logged in as Administrator
+    And I am on Inventory Group page
+    When I view inventory group
+    Then I want to see 'Update Inventory Group' page
+    And I want to see inventory group details
+    Then I want to change name content
+    And I am on Inventory Group page
+    Then I want to see updated inventory group in list
+
+    @done @partners @delete_partner
+  Scenario: Delete inventory group
+    Given created inventorygroup
+    Given I am logged in as Administrator
+    And I am on Inventory Group page
+    When I delete created inventory group
+    Then I want to see dialog box and click No
+    And I want to see inventory group in list
+    When I delete created inventory group
+    Then I want to see dialog box and click Yes
+    Then I want to see inventory group is deleted

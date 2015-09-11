@@ -29,3 +29,4 @@ from pages.Pages.site_page_page import SitePagePage
 from pages.Pages.parent_page_page import ParentPagePage
 
 from pages.Inventorygroups.manage_inventory_groups_page import ManageInventorygroupsPage
+from pages.Inventorygroups.update_inventory_group_page import UpdateInventorygroupsPage
