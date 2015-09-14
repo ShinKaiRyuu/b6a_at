@@ -3,6 +3,7 @@ Feature: Manage pages module
   @done @pages @open_pages_page
   Scenario: Open Manage pages page and view pages records
     Given I am logged in as Administrator
+    And I am on Main page
     When I click on Manage Site link
     When I click on Manage Pages link
     Then I want to see 'Manage Pages' page
@@ -43,7 +44,7 @@ Feature: Manage pages module
     Then i want to see sorted data by updatedby and ascending
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and descending
-  # TODO REWRITE FROM SCRATCH
+
   @wip @pages @creating
   Scenario: Create new parent page
     Given I am logged in as Administrator
@@ -129,7 +130,7 @@ Feature: Manage pages module
     Then I want to see no link to draft additional page
     When I open page from additional context_data
     Then I must see 'The requested page does not exist.' text
-  # TODO REWRITE FROM SCRATCH
+
   @wip @pages @updating
   Scenario: update parent page
     Given created parent page

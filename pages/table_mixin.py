@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver.common.by import By
 from webium import BasePage as WebiumBasePage, Finds, Find
 
@@ -45,7 +46,11 @@ class TableMixin(WebiumBasePage):
         elif column_name == 'id':
             column_xpath = self.column_xpath.format(data_key, column_num)
             return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
-
+        elif column_name == 'registrationtime':
+            column_xpath = self.column_xpath.format(data_key, column_num)
+            reg_time = Find(by=By.XPATH, value=column_xpath, context=self).text
+            registration_time = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.strptime(reg_time, '%B %d, %Y %H:%M'))
+            return registration_time
         else:
             column_xpath = self.column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text

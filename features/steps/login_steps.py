@@ -22,7 +22,6 @@ def step_impl(context):
         Given I am on Main page
     ''')
     update_driver_cookies(context.driver, ADMIN_CREDENTIALS)
-    context.driver.refresh()
 
 
 @given("I am logged in as root")

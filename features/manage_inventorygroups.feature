@@ -3,6 +3,7 @@ Feature: Manage inventorygroups module
   @done @pages @open_pages_page
   Scenario: Open Manage inventory group page and view pages records
     Given I am logged in as Administrator
+    And I am on Main page
     When I click on Manage Site link
     When I click on Inventory Group link
     Then I want to see 'Inventory Group' page

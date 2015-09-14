@@ -3,6 +3,7 @@ Feature: Manage partners module
   @done @partners @open_partners_page
   Scenario: Open partners page
     Given I am logged in as Administrator
+    And I am on Main page
     When I click on Manage Site link
     When I click on Manage Partners link
     Then I want to see 'Manage Partners' page

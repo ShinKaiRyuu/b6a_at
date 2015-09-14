@@ -3,6 +3,7 @@ Feature: Manage products module
   @done @products @view_products
   Scenario: Open Manage products page and view products
     Given I am logged in as Administrator
+    And I am on Main page
     When I click on Manage Site link
     When I click on Manage Products link
     Then I want to see 'Manage Products' page
