@@ -60,13 +60,17 @@ Feature: Manage inventorygroups module
     When I click on create button
     And fill form with inventory group data
     And I am on Inventory Group page
+    When I click on id sort
+    When I click on id sort
     And I want to see new inventory group in list
 
-    @done @partners @view_partner
+  @done @partners @view_partner
   Scenario: View inventory group
     Given created inventorygroup
     Given I am logged in as Administrator
     And I am on Inventory Group page
+    When I click on id sort
+    When I click on id sort
     When I view inventory group
     Then I want to see 'Update Inventory Group' page
     And I want to see inventory group details
@@ -76,21 +80,29 @@ Feature: Manage inventorygroups module
     Given created inventorygroup
     Given I am logged in as Administrator
     And I am on Inventory Group page
+    When I click on id sort
+    When I click on id sort
     When I view inventory group
     Then I want to see 'Update Inventory Group' page
     And I want to see inventory group details
     Then I want to change name content
     And I am on Inventory Group page
+    When I click on id sort
+    When I click on id sort
     Then I want to see updated inventory group in list
 
-    @done @partners @delete_partner
+  @done @partners @delete_partner
   Scenario: Delete inventory group
     Given created inventorygroup
     Given I am logged in as Administrator
     And I am on Inventory Group page
+    When I click on id sort
+    When I click on id sort
     When I delete created inventory group
     Then I want to see dialog box and click No
     And I want to see inventory group in list
     When I delete created inventory group
     Then I want to see dialog box and click Yes
+    When I click on id sort
+    When I click on id sort
     Then I want to see inventory group is deleted

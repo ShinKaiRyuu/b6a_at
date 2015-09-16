@@ -34,7 +34,7 @@ class ManagePartnersPage(BasePage, TableMixin):
     # buttons
     create_partner_btn = Find(by=By.XPATH, value='//a[@href="/admin/partner/create"]')
 
-    success_message = Find(value='#w0')
+    success_message = Find(value='#w2')
 
     def get_data(self):
         return self.get_table_records(PARTNER_COLUMNS_MAP)

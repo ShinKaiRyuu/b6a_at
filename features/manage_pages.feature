@@ -54,9 +54,7 @@ Feature: Manage pages module
     When I create new page
     Then I want to see 'Manage Pages' page
     And I want to see created page in list
-    When I click on Public pages link
-    Then I want to see created page in link list
-    Then I want to see created page and it content
+
 
   @wip @pages @drag_n_drop
   Scenario: Drag n drop created parent page from bottom to top
@@ -65,6 +63,7 @@ Feature: Manage pages module
     And I am on Manage Pages page
     When I dragndrop created page to top position
     Then I want to see created page in top position
+    And I am on Manage Pages page
     When I click on Public pages link
     Then I want to see created page in top of list
     When I click on logout link
@@ -142,7 +141,4 @@ Feature: Manage pages module
     Then I want to change page details
     And I am on Manage Pages page
     And I want to see created page in list
-    When I click on Public pages link
-    Then I want to see updated page in link list
-    Then I want to see created page and it content
 

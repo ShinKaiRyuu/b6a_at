@@ -23,7 +23,7 @@ SOURCE_URLS_MAP = {
     'product': pages.ManageProductsPage.url_path,
     'partner': pages.ManagePartnersPage.url_path,
     'page': pages.ManagePagesPage.url_path,
-    'inventory_group': pages.ManageInventorygroupsPage.url_path,
+    'inventory_group': pages.ManageInventorygroupsPage.url_path+'?sort=id',
 }
 
 _admin_session = None
@@ -80,6 +80,8 @@ def create_source(source_name, source_payload):
     r = s.post(url, data=source_payload)
     assert_equal(r.status_code, 200)
     assert_in('successfully.', r.text)
+    url = r.url + '?sort=-id'
+    r = s.get(url)
     data_key = _get_data_key(source_name, source_payload, r)
     return {'id': source_id, 'data_key': data_key}
 

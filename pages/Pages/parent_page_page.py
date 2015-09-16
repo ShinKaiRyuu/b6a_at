@@ -6,7 +6,7 @@ from pages.table_mixin import TableMixin
 
 
 class ParentPagePage(BasePage, TableMixin):
-    url_path = '/site/page?slug='
+    url_path = '/page/'
 
     def open_additional_page(self, text):
         link = Find(by=By.XPATH, value='//a[contains(text(),"{}")]'.format(text), context=self)

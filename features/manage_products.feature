@@ -68,13 +68,6 @@ Feature: Manage products module
     Then I write New in title Filter
     Then I want to see filtered data
 
-  @done @products @filtering @filtering_by_price @filtering_products
-  Scenario: Filter products records by price
-    Given I am logged in as Administrator
-    And I am on Manage Products page
-    Then I write 1000 in price Filter
-    Then I want to see filtered data
-
   @done @products @filtering @filtering_by_created_by @filtering_products
   Scenario: Filter products records by created by
     Given I am logged in as Administrator

@@ -42,7 +42,7 @@ class ManageUsersPage(BasePage, TableMixin):
     permissions_link = Find(by=By.XPATH, value='//a[@href="/rbac/permission/index"]')
 
     # TODO change selector
-    success_message = Find(value='#w4')
+    success_message = Find(value='#w6')
 
     def get_data(self):
         return self.get_table_records(USER_COLUMNS_MAP)

@@ -16,6 +16,7 @@ def step_impl(context):
 
 @step("I want to see new inventory group in list")
 def step_impl(context):
+    context.page.wait_for_loading()
     inventorygroup = [inventorygroup for inventorygroup in context.page.get_data() if
                       inventorygroup['name'].lower() == context.inventory_group_data['name'].lower()]
     assert_equal(len(inventorygroup), 1)

@@ -16,7 +16,7 @@ def step_impl(context):
 @when("I create new page")
 def step_impl(context):
     page = create_page_data()
-    context.page.create_new_page(**page)
+    context.page.create_new_page(context.driver , **page)
     context.page_data = page
 
 
@@ -30,7 +30,7 @@ def step_impl(context):
     assert_equal(page['status'].lower(), context.page_data['status'])
     page_info = {}
     page_data_key = page['data_key']
-    page_list = page['links'][2]['update'].split('/')
+    page_list = page['links'][0]['update'].split('/')
     page_id = page_list[-1]
     page_info['id'] = page_id
     page_info['data_key'] = page_data_key
@@ -141,6 +141,6 @@ def step_impl(context):
 @then("I want to change page details")
 def step_impl(context):
     page = create_page_data()
-    context.page.update_page_details(**page)
+    context.page.update_page_details(context.driver, **page)
     context.old_page_data = context.parent_page_data
     context.page_data = page

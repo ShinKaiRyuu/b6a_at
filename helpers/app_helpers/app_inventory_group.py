@@ -14,7 +14,7 @@ def create_inventory_group(inventory_group_data):
         'InventoryGroup[content]': inventory_group_data['content'],
     }
     s = get_admin_session()
-    url = get_url(pages.ManageInventorygroupsPage.url_path)
+    url = get_url(pages.ManageInventorygroupsPage.url_path + '?sort=-id')
     s.get(url)
     url = get_url(URL_PREFIXES['create_source'].format(name=SOURCE_NAMES_MAP['inventory_group']))
     r = s.get(url)
@@ -24,7 +24,9 @@ def create_inventory_group(inventory_group_data):
     payload['InventoryGroup[id]'] = data_key
     r = s.post(url, data=payload)
     assert_equal(r.status_code, 200)
-    # assert_in(inventory_group_data['name'], r.text)
+    url = get_url(pages.ManageInventorygroupsPage.url_path + '?sort=-id')
+    r = s.get(url)
+    assert_in(inventory_group_data['name'], r.text)
     _id = _get_group_id(r, data_key)
     return {'id': _id, 'data_key': data_key}
 

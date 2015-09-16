@@ -39,7 +39,7 @@ class ManagePagesPage(BasePage, TableMixin):
     public_pages_link = Find(by=By.XPATH, value='//a[contains(text(),"Public Pages")]')
     link_list = Find(value="#w2")
     links = Finds(by=By.XPATH, value='//ul[@id="w2"]/li/a')
-    links2 = Finds(by=By.XPATH, value='//ul[@id="w1"]/li/a')
+    links2 = Finds(by=By.XPATH, value='//ul[@id="w3"]/li/a')
     link_to_page = Find(by=By.XPATH, value='//a[contains(@href,"/site/page?slug=")]')
 
     def get_data(self):
@@ -90,5 +90,5 @@ class ManagePagesPage(BasePage, TableMixin):
 
     def open_page(self, text):
         self._driver.execute_script("$('a[target=_blank]').removeAttr('target')")
-        link = Find(by=By.XPATH, value='//td/a[@href="/site/page?slug={}"]'.format(text), context=self)
+        link = Find(by=By.XPATH, value='//td/a[@href="/page/{}"]'.format(text), context=self)
         link.click()

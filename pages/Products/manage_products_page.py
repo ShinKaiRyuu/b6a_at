@@ -51,7 +51,7 @@ class ManageProductsPage(BasePage, TableMixin):
     # endregion
 
     # region success message
-    success_message = Find(value='#w0')
+    success_message = Find(value='#w2')
     # endregion
     # endregion
 

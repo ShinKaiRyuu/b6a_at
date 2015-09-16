@@ -122,13 +122,11 @@ Feature: Manage users module
     Then I want to see 'Update User Account Details' page
     When I click on Assignments link
     Then I want to see 'User Assignments' page
-    Then I want to see empty user assignmnets
-    Then I want to add root assignmnet
     Then I want to see not empty user assignmnets
     When I click on Logout link
     Then I want to login with these user
     When I open Manage Users page
-    Then I must not see 'Access denied' text
+    Then I must see 'Access denied' text
     When I click on Logout link
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -137,7 +135,7 @@ Feature: Manage users module
     Then I want to see 'Update User Account Details' page
     When I click on Assignments link
     Then I want to see 'User Assignments' page
-    Then I want to remove root assignmnet
+    Then I want to remove editor assignmnet
     Then I want to see empty user assignmnets
     When I click on Logout link
     Then I want to login with these user
@@ -217,6 +215,7 @@ Feature: Manage users module
   @wip @view_roles @viewing
   Scenario: View roles
     Given I am logged in as Administrator
+    And I am on Main page
     When I click on Manage Site link
     When I click on Manage Users link
     Then I want to see 'Manage Users' page
@@ -247,11 +246,8 @@ Feature: Manage users module
 
   @wip @view_permissions @viewing
   Scenario: View permissions
-    Given I am logged in as Administrator
-    When I click on Manage Site link
-    When I click on Manage Users link
-    Then I want to see 'Manage Users' page
-    When I click on Permissions link
+    Given I am logged in as root
+    And I am on Manage Permissions page
     Then I want to see 'Manage Permissions' page
     And I want to see table with data
 
