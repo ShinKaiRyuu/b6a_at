@@ -30,7 +30,7 @@ def after_scenario(context, scenario):
         if getattr(context, 'save_screenshots', True):
             take_screenshot(scenario, context.step_name)
     get_driver().delete_all_cookies()
-    # delete_created_items(context)
+    delete_created_items(context)
 
 
 def before_step(context, step):

@@ -5,7 +5,8 @@ import pages
 
 import requests
 
-APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
+# APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
+APP_URL = 'http://b6a.le'
 ADMIN_CREDENTIALS = {'username': 'admin', 'password': '123456'}
 ROOT_CREDENTIALS = {'username': 'root', 'password': '123456'}
 URL_PREFIXES = {

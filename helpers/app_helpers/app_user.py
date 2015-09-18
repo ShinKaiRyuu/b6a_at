@@ -54,6 +54,10 @@ def delete_user(user_id):
         assert_equal(r.status_code, 404)
         return
 
+    if 'Access denied' in r.text:
+        assert_equal(r.status_code, 403)
+        return
+
     payload = {'_csrf': get_csrf_token(r)}
     url = ''.join([APP_URL, '/user/admin/delete/{}'.format(user_id)])
     r = s.post(url, data=payload)

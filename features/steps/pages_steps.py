@@ -16,7 +16,7 @@ def step_impl(context):
 @when("I create new page")
 def step_impl(context):
     page = create_page_data()
-    context.page.create_new_page(context.driver , **page)
+    context.page.create_new_page(**page)
     context.page_data = page
 
 
@@ -141,6 +141,6 @@ def step_impl(context):
 @then("I want to change page details")
 def step_impl(context):
     page = create_page_data()
-    context.page.update_page_details(context.driver, **page)
+    context.page.update_page_details(**page)
     context.old_page_data = context.parent_page_data
     context.page_data = page

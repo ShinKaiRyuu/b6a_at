@@ -45,7 +45,7 @@ Feature: Manage pages module
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and descending
 
-  @wip @pages @creating
+  @wip @pages @creating @slug
   Scenario: Create new parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
@@ -130,7 +130,7 @@ Feature: Manage pages module
     When I open page from additional context_data
     Then I must see 'The requested page does not exist.' text
 
-  @wip @pages @updating
+  @wip @pages @updating @slug
   Scenario: update parent page
     Given created parent page
     Given I am logged in as Administrator

@@ -9,7 +9,7 @@ Feature: Manage products module
     Then I want to see 'Manage Products' page
     And I want to see table with data
 
-  @done @products @creating_new @create_new_product
+  @done @products @creating_new @create_new_product @slug
   Scenario: Create new product
     Given I am logged in as Administrator
     And I am on Manage Products page
@@ -40,7 +40,7 @@ Feature: Manage products module
     Then I want to see 'Create Product' page
     And I want to see product details
 
-  @done @products @viewing @view_new_product
+  @done @products @viewing @view_new_product @slug
   Scenario: Open product page
     Given created product
     Given I am logged in as Administrator
@@ -101,9 +101,9 @@ Feature: Manage products module
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on order sort
-    Then i want to see sorted data by order and ascending
-    When I click on order sort
     Then i want to see sorted data by order and descending
+    When I click on order sort
+    Then i want to see sorted data by order and ascending
 
   @done @products @sorting @sorting_by_order @sorting_products
   Scenario: Sort products records by title ascending/descending
