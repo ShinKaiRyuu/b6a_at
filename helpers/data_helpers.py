@@ -94,5 +94,17 @@ def create_inventory_group_data():
     return inventory_group_data
 
 
+def create_item_data():
+    faker = get_faker()
+    item__data = {
+        'item_name': faker.name(),
+        'item_vpm': faker.pyint(),
+        'item_content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
+        'item_date': faker.date(pattern="%m-%d")
+    }
+    item__data['slug'] = _prepare_for_slug(item__data['item_name'])
+    return item__data
+
+
 def _prepare_for_slug(some_text):
     return some_text.lower().replace(' ', '-').replace('.', '').replace(',', '')

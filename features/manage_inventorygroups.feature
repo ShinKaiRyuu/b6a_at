@@ -95,3 +95,17 @@ Feature: Manage inventorygroups module
     When I delete created inventory group
     Then I want to see dialog box and click Yes
     Then I want to see inventory group is deleted
+
+  Scenario: Create new item and opportunity
+    Given created inventorygroup
+    Given I am logged in as Administrator
+    And I am on Inventory Group page
+    When I view inventory group
+    Then I want to see 'Update Inventory Group' page
+    Then I add a new item
+#    When I view item
+#    Then I want to see 'Update item' page
+#    Then I add opportunity
+#    Then I click on Scoreboard link
+#    Then I want to 'Scoreboard' page
+#    And I want to see inventory group data

@@ -2,7 +2,7 @@ from behave import *
 from nose.tools import assert_equal
 
 from features.steps.add_steps import save_item_id
-from helpers.data_helpers import create_inventory_group_data
+from helpers.data_helpers import create_inventory_group_data,create_item_data
 
 use_step_matcher("re")
 
@@ -72,3 +72,9 @@ def step_impl(context):
     inventorygroup = [inventorygroup for inventorygroup in context.page.get_data() if
                       inventorygroup['name'].lower() == context.inventorygroup_data['name'].lower()]
     assert_equal(len(inventorygroup), 0)
+
+
+@then("I add a new item")
+def step_impl(context):
+    item_info = create_item_data()
+    context.page.fill_item_info(**item_info)

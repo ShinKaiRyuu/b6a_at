@@ -13,7 +13,7 @@ def before_all(context):
         from pyvirtualdisplay import Display
         context.xvfb = Display(visible=0, size=(1366, 768)).start()
     else:
-        context.save_screenshots = False
+        context.save_screenshots = True
         context.close_after_all = False
 
     context.driver = get_updated_driver()

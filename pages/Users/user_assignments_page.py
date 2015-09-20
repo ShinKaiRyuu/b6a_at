@@ -44,6 +44,7 @@ class UserAssignmentsPage(BasePage):
         self._driver.refresh()
 
     def remove_assignment(self, assignment_value):
+        self.wait_for_loading()
         remove_assignment_button = Find(by=By.XPATH, value='//li[contains(text(),"{}")]/span'.format(assignment_value),
                                         context=self)
         remove_assignment_button.click()
