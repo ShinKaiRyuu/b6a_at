@@ -1,12 +1,23 @@
-import datetime
-
 from selenium.webdriver.common.by import By
 from webium import Find
 
 from pages.base_page import BasePage
+from pages.table_mixin import TableMixin
+
+ITEMS_COLUMNS_MAP = {
+    '1': 'name',
+    '2': 'average_Views',
+    '3': 'total_opportunities',
+    '4': 'vpm',
+    '5': 'record_date',
+    '6': 'created_by',
+    '7': 'updated_By',
+    '8': 'links',
+    '9': 'data_key'
+}
 
 
-class UpdateInventorygroupsPage(BasePage, ):
+class UpdateInventorygroupsPage(BasePage, TableMixin):
     url_path = '/admin/groups/update/'
 
     name = Find(value="input#inventorygroup-name")
@@ -27,6 +38,10 @@ class UpdateInventorygroupsPage(BasePage, ):
     item_date = Find(by=By.XPATH, value='id("item-record_date")')
     next_month = Find(by=By.XPATH, value='//span[contains(text(),"Next")]')
     prev_month = Find(by=By.XPATH, value='//span[contains(text(),"Prev")]')
+    item_update = Find(by=By.XPATH, value='(//button)[4]')
+
+    def get_data(self):
+        return self.get_table_records(ITEMS_COLUMNS_MAP)
 
     def get_inventory_group_details(self):
         kwargs = {}
@@ -48,20 +63,29 @@ class UpdateInventorygroupsPage(BasePage, ):
         self.clear_send_keys('item_vpm', item)
         self.item_html.click()
         self.clear_send_keys('item_content', item)
-        date = item['item_date'].split('-')
-        self.set_item_time(date[1], date[0])
+        self._driver.execute_script("$('input').removeAttr('readonly')")
+        self.clear_send_keys('item_date', item)
+        self.item_update.click()
+        self.item_tab.click()
+        # date = item['item_date'].split('-')
+        # self.set_item_time(date[1], date[0])
 
-    def set_item_time(self, day, month):
-        self.item_date.click()
-        self.item_date.click()
-        self.item_date.click()
-        self.item_date.click()
-        now = datetime.datetime.now()
-        difference = now.month - month
-        if difference < 0:
-            for x in range(0, difference):
-                self.next_month.click()
-        elif difference > 0:
-            for x in range(0, difference):
-                self.prev_month.click()
-        item_day = Find(by=By.XPATH, value='//td/a[@href="/page/{}"]'.format(text), context=self)
+        # def set_item_time(self, day, month):
+        #     self.item_date.click()
+        #     self.item_date.click()
+        #     self.item_date.click()
+        #     self.item_date.click()
+        #     now = datetime.datetime.now()
+        #     difference = now.month - month
+        #     if difference < 0:
+        #         for x in range(0, difference):
+        #             self.next_month.click()
+        #     elif difference > 0:
+        #         for x in range(0, difference):
+        #             self.prev_month.click()
+        #     item_day = Find(by=By.XPATH, value='//td/a[@href="/page/{}"]'.format(text), context=self)
+
+    def view_item(self, item_id):
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'items/update/{}')]".format(item_id),
+                           context=self)
+        update_link.click()

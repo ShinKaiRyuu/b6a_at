@@ -2,7 +2,7 @@ from behave import *
 from nose.tools import assert_equal
 
 from features.steps.add_steps import save_item_id
-from helpers.data_helpers import create_inventory_group_data,create_item_data
+from helpers.data_helpers import create_inventory_group_data, create_item_data, create_opportunity_data
 
 use_step_matcher("re")
 
@@ -76,5 +76,58 @@ def step_impl(context):
 
 @then("I add a new item")
 def step_impl(context):
-    item_info = create_item_data()
-    context.page.fill_item_info(**item_info)
+    item_data = create_item_data()
+    context.page.fill_item_info(**item_data)
+    context.item_data = item_data
+
+
+@then("I want to see item in list")
+def step_impl(context):
+    context.page.wait_for_loading()
+    item = [item for item in context.page.get_data() if
+            item['name'].lower() == context.item_data['item_name'].lower()]
+    assert_equal(len(item), 1)
+    item = item[0]
+    item_id = item['links'][0]['update'].split('/')[-1]
+    item_info = {'data_key': item['data_key'], 'id': item_id}
+    context.item_info = item_info
+
+
+@when("I view item")
+def step_impl(context):
+    context.page.view_item(context.item_info['id'])
+
+
+@then("I add a new opportunity")
+def step_impl(context):
+    opportunity_data = create_opportunity_data()
+    context.page.fill_opportunity_info(**opportunity_data)
+    context.opportunity_data = opportunity_data
+
+
+@then("I want to see opportunity in list")
+def step_impl(context):
+    context.page.wait_for_loading()
+    context.driver.refresh()
+    opportunity = [opportunity for opportunity in context.page.get_data() if
+                   opportunity['name'].lower() == context.opportunity_data['opportunity_name'].lower()]
+    assert_equal(len(opportunity), 1)
+    opportunity = opportunity[0]
+    opportunity_id = opportunity['links'][0]['update'].split('/')[-1]
+    opportunity_info = {'data_key': opportunity['data_key'], 'id': opportunity_id}
+    context.opportunity_info = opportunity_info
+
+
+@then("I open items page")
+def step_impl(context):
+    context.page.open_items_page(context.inventorygroup_data)
+
+
+@then("I want to see items details")
+def step_impl(context):
+    item = [item for item in context.page.get_data() if
+                   item['inventory_title'].lower() == context.item_data['item_name'].lower()]
+    assert_equal(len(item), 1)
+    item = item[0]
+    assert_equal(int(item['impressions_total']), context.opportunity_data['opportunity_views'])
+    assert_equal(float(item['vpm_total']), float(context.item_data['item_vpm']))

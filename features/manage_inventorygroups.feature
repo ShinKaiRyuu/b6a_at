@@ -103,9 +103,14 @@ Feature: Manage inventorygroups module
     When I view inventory group
     Then I want to see 'Update Inventory Group' page
     Then I add a new item
-#    When I view item
-#    Then I want to see 'Update item' page
-#    Then I add opportunity
-#    Then I click on Scoreboard link
-#    Then I want to 'Scoreboard' page
+    Then I want to see item in list
+    When I view item
+    Then I want to see 'Update item' page
+    Then I add a new opportunity
+    Then I want to see opportunity in list
+    When I click on Scoreboard link
+    Then I want to see 'Scoreboard' page
 #    And I want to see inventory group data
+    Then I open items page
+    Then I want to see 'Items' page
+    Then I want to see items details

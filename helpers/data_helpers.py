@@ -100,10 +100,21 @@ def create_item_data():
         'item_name': faker.name(),
         'item_vpm': faker.pyint(),
         'item_content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
-        'item_date': faker.date(pattern="%m-%d")
+        'item_date': faker.date(pattern="%m/%d/2015")
     }
     item__data['slug'] = _prepare_for_slug(item__data['item_name'])
     return item__data
+
+
+def create_opportunity_data():
+    faker = get_faker()
+    opportunity__data = {
+        'opportunity_name': faker.name(),
+        'opportunity_views': faker.pyint(),
+        'opportunity_date': faker.date(pattern="%m/%d/2015")
+    }
+    opportunity__data['slug'] = _prepare_for_slug(opportunity__data['opportunity_name'])
+    return opportunity__data
 
 
 def _prepare_for_slug(some_text):

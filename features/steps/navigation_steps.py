@@ -31,6 +31,9 @@ PAGES_MAP = {
     'Additional Page': pages.AdditionalPagePage,
     'Inventory Group': pages.ManageInventorygroupsPage,
     'Update Inventory Group': pages.UpdateInventorygroupsPage,
+    'Update item': pages.UpdateItemsPage,
+    'Scoreboard': pages.ScoreboardPage,
+    'Items': pages.ScoreboardItemsPage,
 }
 
 

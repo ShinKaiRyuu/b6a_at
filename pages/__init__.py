@@ -30,3 +30,6 @@ from pages.Pages.parent_page_page import ParentPagePage
 
 from pages.Inventorygroups.manage_inventory_groups_page import ManageInventorygroupsPage
 from pages.Inventorygroups.update_inventory_group_page import UpdateInventorygroupsPage
+from pages.Inventorygroups.update_item_page import UpdateItemsPage
+from pages.Inventorygroups.scoreboard_page import ScoreboardPage
+from pages.Inventorygroups.scoreboard_items_page import ScoreboardItemsPage
