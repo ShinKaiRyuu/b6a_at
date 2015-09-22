@@ -126,8 +126,8 @@ def step_impl(context):
 @then("I want to see items details")
 def step_impl(context):
     item = [item for item in context.page.get_data() if
-                   item['inventory_title'].lower() == context.item_data['item_name'].lower()]
+            item['inventory_title'].lower() == context.item_data['item_name'].lower()]
     assert_equal(len(item), 1)
     item = item[0]
-    assert_equal(int(item['impressions_total']), context.opportunity_data['opportunity_views'])
-    assert_equal(float(item['vpm_total']), float(context.item_data['item_vpm']))
+    assert_equal(item['impressions_total'], context.opportunity_data['opportunity_views'])
+    assert_equal(item['vpm_total'], float(context.item_data['item_vpm']))
