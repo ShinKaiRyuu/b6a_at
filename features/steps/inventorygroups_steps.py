@@ -1,5 +1,6 @@
 from behave import *
 from nose.tools import assert_equal
+from selenium.webdriver.support.wait import WebDriverWait
 
 from features.steps.add_steps import save_item_id
 from helpers.data_helpers import create_inventory_group_data, create_item_data, create_opportunity_data
@@ -83,7 +84,9 @@ def step_impl(context):
 
 @then("I want to see item in list")
 def step_impl(context):
-    context.page.wait_for_loading()
+    wait = WebDriverWait(context.driver, 10)
+    wait.until(lambda x: (len(context.page.get_data()) == 1) is True)
+    temp = context.page.get_data()
     item = [item for item in context.page.get_data() if
             item['name'].lower() == context.item_data['item_name'].lower()]
     assert_equal(len(item), 1)
@@ -107,8 +110,8 @@ def step_impl(context):
 
 @then("I want to see opportunity in list")
 def step_impl(context):
-    context.page.wait_for_loading()
-    context.driver.refresh()
+    wait = WebDriverWait(context.driver, 10)
+    wait.until(lambda x: (len(context.page.get_data()) == 1) is True)
     opportunity = [opportunity for opportunity in context.page.get_data() if
                    opportunity['name'].lower() == context.opportunity_data['opportunity_name'].lower()]
     assert_equal(len(opportunity), 1)

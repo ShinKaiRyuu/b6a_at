@@ -1,4 +1,4 @@
-from _pydecimal import Decimal
+from decimal import Decimal
 
 from selenium.webdriver.common.by import By
 from webium import BasePage as WebiumBasePage, Finds, Find

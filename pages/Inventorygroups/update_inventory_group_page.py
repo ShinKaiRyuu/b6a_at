@@ -67,23 +67,6 @@ class UpdateInventorygroupsPage(BasePage, TableMixin):
         self.clear_send_keys('item_date', item)
         self.item_update.click()
         self.item_tab.click()
-        # date = item['item_date'].split('-')
-        # self.set_item_time(date[1], date[0])
-
-        # def set_item_time(self, day, month):
-        #     self.item_date.click()
-        #     self.item_date.click()
-        #     self.item_date.click()
-        #     self.item_date.click()
-        #     now = datetime.datetime.now()
-        #     difference = now.month - month
-        #     if difference < 0:
-        #         for x in range(0, difference):
-        #             self.next_month.click()
-        #     elif difference > 0:
-        #         for x in range(0, difference):
-        #             self.prev_month.click()
-        #     item_day = Find(by=By.XPATH, value='//td/a[@href="/page/{}"]'.format(text), context=self)
 
     def view_item(self, item_id):
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'items/update/{}')]".format(item_id),

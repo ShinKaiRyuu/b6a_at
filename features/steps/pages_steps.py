@@ -119,12 +119,12 @@ def step_impl(context):
 
 @when("I open page from parent context_data")
 def step_impl(context):
-    context.driver.get(url=''.join([context.app_url, '/site/page?slug=', context.parent_page_data['slug']]))
+    context.driver.get(url=''.join([context.app_url, '/page/', context.parent_page_data['slug']]))
 
 
 @when("I open page from additional context_data")
 def step_impl(context):
-    context.driver.get(url=''.join([context.app_url, '/site/page?slug=', context.additional_page_data['slug']]))
+    context.driver.get(url=''.join([context.app_url, '/page/', context.additional_page_data['slug']]))
 
 
 @when("I update page")
