@@ -19,10 +19,17 @@ def before_all(context):
     context.driver = get_updated_driver()
     context.app_url = APP_URL
     context.created_items = {}
+    context.skip_filters = 1
+    context.skip_sorting = 1
 
 
 def before_scenario(context, scenario):
-    pass
+    if context.skip_filters == 1:
+        if 'Filter' in scenario.name:
+            scenario.mark_skipped()
+    if context.skip_sorting == 1:
+        if 'Sort' in scenario.name:
+            scenario.mark_skipped()
 
 
 def after_scenario(context, scenario):

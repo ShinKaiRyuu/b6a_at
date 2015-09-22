@@ -172,6 +172,7 @@ def step_impl(context, assignment_value):
 @then("I want to remove (?P<assignment_value>.+) assignmnet")
 def step_impl(context, assignment_value):
     context.page.remove_assignment(assignment_value)
+    context.page.wait_for_loading()
     assignments = context.page.view_assignments()
     assert_equal(len(assignments), 0)
 

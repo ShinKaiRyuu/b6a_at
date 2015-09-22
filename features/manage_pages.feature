@@ -9,42 +9,6 @@ Feature: Manage pages module
     Then I want to see 'Manage Pages' page
     And I want to see table with data
 
-  @done @pages @sorting @sorting_by_order @sorting_pages
-  Scenario: Sort pages records by order ascending/descending
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    When I click on order sort
-    Then i want to see sorted data by order and ascending
-    When I click on order sort
-    Then i want to see sorted data by order and descending
-
-  @done @pages  @sorting  @sorting_by_name @sorting_pages
-  Scenario: Sort pages records by name ascending/descending
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    When I click on name sort
-    Then i want to see sorted data by name and ascending
-    When I click on name sort
-    Then i want to see sorted data by name and descending
-
-  @done @pages  @sorting @sorting_by_createdby @sorting_pages
-  Scenario: Sort pages records by createdby ascending/descending
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    When I click on createdby sort
-    Then i want to see sorted data by createdby and ascending
-    When I click on createdby sort
-    Then i want to see sorted data by createdby and descending
-
-  @done @pages  @sorting @sorting_by_updatedby @sorting_pages
-  Scenario: Sort pages records by updatedby ascending/descending
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    When I click on updatedby sort
-    Then i want to see sorted data by updatedby and ascending
-    When I click on updatedby sort
-    Then i want to see sorted data by updatedby and descending
-
   @wip @pages @creating @slug
   Scenario: Create new parent page
     Given I am logged in as Administrator
@@ -54,7 +18,6 @@ Feature: Manage pages module
     When I create new page
     Then I want to see 'Manage Pages' page
     And I want to see created page in list
-
 
   @wip @pages @drag_n_drop
   Scenario: Drag n drop created parent page from bottom to top
@@ -69,41 +32,6 @@ Feature: Manage pages module
     When I click on logout link
     Then I want to see 'Main' page
     And I want to see created page in header
-
-  @done @pages @filtering @filtering_by_name @filtering_pages
-  Scenario: Filter pages records by name
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I write partnership in name Filter
-    Then I want to see filtered data
-
-  @done @pages @filtering @filtering_by_createdby @filtering_pages
-  Scenario: Filter pages records by created_by
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I write admin in createdby Filter
-    Then I want to see filtered data
-
-  @done @pages @filtering @filtering_by_updatedby @filtering_pages
-  Scenario: Filter pages records by updated_by
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I write admin in updatedby Filter
-    Then I want to see filtered data
-
-  @done @pages @filtering @filtering_by_enabled @filtering_pages
-  Scenario: Filter pages records by enabled
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I select Published in status Filter
-    Then I want to see filtered data
-
-  @done @pages @filtering @filtering_by_disabled @filtering_pages
-  Scenario: Filter pages records by disabled
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I select Draft in status Filter
-    Then I want to see filtered data
 
   @wip @pages @opening @open_parent_and_additional_page
   Scenario: Open parent and additional pages
@@ -142,3 +70,73 @@ Feature: Manage pages module
     And I am on Manage Pages page
     And I want to see created page in list
 
+  @done @pages @filtering @filtering_by_name @filtering_pages
+  Scenario: Filter pages records by name
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write partnership in name Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_createdby @filtering_pages
+  Scenario: Filter pages records by created_by
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write admin in createdby Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_updatedby @filtering_pages
+  Scenario: Filter pages records by updated_by
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write admin in updatedby Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_enabled @filtering_pages
+  Scenario: Filter pages records by enabled
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I select Published in status Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_disabled @filtering_pages
+  Scenario: Filter pages records by disabled
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I select Draft in status Filter
+    Then I want to see filtered data
+
+  @done @pages @sorting @sorting_by_order @sorting_pages
+  Scenario: Sort pages records by order ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I click on order sort
+    Then i want to see sorted data by order and ascending
+    When I click on order sort
+    Then i want to see sorted data by order and descending
+
+  @done @pages  @sorting  @sorting_by_name @sorting_pages
+  Scenario: Sort pages records by name ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I click on name sort
+    Then i want to see sorted data by name and ascending
+    When I click on name sort
+    Then i want to see sorted data by name and descending
+
+  @done @pages  @sorting @sorting_by_createdby @sorting_pages
+  Scenario: Sort pages records by createdby ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I click on createdby sort
+    Then i want to see sorted data by createdby and ascending
+    When I click on createdby sort
+    Then i want to see sorted data by createdby and descending
+
+  @done @pages  @sorting @sorting_by_updatedby @sorting_pages
+  Scenario: Sort pages records by updatedby ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I click on updatedby sort
+    Then i want to see sorted data by updatedby and ascending
+    When I click on updatedby sort
+    Then i want to see sorted data by updatedby and descending
