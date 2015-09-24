@@ -22,12 +22,14 @@ class CreateProductPage(BasePage):
 
     def create_new_product(self, **kwargs):
         self.clear_send_keys('title', kwargs)
-        # self.clear_send_keys('slug', kwargs)
+        self.seourl.click()
         self.html.click()
         self.clear_send_keys('description', kwargs)
         self.clear_send_keys('price', kwargs)
         if kwargs['enabled']:
             self.enabled.click()
+        wait = WebDriverWait(self._driver, 25)
+        wait.until(lambda x: (self.seourl.get_attribute("value") != '') is True)
         self.create.click()
         wait = WebDriverWait(self._driver, 10)
         wait.until(lambda x: (self._driver.title == 'Products') is True)
@@ -53,5 +55,7 @@ class CreateProductPage(BasePage):
         elif product['enabled'] == 0:
             if self.enabled.get_attribute('value') == 1:
                 self.enabled.click()
+        wait = WebDriverWait(self._driver, 25)
+        wait.until(lambda x: (self.seourl.get_attribute("value") != '') is True)
         self.update.click()
         self.wait_for_loading()

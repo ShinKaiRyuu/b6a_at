@@ -37,7 +37,7 @@ def create_user_data():
         'username': faker.user_name(),
         'email': faker.email(),
         'password': faker.password(),
-        'name': faker.name(),
+        'name': faker.pystr(max_chars=10),
         'public_email': faker.email(),
         'location': faker.city(),
         'bio': faker.user_name(),
@@ -48,7 +48,7 @@ def create_user_data():
 def create_product_data():
     faker = get_faker()
     product_data = {
-        'title': faker.name(),
+        'title': faker.pystr(max_chars=10),
         'description': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
         'price': ''.join([str(faker.pyint()), '.00']),
         'enabled': 1,
@@ -71,7 +71,7 @@ def create_partner_data():
 def create_page_data():
     faker = get_faker()
     page_data = {
-        'name': faker.name(),
+        'name': faker.pystr(max_chars=10),
         'parent_id': '',
         'content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
         'status': 'published',
@@ -86,7 +86,7 @@ def create_page_data():
 def create_inventory_group_data():
     faker = get_faker()
     inventory_group_data = {
-        'name': faker.name(),
+        'name': faker.pystr(max_chars=10),
         'partner_id': random.choice(get_enabled_partners_data_keys()),
         'content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
     }
@@ -97,7 +97,7 @@ def create_inventory_group_data():
 def create_item_data():
     faker = get_faker()
     item__data = {
-        'item_name': faker.name(),
+        'item_name': faker.pystr(max_chars=10),
         'item_vpm': faker.pyint(),
         'item_content': ''.join(['<p>', faker.pystr(max_chars=20), '</p>']),
         'item_date': faker.date(pattern="%m/%d/2015")
@@ -109,7 +109,7 @@ def create_item_data():
 def create_opportunity_data():
     faker = get_faker()
     opportunity__data = {
-        'opportunity_name': faker.name(),
+        'opportunity_name': faker.pystr(max_chars=10),
         'opportunity_views': faker.pyint(),
         'opportunity_date': faker.date(pattern="%m/%d/2015")
     }
