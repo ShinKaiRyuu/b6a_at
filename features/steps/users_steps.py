@@ -26,7 +26,7 @@ def step_impl(context):
 
 @then("I want to see user in list is (?P<status>.+)")
 def step_impl(context, status):
-    user = [user for user in context.page.get_data() if user['username'] == context.user_data['username']]
+    user = [user for user in context.page.get_data() if user['login'] == context.user_data['username']]
     assert_equal(len(user), 1)
     if status == 'not deleted':
         assert_equal(user[0]['email'], context.user_data['email'])
@@ -38,8 +38,7 @@ def step_impl(context, status):
 
 @then("I want to see user is (?P<status>.+)")
 def step_impl(context, status):
-    # context.page.filter_data('username', context.user_data['username'])
-    user = [user for user in context.page.get_data() if user['username'] == context.user_data['username']]
+    user = [user for user in context.page.get_data() if user['login'] == context.user_data['username']]
     context.page.replace_bad_elements('.close')
     success_message = context.page.success_message.text
     if status == 'deleted':
@@ -67,7 +66,7 @@ def step_impl(context, filter_text, filter_name):
 @then("I want to see created user in list")
 def step_impl(context):
     context.page.filter_data('username', context.user_data['username'])
-    user = [user for user in context.page.get_data() if user['username'] == context.user_data['username']]
+    user = [user for user in context.page.get_data() if user['login'] == context.user_data['username']]
     assert_equal(len(user), 1)
     user = user[0]
     assert_equal(user['email'], context.user_data['email'])

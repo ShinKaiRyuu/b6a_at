@@ -80,14 +80,19 @@ def step_impl(context):
     item_data = create_item_data()
     context.page.fill_item_info(**item_data)
     context.item_data = item_data
+    context.page.wait_for_form_closed()
 
 
 @then("I want to see item in list")
 def step_impl(context):
+    context.driver.refresh()
+    context.page.wait_for_loading(240)
     wait = WebDriverWait(context.driver, 10)
     wait.until(lambda x: (len(context.page.get_data()) == 1) is True)
+    temp = context.page.get_data()
     item = [item for item in context.page.get_data() if
             item['name'].lower() == context.item_data['item_name'].lower()]
+
     assert_equal(len(item), 1)
     item = item[0]
     item_id = item['links'][0]['update'].split('/')[-1]
@@ -105,10 +110,13 @@ def step_impl(context):
     opportunity_data = create_opportunity_data()
     context.page.fill_opportunity_info(**opportunity_data)
     context.opportunity_data = opportunity_data
+    context.page.wait_for_form_closed()
 
 
 @then("I want to see opportunity in list")
 def step_impl(context):
+    context.driver.refresh()
+    context.page.wait_for_loading(240)
     wait = WebDriverWait(context.driver, 10)
     wait.until(lambda x: (len(context.page.get_data()) == 1) is True)
     opportunity = [opportunity for opportunity in context.page.get_data() if

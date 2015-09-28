@@ -1,17 +1,19 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 from webium import Find
 
 from pages.base_page import BasePage
 from pages.table_mixin import TableMixin
 
 OPPORTUNITIES_COLUMNS_MAP = {
-    '1': 'name',
-    '2': 'views',
-    '3': 'record_date',
-    '4': 'created_by',
-    '5': 'updated_By',
-    '6': 'links',
-    '7': 'data_key'
+    '1': 'place',
+    '2': 'name',
+    '3': 'views',
+    '4': 'record_date',
+    '5': 'created_by',
+    '6': 'updated_By',
+    '7': 'links',
+    '8': 'data_key'
 }
 
 
@@ -25,6 +27,8 @@ class UpdateItemsPage(BasePage, TableMixin):
     # buttons
     update_btn = Find(by=By.XPATH, value='//button[text()="Update"]')
     html = Find(value=".re-html")
+
+    opportunity_form = Find(value='#w0')
 
     opportunity_tab = Find(value='#itemTabs > li:nth-child(2) > a:nth-child(1)')
     create_opportunity = Find(value="span#create_item")
@@ -65,25 +69,12 @@ class UpdateItemsPage(BasePage, TableMixin):
         self.clear_send_keys('opportunity_date', opportunity)
         self.opportunity_update.click()
         self.opportunity_tab.click()
-        # date = opportunity['opportunity_date'].split('-')
-        # self.set_opportunity_time(date[1], date[0])
-
-        # def set_opportunity_time(self, day, month):
-        #     self.opportunity_date.click()
-        #     self.opportunity_date.click()
-        #     self.opportunity_date.click()
-        #     self.opportunity_date.click()
-        #     now = datetime.datetime.now()
-        #     difference = now.month - month
-        #     if difference < 0:
-        #         for x in range(0, difference):
-        #             self.next_month.click()
-        #     elif difference > 0:
-        #         for x in range(0, difference):
-        #             self.prev_month.click()
-        #     opportunity_day = Find(by=By.XPATH, value='//td/a[@href="/page/{}"]'.format(text), context=self)
 
     def view_opportunity(self, opportunity_id):
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(opportunity_id),
                            context=self)
         update_link.click()
+
+    def wait_for_form_closed(self):
+        wait = WebDriverWait(self._driver, 10)
+        wait.until(lambda x: (self.opportunity_form.get_attribute("style") == 'display: none;') is True)

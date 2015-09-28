@@ -5,7 +5,7 @@ Feature: Manage inventorygroups module
     Given I am logged in as Administrator
     And I am on Main page
     When I click on Manage Site link
-    When I click on Inventory Group link
+    When I click on Manage Scoreboard link
     Then I want to see 'Inventory Group' page
     And I want to see table with data
 

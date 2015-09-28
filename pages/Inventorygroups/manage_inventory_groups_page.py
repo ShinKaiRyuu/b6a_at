@@ -6,13 +6,12 @@ from pages.table_mixin import TableMixin
 
 INVENTORYGROUPS_COLUMNS_MAP = {
     '1': 'place',
-    '2': 'id',
-    '3': 'name',
-    '4': 'partner',
-    '5': 'createdby',
-    '6': 'updatedby',
-    '7': 'links',
-    '8': 'data_key'
+    '2': 'name',
+    '3': 'partner',
+    '4': 'createdby',
+    '5': 'updatedby',
+    '6': 'links',
+    '7': 'data_key'
 }
 
 
@@ -45,10 +44,6 @@ class ManageInventorygroupsPage(BasePage, TableMixin):
 
     def create_inventory_group(self, **inventory_group):
         self.clear_send_keys('name', inventory_group)
-        # self.name.clear()
-        # self.name.send_keys(inventory_group['name'])
-        # partner = Select(self.partner_id)
-        # partner.select_by_value(inventory_group['partner_id'])
         self.html.click()
         self.clear_send_keys('content', inventory_group)
         self.update_btn.click()

@@ -1,19 +1,21 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 from webium import Find
 
 from pages.base_page import BasePage
 from pages.table_mixin import TableMixin
 
 ITEMS_COLUMNS_MAP = {
-    '1': 'name',
-    '2': 'average_Views',
-    '3': 'total_opportunities',
-    '4': 'vpm',
-    '5': 'record_date',
-    '6': 'created_by',
-    '7': 'updated_By',
-    '8': 'links',
-    '9': 'data_key'
+    '1': 'place',
+    '2': 'name',
+    '3': 'average_Views',
+    '4': 'total_opportunities',
+    '5': 'vpm',
+    '6': 'record_date',
+    '7': 'created_by',
+    '8': 'updated_By',
+    '9': 'links',
+    '10': 'data_key'
 }
 
 
@@ -28,6 +30,8 @@ class UpdateInventorygroupsPage(BasePage, TableMixin):
 
     update_btn = Find(by=By.XPATH, value='//button[text()="Update"]')
     html = Find(value=".re-html")
+
+    item_form = Find(value='#w0')
 
     item_tab = Find(value='#groupTabs > li:nth-child(2) > a:nth-child(1)')
     create_item = Find(value="span#create_item")
@@ -72,3 +76,7 @@ class UpdateInventorygroupsPage(BasePage, TableMixin):
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'items/update/{}')]".format(item_id),
                            context=self)
         update_link.click()
+
+    def wait_for_form_closed(self):
+        wait = WebDriverWait(self._driver, 10)
+        wait.until(lambda x: (self.item_form.get_attribute("style") == 'display: none;') is True)

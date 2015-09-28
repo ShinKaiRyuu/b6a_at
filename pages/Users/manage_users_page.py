@@ -6,10 +6,10 @@ from pages.base_page import BasePage
 from pages.table_mixin import TableMixin
 
 USER_COLUMNS_MAP = {
-    '1': 'username',
-    '2': 'email',
-    '3': 'registrationtime',
-    '4': 'confirmation',
+    '1': 'login',
+    '2': 'role',
+    '3': 'partner_name',
+    '4': 'email',
     '5': 'block_status',
     '6': 'links',
     '7': 'data_key'
