@@ -86,7 +86,6 @@ def step_impl(context):
 def step_impl(context):
     wait = WebDriverWait(context.driver, 10)
     wait.until(lambda x: (len(context.page.get_data()) == 1) is True)
-    temp = context.page.get_data()
     item = [item for item in context.page.get_data() if
             item['name'].lower() == context.item_data['item_name'].lower()]
     assert_equal(len(item), 1)

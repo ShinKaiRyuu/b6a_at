@@ -1,6 +1,3 @@
-from selenium.webdriver.common.by import By
-from webium import Find
-
 from pages.base_page import BasePage
 from pages.scoreboard_mixin import ScoreboardMixin
 

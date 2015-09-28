@@ -24,7 +24,7 @@ class ScoreboardMixin(WebiumBasePage):
             return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
         elif column_name == 'value_total':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return Decimal(Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',',''))
+            return Decimal(Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',', ''))
         elif column_name == 'inventory_title':
             column_xpath = self.column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text.lower()

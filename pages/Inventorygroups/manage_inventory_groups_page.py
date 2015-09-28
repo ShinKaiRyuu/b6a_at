@@ -38,11 +38,6 @@ class ManageInventorygroupsPage(BasePage, TableMixin):
     def get_data(self):
         return self.get_table_records(INVENTORYGROUPS_COLUMNS_MAP)
 
-    def delete_inventory_group(self, inventory_group_id):
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(inventory_group_id),
-                           context=self)
-        delete_link.click()
-
     def view_inventory_group(self, inventory_group_id):
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(inventory_group_id),
                            context=self)

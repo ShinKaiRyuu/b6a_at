@@ -1,7 +1,8 @@
 from behave import *
 
 from helpers import app_helpers
-from helpers.data_helpers import create_user_data, create_product_data, create_partner_data, create_page_data, create_inventory_group_data
+from helpers.data_helpers import create_user_data, create_product_data, create_partner_data, create_page_data, \
+    create_inventory_group_data
 
 use_step_matcher("re")
 

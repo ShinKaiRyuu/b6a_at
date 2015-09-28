@@ -45,6 +45,7 @@ def step_impl(context):
     context.link = link
     link.click()
 
+
 @then("I want to see updated page in link list")
 def step_impl(context):
     link = context.page.get_link2(context.page_data['name'])
