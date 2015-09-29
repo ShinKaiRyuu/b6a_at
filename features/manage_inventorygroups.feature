@@ -67,7 +67,6 @@ Feature: Manage inventorygroups module
     Then I want to see 'Scoreboard' page
 #    And I want to see inventory group data
     Then I open items page
-    Then I want to see 'Items' page
     Then I want to see items details
 
 #  @wip @sorting @sorting_by_id @sorting_inventorygroups

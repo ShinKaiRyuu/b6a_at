@@ -63,35 +63,35 @@ Feature: Manage users module
     Then I want to see 'User Information' page
     And i want to see user information details
 
-  @wip @update_users @update_user_assignments
-  Scenario: Update user assignments
-    Given created user
-    Given I am logged in as Administrator
-    And I am on Manage Users page
-    Then I want to see created user in list
-    When I view created user information
-    Then I want to see 'Update User Account Details' page
-    When I click on Assignments link
-    Then I want to see 'User Assignments' page
-    Then I want to see not empty user assignmnets
-    When I click on Logout link
-    Then I want to login with these user
-    When I open Manage Users page
-    Then I must see 'Access denied' text
-    When I click on Logout link
-    Given I am logged in as Administrator
-    And I am on Manage Users page
-    Then I want to see created user in list
-    When I view created user information
-    Then I want to see 'Update User Account Details' page
-    When I click on Assignments link
-    Then I want to see 'User Assignments' page
-    Then I want to remove editor assignmnet
-    Then I want to see empty user assignmnets
-    When I click on Logout link
-    Then I want to login with these user
-    When I open Manage Users page
-    Then I must see 'Access denied' text
+#  @wip @update_users @update_user_assignments
+#  Scenario: Update user assignments
+#    Given created user
+#    Given I am logged in as Administrator
+#    And I am on Manage Users page
+#    Then I want to see created user in list
+#    When I view created user information
+#    Then I want to see 'Update User Account Details' page
+#    When I click on Assignments link
+#    Then I want to see 'User Assignments' page
+#    Then I want to see not empty user assignmnets
+#    When I click on Logout link
+#    Then I want to login with these user
+#    When I open Manage Users page
+#    Then I must see 'Access denied' text
+#    When I click on Logout link
+#    Given I am logged in as Administrator
+#    And I am on Manage Users page
+#    Then I want to see created user in list
+#    When I view created user information
+#    Then I want to see 'Update User Account Details' page
+#    When I click on Assignments link
+#    Then I want to see 'User Assignments' page
+#    Then I want to remove editor assignmnet
+#    Then I want to see empty user assignmnets
+#    When I click on Logout link
+#    Then I want to login with these user
+#    When I open Manage Users page
+#    Then I must see 'Access denied' text
 
   @wip @delete_user_2
   Scenario: Delete user
@@ -117,12 +117,12 @@ Feature: Manage users module
     Then I want to get result - <result>
     Examples:
       | username            | email               | password | result                                                                        |
-      | empty               | faker.email         | 123456   | I want to see error message "Username cannot be blank."                       |
+      | empty               | faker.email         | 123456   | I want to see error message "Login cannot be blank."                       |
       | faker.user_name     | empty               | 123456   | I want to see error message "Email cannot be blank."                          |
-      | admin               | faker.email         | 123456   | I want to see error message "Username "admin" has already been taken."        |
+      | admin               | faker.email         | 123456   | I want to see error message "Login "admin" has already been taken."        |
       | faker.user_name     | root@nomail.com     | 123456   | I want to see error message "Email "root@nomail.com" has already been taken." |
       | faker.user_name     | faker.email         | 1234     | I want to see error message "Password should contain at least 6 characters."  |
-      | script alert('aaa') | faker.email         | 123456   | I want to see error message "Username is invalid."                            |
+      | script alert('aaa') | faker.email         | 123456   | I want to see error message "Login is invalid."                            |
       | faker.user_name     | script alert('aaa') | 123456   | I want to see error message "Email is not a valid email address."             |
 
   @wip @delete_user
@@ -211,16 +211,16 @@ Feature: Manage users module
 #    When I click on registrationtime link
 #    Then i want to see sorted data by registrationtime and descending
 
-  @wip @view_roles @viewing
-  Scenario: View roles
-    Given I am logged in as Administrator
-    And I am on Main page
-    When I click on Manage Site link
-    When I click on Manage Users link
-    Then I want to see 'Manage Users' page
-    When I click on Roles link
-    Then I want to see 'Manage Roles' page
-    And I want to see table with data
+#  @wip @view_roles @viewing
+#  Scenario: View roles
+#    Given I am logged in as Administrator
+#    And I am on Main page
+#    When I click on Manage Site link
+#    When I click on Manage Users link
+#    Then I want to see 'Manage Users' page
+#    When I click on Roles link
+#    Then I want to see 'Manage Roles' page
+#    And I want to see table with data
 
 #  @wip @filtering @filtering_by_name @filtering_roles
 #  Scenario: Filter roles records by name
@@ -243,12 +243,12 @@ Feature: Manage users module
 #    Then I write Rule name in rulename Filter
 #    Then I want to see filtered data
 
-  @wip @view_permissions @viewing
-  Scenario: View permissions
-    Given I am logged in as root
-    And I am on Manage Permissions page
-    Then I want to see 'Manage Permissions' page
-    And I want to see table with data
+#  @wip @view_permissions @viewing
+#  Scenario: View permissions
+#    Given I am logged in as root
+#    And I am on Manage Permissions page
+#    Then I want to see 'Manage Permissions' page
+#    And I want to see table with data
 
 #  @wip @filtering @filtering_by_name @filtering_permissions
 #  Scenario: Filter permissions records by name

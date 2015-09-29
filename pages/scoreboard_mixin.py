@@ -33,10 +33,10 @@ class ScoreboardMixin(WebiumBasePage):
             return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
         elif column_name == 'vpm_total':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return float(Find(by=By.XPATH, value=column_xpath, context=self).text)
+            return Decimal(Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',', ''))
         elif column_name == 'inventory_item_views':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return int(Find(by=By.XPATH, value=column_xpath, context=self).text.replace(',', ''))
+            return float(Find(by=By.XPATH, value=column_xpath, context=self).text.replace(',', ''))
         else:
             column_xpath = self.column_xpath.format(data_key, column_num)
             return Find(by=By.XPATH, value=column_xpath, context=self).text

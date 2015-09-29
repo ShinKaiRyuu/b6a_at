@@ -77,8 +77,6 @@ def step_impl(context):
     user_info['id'] = user_id
     user_info['data_key'] = user_data_key
     save_item_id(user_info, 'users', context)
-    context.user_data['registrationtime'] = user['registrationtime']
-    context.user_data['confirmation'] = user['confirmation']
     if context.page.is_element_present('block_user_link'):
         context.user_data['blockstatus'] = "Not blocked"
     elif context.page.is_element_present('unblock_user_link'):
@@ -144,8 +142,6 @@ def step_impl(context):
 @step("i want to see user information details")
 def step_impl(context):
     user_data = context.page.view_user_information()
-    assert_equal(context.user_data['registrationtime'], user_data['registrationtime'])
-    assert_in(context.user_data['confirmation'], user_data['confirmation'])
     assert_equal(context.user_data['blockstatus'], user_data['blockstatus'])
 
 

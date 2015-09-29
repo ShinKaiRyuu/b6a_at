@@ -17,7 +17,7 @@ Feature: Manage partners module
     When I click on Create Partner button
     Then I want to see 'Create Partner' page
     When I create new partner
-    Then I want to see 'Manage Partners' page
+    And I am on Manage Partners page
     And I want to see created partner in list
 
   @done @partners @delete_partner
