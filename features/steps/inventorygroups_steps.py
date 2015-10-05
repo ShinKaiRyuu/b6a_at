@@ -92,10 +92,9 @@ def step_impl(context):
     temp = context.page.get_data()
     item = [item for item in context.page.get_data() if
             item['name'].lower() == context.item_data['item_name'].lower()]
-
     assert_equal(len(item), 1)
     item = item[0]
-    item_id = item['links'][0]['update'].split('/')[-1]
+    item_id = item['links'][0]['delete'].split('/')[-1]
     item_info = {'data_key': item['data_key'], 'id': item_id}
     context.item_info = item_info
 
@@ -117,7 +116,7 @@ def step_impl(context):
 def step_impl(context):
     context.driver.refresh()
     context.page.wait_for_loading(240)
-    wait = WebDriverWait(context.driver, 10)
+    wait = WebDriverWait(context.driver, 30)
     wait.until(lambda x: (len(context.page.get_data()) == 1) is True)
     opportunity = [opportunity for opportunity in context.page.get_data() if
                    opportunity['name'].lower() == context.opportunity_data['opportunity_name'].lower()]

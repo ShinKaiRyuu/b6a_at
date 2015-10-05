@@ -5,8 +5,8 @@ from webium import BasePage as WebiumBasePage, Finds, Find
 
 
 class ScoreboardMixin(WebiumBasePage):
-    record_xpath = '//div[@data-key]'
-    column_xpath = '//div[@data-key="{}"]/div/div[{}]'
+    record_xpath = '//tr[@data-key]'
+    column_xpath = '//tr[@data-key="{}"]/td[{}]'
     column_links_xpath = '//div[@data-key="{}"]/div/div[@title]'
     records = Finds(by=By.XPATH, value=record_xpath)
 
@@ -21,7 +21,7 @@ class ScoreboardMixin(WebiumBasePage):
 
         elif column_name == 'impressions_total':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
+            return int(Find(by=By.XPATH, value=column_xpath, context=self).text.replace(',', ''))
         elif column_name == 'value_total':
             column_xpath = self.column_xpath.format(data_key, column_num)
             return Decimal(Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',', ''))

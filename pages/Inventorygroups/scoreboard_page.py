@@ -18,7 +18,7 @@ ITEMS_COLUMNS_MAP = {
 
 
 class ScoreboardPage(BasePage, ScoreboardMixin):
-    url_path = '/score-board'
+    url_path = '/scoreboard'
 
     parthner_select = Find(value='#scoreboard-partner')
 
