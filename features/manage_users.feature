@@ -116,14 +116,14 @@ Feature: Manage users module
     When I fill create user form with <username>,<email>,<password>
     Then I want to get result - <result>
     Examples:
-      | username            | email               | password | result                                                                        |
-      | empty               | faker.email         | 123456   | I want to see error message "Login cannot be blank."                       |
-      | faker.user_name     | empty               | 123456   | I want to see error message "Email cannot be blank."                          |
-      | admin               | faker.email         | 123456   | I want to see error message "Login "admin" has already been taken."        |
-      | faker.user_name     | root@nomail.com     | 123456   | I want to see error message "Email "root@nomail.com" has already been taken." |
-      | faker.user_name     | faker.email         | 1234     | I want to see error message "Password should contain at least 6 characters."  |
-      | script alert('aaa') | faker.email         | 123456   | I want to see error message "Login is invalid."                            |
-      | faker.user_name     | script alert('aaa') | 123456   | I want to see error message "Email is not a valid email address."             |
+      | username            | email               | password | result                                                                           |
+      | empty               | faker.email         | 123456   | I want to see error message "Login cannot be blank."                             |
+      | faker.user_name     | empty               | 123456   | I want to see error message "Email cannot be blank."                             |
+      | admin               | faker.email         | 123456   | I want to see error message "Login "admin" has already been taken."              |
+      | faker.user_name     | manager@nomail.com  | 123456   | I want to see error message "Email "manager@nomail.com" has already been taken." |
+      | faker.user_name     | faker.email         | 1234     | I want to see error message "Password should contain at least 6 characters."     |
+      | script alert('aaa') | faker.email         | 123456   | I want to see error message "Login is invalid."                                  |
+      | faker.user_name     | script alert('aaa') | 123456   | I want to see error message "Email is not a valid email address."                |
 
   @wip @delete_user
   Scenario: Delete user

@@ -22,8 +22,7 @@ def step_impl(context):
                       inventorygroup['name'].lower() == context.inventory_group_data['name'].lower()]
     assert_equal(len(inventorygroup), 1)
     inventorygroup = inventorygroup[0]
-    inventorygroup_list = inventorygroup['links'][0]['update'].split('/')
-    inventorygroup_id = inventorygroup_list[-1]
+    inventorygroup_id = inventorygroup['links'][0]['update inventory'].split('/')[-1]
     inventorygroup_info = {'id': inventorygroup_id, 'data_key': inventorygroup['data_key']}
     save_item_id(inventorygroup_info, 'inventory_group', context)
 
@@ -89,12 +88,11 @@ def step_impl(context):
     context.page.wait_for_loading(240)
     wait = WebDriverWait(context.driver, 10)
     wait.until(lambda x: (len(context.page.get_data()) == 1) is True)
-    temp = context.page.get_data()
     item = [item for item in context.page.get_data() if
             item['name'].lower() == context.item_data['item_name'].lower()]
     assert_equal(len(item), 1)
     item = item[0]
-    item_id = item['links'][0]['delete'].split('/')[-1]
+    item_id = item['links'][0]['update item'].split('/')[-1]
     item_info = {'data_key': item['data_key'], 'id': item_id}
     context.item_info = item_info
 

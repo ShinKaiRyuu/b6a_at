@@ -16,7 +16,8 @@ Feature: Manage pages module
     When I click on Create Page button
     Then I want to see 'Create Page' page
     When I create new page
-    Then I want to see 'Manage Pages' page
+    Then I want to see 'Updated successfully.' message
+    And I am on Manage Pages page
     And I want to see created page in list
 
   @wip @pages @drag_n_drop

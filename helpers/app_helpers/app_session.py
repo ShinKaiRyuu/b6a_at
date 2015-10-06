@@ -5,8 +5,9 @@ import pages
 
 import requests
 
-# APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
-APP_URL = 'http://b6a.le'
+#APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
+#APP_URL = 'http://b6a.le'
+APP_URL = 'http://b6a-qa.scoreboard-qa.selfip.com'
 ADMIN_CREDENTIALS = {'username': 'admin', 'password': '123456'}
 ROOT_CREDENTIALS = {'username': 'root', 'password': '123456'}
 URL_PREFIXES = {
@@ -81,7 +82,7 @@ def create_source(source_name, source_payload):
     r = s.post(url, data=source_payload)
     assert_equal(r.status_code, 200)
     assert_in('successfully.', r.text)
-    url = r.url + '?sort=-id'
+    url = r.url.replace('update', 'index').replace('/'+source_id, '')
     r = s.get(url)
     data_key = _get_data_key(source_name, source_payload, r)
     return {'id': source_id, 'data_key': data_key}
