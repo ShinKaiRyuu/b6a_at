@@ -72,5 +72,3 @@ class CreatePagePage(BasePage):
         self.clear_send_keys('description', page)
         self.main.click()
         self.update.click()
-        wait = WebDriverWait(self._driver, 25)
-        wait.until(lambda x: (self._driver.title == 'Pages') is True)

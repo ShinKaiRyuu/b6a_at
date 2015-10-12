@@ -16,7 +16,7 @@ Feature: Manage pages module
     When I click on Create Page button
     Then I want to see 'Create Page' page
     When I create new page
-    Then I want to see 'Updated successfully.' message
+    Given I am on Manage Pages page
     And I am on Manage Pages page
     And I want to see created page in list
 
@@ -68,6 +68,7 @@ Feature: Manage pages module
     Then I want to see 'Create Page' page
     And I want to see page details
     Then I want to change page details
+    Given I am on Manage Pages page
     And I am on Manage Pages page
     And I want to see created page in list
 

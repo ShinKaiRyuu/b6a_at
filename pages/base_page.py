@@ -10,9 +10,6 @@ class BasePage(WebiumBasePage):
     logout_css = 'a[href*=logout]'
     logout_link = Find(value=logout_css)
 
-    manage_site_link = Find(value='li.dropdown:nth-child(1) > a:nth-child(1)')
-    manage_products_link = Find(value='#w0 > li:nth-child(4) > a:nth-child(1)')
-
     def clear_send_keys(self, element_name, kwargs):
         value = kwargs.get(element_name)
         element = getattr(self, element_name)

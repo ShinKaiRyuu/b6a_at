@@ -27,14 +27,15 @@ class UpdateUserProfileDetailsPage(BasePage):
     update = Find(by=By.XPATH, value="//button[contains(text(),'Update')]")
 
     def view_user_profile_details(self):
-        user_data = {'name': self.name.get_attribute("value"), 'public_email': self.public_email.get_attribute("value"),
+        user_data = {'name': self.name.get_attribute("value"),
+                     # 'public_email': self.public_email.get_attribute("value"),
                      'location': self.location.get_attribute("value"), 'bio': self.bio.get_attribute("value"),
                      'partner_id': self.partner.get_attribute("value")}
         return user_data
 
     def update_user_profile_details(self, **user):
         self.clear_send_keys('name', user)
-        self.clear_send_keys('public_email', user)
+        # self.clear_send_keys('public_email', user)
         self.clear_send_keys('location', user)
         self.clear_send_keys('bio', user)
         partner = Select(self.partner)

@@ -90,5 +90,5 @@ class ManagePagesPage(BasePage, TableMixin):
 
     def open_page(self, text):
         self._driver.execute_script("$('a[target=_blank]').removeAttr('target')")
-        link = Find(by=By.XPATH, value='//td/a[@href="/page/{}"]'.format(text), context=self)
+        link = Find(by=By.XPATH, value='//td/a[@href="/page/0/{}"]'.format(text), context=self)
         link.click()

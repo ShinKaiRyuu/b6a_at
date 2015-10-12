@@ -12,7 +12,7 @@ class MainPage(BasePage):
     manage_users_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Users'))
     manage_partners_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Partners'))
     manage_pages_link = Find(by=By.XPATH, value=a_tag.format(link_text='Pages'))
-    manage_products_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Products'))
+    manage_products_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Portal'))
     manage_scoreboard_link = Find(by=By.XPATH, value=a_tag.format(link_text='Manage Scoreboard'))
     header_links = Finds(by=By.XPATH, value='//ul[@id="top-menu"]/li/a')
 
