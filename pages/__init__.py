@@ -33,3 +33,5 @@ from pages.Inventorygroups.update_inventory_group_page import UpdateInventorygro
 from pages.Inventorygroups.update_item_page import UpdateItemsPage
 from pages.Inventorygroups.scoreboard_page import ScoreboardPage
 from pages.Inventorygroups.scoreboard_items_page import ScoreboardItemsPage
+
+from pages.partnership_portal_page import PartnershipPortalPage

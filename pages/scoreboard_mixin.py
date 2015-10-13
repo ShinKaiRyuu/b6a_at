@@ -21,25 +21,48 @@ class ScoreboardMixin(WebiumBasePage):
 
         elif column_name == 'impressions_total':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return int(Find(by=By.XPATH, value=column_xpath, context=self).text.replace(',', ''))
+            if Find(by=By.XPATH, value=column_xpath, context=self).text == '(not set)':
+                return ''
+            else:
+                return int(Find(by=By.XPATH, value=column_xpath, context=self).text.replace(',', ''))
         elif column_name == 'value_total':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return Decimal(Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',', ''))
+            if Find(by=By.XPATH, value=column_xpath, context=self).text == '(not set)':
+                return ''
+            else:
+                return Decimal(
+                    Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',', ''))
         elif column_name == 'inventory_title':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return Find(by=By.XPATH, value=column_xpath, context=self).text.lower()
+            if Find(by=By.XPATH, value=column_xpath, context=self).text == '(not set)':
+                return ''
+            else:
+                return Find(by=By.XPATH, value=column_xpath, context=self).text.lower()
         elif column_name == 'opportunity_activation':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
+            if Find(by=By.XPATH, value=column_xpath, context=self).text == '(not set)':
+                return ''
+            else:
+                return int(Find(by=By.XPATH, value=column_xpath, context=self).text)
         elif column_name == 'vpm_total':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return Decimal(Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',', ''))
+            if Find(by=By.XPATH, value=column_xpath, context=self).text == '(not set)':
+                return ''
+            else:
+                return Decimal(
+                    Find(by=By.XPATH, value=column_xpath, context=self).text.replace('$', '').replace(',', ''))
         elif column_name == 'inventory_item_views':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return float(Find(by=By.XPATH, value=column_xpath, context=self).text.replace(',', ''))
+            if Find(by=By.XPATH, value=column_xpath, context=self).text == '(not set)':
+                return ''
+            else:
+                return float(Find(by=By.XPATH, value=column_xpath, context=self).text.replace(',', ''))
         else:
             column_xpath = self.column_xpath.format(data_key, column_num)
-            return Find(by=By.XPATH, value=column_xpath, context=self).text
+            if Find(by=By.XPATH, value=column_xpath, context=self).text == '(not set)':
+                return ''
+            else:
+                return Find(by=By.XPATH, value=column_xpath, context=self).text
 
     def get_table_records(self, columns_map):
         records = [

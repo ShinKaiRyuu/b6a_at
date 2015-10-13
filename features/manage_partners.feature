@@ -2,6 +2,7 @@ Feature: Manage partners module
 
   @done @partners @open_partners_page
   Scenario: Open partners page
+    Given created partner
     Given I am logged in as Administrator
     And I am on Main page
     When I click on Manage Site link
@@ -17,7 +18,8 @@ Feature: Manage partners module
     When I click on Create Partner button
     Then I want to see 'Create Partner' page
     When I create new partner
-    And I am on Manage Partners page
+    And I click on Manage Partners link
+    Then I want to see 'Manage Partners' page
     And I want to see created partner in list
 
   @done @partners @delete_partner
@@ -50,7 +52,8 @@ Feature: Manage partners module
     Then I want to see 'Create Partner' page
     And I want to see partner details
     Then I want to change name starname staremail status
-    And I am on Manage Partners page
+    When I click on Manage Partners link
+    Then I want to see 'Manage Partners' page
     Then I want to see updated partner in list
 
 #  @done @partners @sorting @sorting_by_order @sorting_partners

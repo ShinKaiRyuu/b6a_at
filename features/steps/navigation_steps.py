@@ -34,6 +34,7 @@ PAGES_MAP = {
     'Update item': pages.UpdateItemsPage,
     'Scoreboard': pages.ScoreboardPage,
     'Items': pages.ScoreboardItemsPage,
+    'Partnership Portal': pages.PartnershipPortalPage,
 }
 
 

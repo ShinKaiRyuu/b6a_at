@@ -9,11 +9,11 @@ PRODUCT_COLUMNS_MAP = {
     '1': 'order',
     '2': 'title',
     '3': 'price',
-    '4': 'createdby',
-    '5': 'updatedby',
-    '6': 'enabled',
-    '7': 'links',
-    '8': 'data_key'
+    # '4': 'createdby',
+    '4': 'updated',
+    '5': 'enabled',
+    '6': 'links',
+    '7': 'data_key'
 }
 
 

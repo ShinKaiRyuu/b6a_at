@@ -25,8 +25,7 @@ def step_impl(context):
                  context.partner_data['status'])
     partner_info = {}
     partner_data_key = partner['data_key']
-    partner_list = partner['links'][0]['update'].split('/')
-    partner_id = partner_list[-1]
+    partner_id = partner['links'][0]['update partner'].split('/')[-1]
     partner_info['id'] = partner_id
     partner_info['data_key'] = partner_data_key
     save_item_id(partner_info, 'partners', context)
@@ -37,6 +36,7 @@ def step_impl(context):
     partner = create_partner_data()
     context.page.create_new_partner(**partner)
     context.partner_data = partner
+    context.page.wait_for_loading()
 
 
 @when("I delete created partner")

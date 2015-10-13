@@ -16,6 +16,7 @@ Feature: Manage products module
     When I click on Create new product button
     Then I want to see 'Create Product' page
     When I create new product
+    When I click on Manage Products link
     Then I want to see 'Manage Products' page
     Then I want to see created product in list
 
@@ -43,8 +44,7 @@ Feature: Manage products module
   @done @products @viewing @view_new_product @slug
   Scenario: Open product page
     Given created product
-    Given I am logged in as Administrator
-    And I am on Manage Products page
+    And I am on Partnership Portal page
     When I open product
     Then I want to see 'Product' page
     And I want to see product elements
@@ -58,7 +58,8 @@ Feature: Manage products module
     Then I want to see 'Create Product' page
     And I want to see product details
     Then I want to change title description price enabled
-    And I am on Manage Products page
+    When I click on Manage Products link
+    Then I want to see 'Manage Products' page
     Then I want to see updated product in list
 
 #  @done @products @filtering @filtering_by_title

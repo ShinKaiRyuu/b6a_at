@@ -3,6 +3,7 @@ Feature: Manage inventorygroups module
   @done @pages @open_pages_page
   Scenario: Open Manage inventory group page and view pages records
     Given I am logged in as Administrator
+    Given created inventorygroup
     And I am on Main page
     When I click on Manage Site link
     When I click on Manage Scoreboard link
@@ -65,7 +66,6 @@ Feature: Manage inventorygroups module
     Then I want to see opportunity in list
     When I click on Scoreboard link
     Then I want to see 'Scoreboard' page
-#    And I want to see inventory group data
     Then I open items page
     Then I want to see items details
 

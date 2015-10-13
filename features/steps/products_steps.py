@@ -2,8 +2,8 @@ from behave import *
 from nose.tools import assert_equal, assert_true, assert_in
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-from features.steps.add_steps import save_item_id
 
+from features.steps.add_steps import save_item_id
 from helpers.data_helpers import create_product_data
 
 use_step_matcher("re")
@@ -34,13 +34,13 @@ def step_impl(context):
                  context.product_data['enabled'])
     product_info = {}
     product_data_key = product['data_key']
-    product_list = product['links'][0]['update'].split('/')
+    product_list = product['links'][0]['update product'].split('/')
     product_id = product_list[-1]
     product_info['id'] = product_id
     product_info['data_key'] = product_data_key
     save_item_id(product_info, 'products', context)
-    context.product_data['createdby'] = product['createdby']
-    context.product_data['updatedby'] = product['updatedby']
+    #  context.product_data['createdby'] = product['createdby']
+    context.product_data['updated'] = product['updated']
 
 
 @step("I want to see all products")
@@ -99,7 +99,6 @@ def step_impl(context):
 
 @when("I open product")
 def step_impl(context):
-
     context.page.open_product(context.product_data['title'])
 
 

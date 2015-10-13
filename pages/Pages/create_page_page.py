@@ -29,7 +29,6 @@ class CreatePagePage(BasePage):
 
     def create_new_page(self, **kwargs):
         self.clear_send_keys('name', kwargs)
-        self.seourl.click()
         self.html.click()
         self.clear_send_keys('content', kwargs)
         status_select = Select(self.status)
@@ -59,7 +58,6 @@ class CreatePagePage(BasePage):
 
     def update_page_details(self, **page):
         self.clear_send_keys('name', page)
-        self.seourl.click()
         self.html.click()
         self.clear_send_keys('content', page)
         status_select = Select(self.status)

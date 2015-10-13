@@ -2,6 +2,7 @@ Feature: Manage users module
 
   @done @view_users
   Scenario: Open manage users page and view all users
+    Given created user
     Given I am logged in as Administrator
     And I am on Main page
     When I click on Manage Site link
@@ -210,7 +211,7 @@ Feature: Manage users module
 #    Then i want to see sorted data by registrationtime and ascending
 #    When I click on registrationtime link
 #    Then i want to see sorted data by registrationtime and descending
-
+#
 #  @wip @view_roles @viewing
 #  Scenario: View roles
 #    Given I am logged in as Administrator
@@ -242,14 +243,14 @@ Feature: Manage users module
 #    And I am on Manage Roles page
 #    Then I write Rule name in rulename Filter
 #    Then I want to see filtered data
-
+#
 #  @wip @view_permissions @viewing
 #  Scenario: View permissions
 #    Given I am logged in as root
 #    And I am on Manage Permissions page
 #    Then I want to see 'Manage Permissions' page
 #    And I want to see table with data
-
+#
 #  @wip @filtering @filtering_by_name @filtering_permissions
 #  Scenario: Filter permissions records by name
 #    Given I am logged in as root

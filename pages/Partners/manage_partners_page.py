@@ -8,11 +8,11 @@ from pages.table_mixin import TableMixin
 PARTNER_COLUMNS_MAP = {
     '1': 'order',
     '2': 'name',
-    '3': 'createdby',
-    '4': 'updatedby',
-    '5': 'status',
-    '6': 'links',
-    '7': 'data_key'
+ #  '3': 'createdby',
+    '3': 'updated',
+    '4': 'status',
+    '5': 'links',
+    '6': 'data_key'
 }
 
 

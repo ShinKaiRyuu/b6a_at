@@ -3,6 +3,7 @@ Feature: Manage pages module
   @done @pages @open_pages_page
   Scenario: Open Manage pages page and view pages records
     Given I am logged in as Administrator
+    Given created parent page
     And I am on Main page
     When I click on Manage Site link
     When I click on Manage Pages link
