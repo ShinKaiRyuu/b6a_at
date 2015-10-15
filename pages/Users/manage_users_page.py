@@ -19,14 +19,14 @@ USER_COLUMNS_MAP = {
 class ManageUsersPage(BasePage, TableMixin):
     url_path = '/user/admin/index'
     # sorting
-    username_link = Find(by=By.XPATH, value='//a[contains(@data-sort,"username")]')
+    login_link = Find(by=By.XPATH, value='//a[contains(@data-sort,"username")]')
     email_link = Find(by=By.XPATH, value='//a[contains(@data-sort,"email")]')
     registrationtime_link = Find(by=By.XPATH, value='//a[contains(@data-sort,"created_at")]')
     description_link = Find(by=By.XPATH, value='//a[text()="Description"]')
     price_link = Find(by=By.XPATH, value='//a[text()="Price"]')
 
     # filters
-    username_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[username]"]')
+    login_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[username]"]')
     email_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[email]"]')
     registrationtime_filter = Find(by=By.XPATH, value='//input[@name="UserSearch[created_at]"]')
 

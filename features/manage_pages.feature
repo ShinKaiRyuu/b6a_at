@@ -60,7 +60,7 @@ Feature: Manage pages module
     When I open page from additional context_data
     Then I must see 'The requested page does not exist.' text
 
-  @wip @pages @updating @slug
+  @wip @pages @updating @slug # TODO fix
   Scenario: update parent page
     Given created parent page
     Given I am logged in as Administrator
@@ -73,41 +73,41 @@ Feature: Manage pages module
     And I am on Manage Pages page
     And I want to see created page in list
 
-#  @done @pages @filtering @filtering_by_name @filtering_pages
-#  Scenario: Filter pages records by name
-#    Given I am logged in as Administrator
-#    And I am on Manage Pages page
-#    Then I write partnership in name Filter
-#    Then I want to see filtered data
-#
+  @done @pages @filtering @filtering_by_name @filtering_pages
+  Scenario: Filter pages records by name
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write partnership in name Filter
+    Then I want to see filtered data
+
 #  @done @pages @filtering @filtering_by_createdby @filtering_pages
 #  Scenario: Filter pages records by created_by
 #    Given I am logged in as Administrator
 #    And I am on Manage Pages page
 #    Then I write admin in createdby Filter
 #    Then I want to see filtered data
-#
-#  @done @pages @filtering @filtering_by_updatedby @filtering_pages
-#  Scenario: Filter pages records by updated_by
-#    Given I am logged in as Administrator
-#    And I am on Manage Pages page
-#    Then I write admin in updatedby Filter
-#    Then I want to see filtered data
-#
-#  @done @pages @filtering @filtering_by_enabled @filtering_pages
-#  Scenario: Filter pages records by enabled
-#    Given I am logged in as Administrator
-#    And I am on Manage Pages page
-#    Then I select Published in status Filter
-#    Then I want to see filtered data
-#
-#  @done @pages @filtering @filtering_by_disabled @filtering_pages
-#  Scenario: Filter pages records by disabled
-#    Given I am logged in as Administrator
-#    And I am on Manage Pages page
-#    Then I select Draft in status Filter
-#    Then I want to see filtered data
-#
+
+  @done @pages @filtering @filtering_by_updatedby @filtering_pages #TODO fix
+  Scenario: Filter pages records by updated_by
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I write admin in updatedby Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_enabled @filtering_pages
+  Scenario: Filter pages records by enabled
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I select Published in status Filter
+    Then I want to see filtered data
+
+  @done @pages @filtering @filtering_by_disabled @filtering_pages
+  Scenario: Filter pages records by disabled
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    Then I select Draft in status Filter
+    Then I want to see filtered data
+
 #  @done @pages @sorting @sorting_by_order @sorting_pages
 #  Scenario: Sort pages records by order ascending/descending
 #    Given I am logged in as Administrator
@@ -116,16 +116,16 @@ Feature: Manage pages module
 #    Then i want to see sorted data by order and ascending
 #    When I click on order sort
 #    Then i want to see sorted data by order and descending
-#
-#  @done @pages  @sorting  @sorting_by_name @sorting_pages
-#  Scenario: Sort pages records by name ascending/descending
-#    Given I am logged in as Administrator
-#    And I am on Manage Pages page
-#    When I click on name sort
-#    Then i want to see sorted data by name and ascending
-#    When I click on name sort
-#    Then i want to see sorted data by name and descending
-#
+
+  @done @pages  @sorting  @sorting_by_name @sorting_pages
+  Scenario: Sort pages records by name ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I click on name sort
+    Then i want to see sorted data by name and ascending
+    When I click on name sort
+    Then i want to see sorted data by name and descending
+
 #  @done @pages  @sorting @sorting_by_createdby @sorting_pages
 #  Scenario: Sort pages records by createdby ascending/descending
 #    Given I am logged in as Administrator
@@ -134,12 +134,12 @@ Feature: Manage pages module
 #    Then i want to see sorted data by createdby and ascending
 #    When I click on createdby sort
 #    Then i want to see sorted data by createdby and descending
-#
-#  @done @pages  @sorting @sorting_by_updatedby @sorting_pages
-#  Scenario: Sort pages records by updatedby ascending/descending
-#    Given I am logged in as Administrator
-#    And I am on Manage Pages page
-#    When I click on updatedby sort
-#    Then i want to see sorted data by updatedby and ascending
-#    When I click on updatedby sort
-#    Then i want to see sorted data by updatedby and descending
+
+  @done @pages  @sorting @sorting_by_updatedby @sorting_pages #TODO fix
+  Scenario: Sort pages records by updatedby ascending/descending
+    Given I am logged in as Administrator
+    And I am on Manage Pages page
+    When I click on updatedby sort
+    Then i want to see sorted data by updatedby and ascending
+    When I click on updatedby sort
+    Then i want to see sorted data by updatedby and descending
