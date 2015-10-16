@@ -20,7 +20,7 @@ Feature: Manage products module
     Then I want to see 'Manage Products' page
     Then I want to see created product in list
 
-  @done @products @deleting @delete_product #TODO fix
+  @done @products @deleting @delete_product #TODO fixed
   Scenario: Delete product
     Given created product
     Given I am logged in as Administrator
@@ -49,7 +49,7 @@ Feature: Manage products module
     Then I want to see 'Product' page
     And I want to see product elements
 
-  @done @products @updating @update_product #TODO fix
+  @done @products @updating @update_product #TODO fixed?
   Scenario: Update product
     Given created product
     Given I am logged in as Administrator
@@ -76,7 +76,7 @@ Feature: Manage products module
 #    Then I write admin in createdby Filter
 #    Then I want to see filtered data
 
-  @done @products @filtering @filtering_by_updated_by @filtering_products #TODO fix
+  @done @products @filtering @filtering_by_updated_by @filtering_products #TODO fixed
   Scenario: Filter products records by updated by
     Given I am logged in as Administrator
     And I am on Manage Products page
@@ -106,7 +106,7 @@ Feature: Manage products module
 #    When I click on order sort
 #    Then i want to see sorted data by order and ascending
 
-  @done @products @sorting @sorting_by_order @sorting_products #TODO fix
+  @done @products @sorting @sorting_by_order @sorting_products #TODO fixed
   Scenario: Sort products records by title ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Products page
@@ -133,7 +133,7 @@ Feature: Manage products module
 #    When I click on createdby sort
 #    Then i want to see sorted data by createdby and descending
 
-  @done @products @sorting @sorting_by_order @sorting_products #TODO fix
+  @done @products @sorting @sorting_by_order @sorting_products #TODO fixed
   Scenario: Sort products records by updatedby time ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Products page

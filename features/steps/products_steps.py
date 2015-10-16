@@ -74,13 +74,14 @@ def step_impl(context, status):
 
 @then("I want to see product is (?P<status>.+)")
 def step_impl(context, status):
+    success_message = context.page.success_message.text
+    if status == 'deleted':
+        assert_in('Deleted successfully.', success_message)
     context.page.filter_data('title', context.product_data['title'])
     product = [product for product in context.page.get_data() if product['title'] == context.product_data['title']]
     context.page.replace_bad_elements('.close')
-    success_message = context.page.success_message.text
     if status == 'deleted':
         assert_equal(len(product), 0)
-        assert_in('Deleted successfully.', success_message)
 
 
 @when("I view product")

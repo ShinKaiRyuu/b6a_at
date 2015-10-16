@@ -83,7 +83,7 @@ Feature: Manage partners module
 #    When I click on createdby sort
 #    Then i want to see sorted data by createdby and descending
 
-  @done @partners @sorting @sorting_by_updatedby @sorting_partners #TODO fix
+  @done @partners @sorting @sorting_by_updatedby @sorting_partners #TODO fixed
   Scenario: Sort partners records by updatedby time ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Partners page
@@ -106,7 +106,7 @@ Feature: Manage partners module
 #    Then I write admin in createdby Filter
 #    Then I want to see filtered data
 
-  @done @partners @filtering @filtering_partner_by_updatedby @filtering_partners #TODO fix
+  @done @partners @filtering @filtering_partner_by_updatedby @filtering_partners #TODO fixed
   Scenario: Filter partners records by updated_by
     Given I am logged in as Administrator
     And I am on Manage Partners page

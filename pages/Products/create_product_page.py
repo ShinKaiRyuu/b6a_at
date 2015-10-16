@@ -49,6 +49,8 @@ class CreateProductPage(BasePage):
 
     def update_product_details(self, **product):
         self.clear_send_keys('title', product)
+        wait = WebDriverWait(self._driver, 25)
+        wait.until(lambda x: (self.seourl.get_attribute("value") != '') is True)
         self.html.click()
         self.clear_send_keys('description', product)
         self.clear_send_keys('price', product)

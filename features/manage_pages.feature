@@ -60,7 +60,7 @@ Feature: Manage pages module
     When I open page from additional context_data
     Then I must see 'The requested page does not exist.' text
 
-  @wip @pages @updating @slug # TODO fix
+  @wip @pages @updating @slug # TODO wontfix slug
   Scenario: update parent page
     Given created parent page
     Given I am logged in as Administrator
@@ -87,7 +87,7 @@ Feature: Manage pages module
 #    Then I write admin in createdby Filter
 #    Then I want to see filtered data
 
-  @done @pages @filtering @filtering_by_updatedby @filtering_pages #TODO fix
+  @done @pages @filtering @filtering_by_updatedby @filtering_pages #TODO fixed
   Scenario: Filter pages records by updated_by
     Given I am logged in as Administrator
     And I am on Manage Pages page
@@ -135,7 +135,7 @@ Feature: Manage pages module
 #    When I click on createdby sort
 #    Then i want to see sorted data by createdby and descending
 
-  @done @pages  @sorting @sorting_by_updatedby @sorting_pages #TODO fix
+  @done @pages  @sorting @sorting_by_updatedby @sorting_pages #TODO fixed
   Scenario: Sort pages records by updatedby ascending/descending
     Given I am logged in as Administrator
     And I am on Manage Pages page

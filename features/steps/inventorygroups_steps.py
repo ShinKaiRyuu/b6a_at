@@ -82,7 +82,7 @@ def step_impl(context):
     context.page.wait_for_form_closed()
 
 
-@then("I want to see item in list")
+@then("I want to see item in list") #TODO fix
 def step_impl(context):
     context.driver.refresh()
     context.page.wait_for_loading(240)

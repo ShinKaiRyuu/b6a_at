@@ -8,10 +8,10 @@ INVENTORYGROUPS_COLUMNS_MAP = {
     '1': 'place',
     '2': 'name',
     '3': 'partner',
-    '4': 'createdby',
-    '5': 'updatedby',
-    '6': 'links',
-    '7': 'data_key'
+    # '4': 'createdby',
+    '4': 'updated',
+    '5': 'links',
+    '6': 'data_key'
 }
 
 
