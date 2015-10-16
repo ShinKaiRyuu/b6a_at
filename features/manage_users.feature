@@ -190,9 +190,9 @@ Feature: Manage users module
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I click on login link
-    Then i want to see sorted data by username and ascending
+    Then i want to see sorted data by login and ascending
     When I click on login link
-    Then i want to see sorted data by username and descending
+    Then i want to see sorted data by login and descending
 
   @wip @sorting @sorting_by_email @sorting_users
   Scenario: Sort user records by email ascending/descending

@@ -29,6 +29,16 @@ class TableMixin(WebiumBasePage):
                 for link in links
                 ]
 
+        elif column_name == 'links_without_title':
+            column_xpath = self.column_links_xpath.format(data_key)
+            links = Finds(by=By.XPATH, value=column_xpath, context=self)
+            return [
+                {
+                    link.get_attribute('data-original-title').lower(): link.get_attribute('href')
+                }
+                for link in links
+                ]
+
         elif column_name == 'order':
             column_xpath = self.column_xpath.format(data_key, column_num)
             return int(Find(by=By.XPATH, value=column_xpath, context=self).text)

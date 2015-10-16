@@ -14,7 +14,7 @@ ITEMS_COLUMNS_MAP = {
     '6': 'record_date',
     '7': 'created_by',
     '8': 'updated_By',
-    '9': 'links',
+    '9': 'links_without_title',
     '10': 'data_key'
 }
 

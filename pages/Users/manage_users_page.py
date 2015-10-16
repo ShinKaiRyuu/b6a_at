@@ -48,17 +48,17 @@ class ManageUsersPage(BasePage, TableMixin):
         return self.get_table_records(USER_COLUMNS_MAP)
 
     def delete_user(self, user_username, user_info):
-        self.filter_data('username', user_username)
+        self.filter_data('login', user_username)
         delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(user_info['id']), context=self)
         delete_link.click()
 
     def block_user(self, user_username, user_info):
-        self.filter_data('username', user_username)
+        self.filter_data('login', user_username)
         block_link = Find(by=By.XPATH, value="//a[contains(@href,'block?id={}')]".format(user_info['id']), context=self)
         block_link.click()
 
     def update_user(self, user_username, user_info):
-        self.filter_data('username', user_username)
+        self.filter_data('login', user_username)
         update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(user_info['id']), context=self)
         update_link.click()
 

@@ -12,7 +12,7 @@ OPPORTUNITIES_COLUMNS_MAP = {
     '4': 'record_date',
     '5': 'created_by',
     '6': 'updated_By',
-    '7': 'links',
+    '7': 'links_without_title',
     '8': 'data_key'
 }
 

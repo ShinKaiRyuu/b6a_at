@@ -10,7 +10,7 @@ INVENTORYGROUPS_COLUMNS_MAP = {
     '3': 'partner',
     # '4': 'createdby',
     '4': 'updated',
-    '5': 'links',
+    '5': 'links_without_title',
     '6': 'data_key'
 }
 

@@ -65,7 +65,7 @@ def step_impl(context, filter_text, filter_name):
 @then("I want to see updated user in list")
 @then("I want to see created user in list")
 def step_impl(context):
-    context.page.filter_data('username', context.user_data['username'])
+    context.page.filter_data('login', context.user_data['username'])
     user = [user for user in context.page.get_data() if user['login'] == context.user_data['username']]
     assert_equal(len(user), 1)
     user = user[0]

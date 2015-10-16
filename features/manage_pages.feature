@@ -29,7 +29,7 @@ Feature: Manage pages module
     When I dragndrop created page to top position
     Then I want to see created page in top position
     And I am on Manage Pages page
-    When I click on Public pages link
+    When I click on Public Pages link
     Then I want to see created page in top of list
     When I click on logout link
     Then I want to see 'Main' page
