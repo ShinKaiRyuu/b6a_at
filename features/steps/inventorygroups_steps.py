@@ -1,5 +1,5 @@
 from behave import *
-from nose.tools import assert_equal
+from nose.tools import assert_equal, assert_true
 from selenium.webdriver.support.wait import WebDriverWait
 
 from features.steps.add_steps import save_item_id
@@ -141,3 +141,31 @@ def step_impl(context):
     inventorygroup = inventorygroup[0]
     assert_equal(inventorygroup['impressions_total'], context.opportunity_data['opportunity_views'])
     assert_equal(inventorygroup['vpm_total'], float(context.item_data['item_vpm']))
+
+
+@when("I open item by clicking on name in tabel")
+def step_impl(context):
+    context.page.open_name_link(context.inventorygroup_data['name'])
+
+
+@when("I open item by clicking on view in tabel")
+def step_impl(context):
+    context.page.open_view_link(context.inventorygroup_data['slug'])
+
+
+@then("I want to see items opportunity details")
+def step_impl(context):
+    wait = WebDriverWait(context.driver, 10)
+    wait.until(lambda x: (len(context.page.get_item_data()) != 0) is True)
+    temp2 = context.page.get_item_data()
+    item = [item for item in context.page.get_item_data() if
+            item['activation_element_title'].lower() == context.item_data['item_name'].lower()]
+    assert_equal(len(item), 1)
+    item = item[0]
+    assert_equal(item['impressions_total'], context.opportunity_data['opportunity_views'])
+    context.page.close_modal_window()
+
+
+@then("I want to see items opportunity information")
+def step_impl(context):
+    assert_true(context.inventorygroup_data['content'] in context.driver.page_source)

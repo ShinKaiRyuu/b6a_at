@@ -2,7 +2,7 @@ from behave import *
 from nose.tools import assert_equal, assert_in
 
 from helpers.driver_helpers import update_driver_cookies
-from helpers.app_helpers import ADMIN_CREDENTIALS, ROOT_CREDENTIALS
+from helpers.app_helpers import ADMIN_CREDENTIALS, MANAGER_CREDENTIALS
 
 use_step_matcher("re")
 
@@ -24,12 +24,14 @@ def step_impl(context):
     update_driver_cookies(context.driver, ADMIN_CREDENTIALS)
 
 
-@given("I am logged in as root")
+@given("I am logged in as Manager")
 def step_impl(context):
     context.execute_steps('''
         Given I am on Main page
     ''')
-    update_driver_cookies(context.driver, ROOT_CREDENTIALS)
+    context.driver.delete_all_cookies()
+    context.driver.refresh()
+    update_driver_cookies(context.driver, MANAGER_CREDENTIALS)
     context.driver.refresh()
 
 

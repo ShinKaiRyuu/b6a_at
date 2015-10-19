@@ -9,7 +9,7 @@ import requests
 APP_URL = 'http://b6a.le'
 # APP_URL = 'http://b6a-qa.scoreboard-qa.selfip.com'
 ADMIN_CREDENTIALS = {'username': 'admin', 'password': '123456'}
-ROOT_CREDENTIALS = {'username': 'root', 'password': '123456'}
+MANAGER_CREDENTIALS = {'username': 'manager', 'password': 'manager'}
 URL_PREFIXES = {
     'create_source': '/admin/{name}/create',
     'delete_source': '/admin/{name}/delete/{id}',

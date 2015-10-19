@@ -34,6 +34,8 @@ class ManageInventorygroupsPage(BasePage, TableMixin):
     html = Find(value=".re-html")
     success_message = Find(value='#w0')
 
+    scoreboard_link = Find(by=By.XPATH, value='//ul[contains(@id,"top-menu")]/li/a[contains(text(),"Scoreboard")]')
+
     def get_data(self):
         return self.get_table_records(INVENTORYGROUPS_COLUMNS_MAP)
 
