@@ -37,6 +37,7 @@ Feature: Manage pages module
 
   @wip @pages @opening @open_parent_and_additional_page
   Scenario: Open parent and additional pages
+    Given created parent page
     Given created parent page with additional page
     Given I am logged in as Administrator
     And I am on Manage Pages page
@@ -75,9 +76,10 @@ Feature: Manage pages module
 
   @done @pages @filtering @filtering_by_name @filtering_pages
   Scenario: Filter pages records by name
+    Given created parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
-    Then I write partnership in name Filter
+    Then I write page_name in name Filter
     Then I want to see filtered data
 
 #  @done @pages @filtering @filtering_by_createdby @filtering_pages
@@ -89,20 +91,23 @@ Feature: Manage pages module
 
   @done @pages @filtering @filtering_by_updatedby @filtering_pages #TODO fixed
   Scenario: Filter pages records by updated_by
+    Given created parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
     Then I write admin in updatedby Filter
     Then I want to see filtered data
 
   @done @pages @filtering @filtering_by_enabled @filtering_pages
-  Scenario: Filter pages records by enabled
+  Scenario: Filter pages records by Published
+    Given created parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
     Then I select Published in status Filter
     Then I want to see filtered data
 
   @done @pages @filtering @filtering_by_disabled @filtering_pages
-  Scenario: Filter pages records by disabled
+  Scenario: Filter pages records by Draft
+    Given created parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
     Then I select Draft in status Filter
@@ -119,6 +124,7 @@ Feature: Manage pages module
 
   @done @pages  @sorting  @sorting_by_name @sorting_pages
   Scenario: Sort pages records by name ascending/descending
+    Given created parent page
     Given I am logged in as Administrator
     And I am on Manage Pages page
     When I click on name sort
@@ -137,6 +143,7 @@ Feature: Manage pages module
 
   @done @pages  @sorting @sorting_by_updatedby @sorting_pages #TODO fixed
   Scenario: Sort pages records by updatedby ascending/descending
+    Given created parent page with additional page
     Given I am logged in as Administrator
     And I am on Manage Pages page
     When I click on updatedby sort

@@ -67,6 +67,9 @@ Feature: Manage partners module
 
   @done @partners @sorting @sorting_by_name @sorting_partners
   Scenario: Sort partners records by name ascending/descending
+    Given created partner
+    Given created partner
+    Given created partner
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on name sort
@@ -85,6 +88,9 @@ Feature: Manage partners module
 
   @done @partners @sorting @sorting_by_updatedby @sorting_partners #TODO fixed
   Scenario: Sort partners records by updatedby time ascending/descending
+    Given created partner
+    Given created partner
+    Given created partner
     Given I am logged in as Administrator
     And I am on Manage Partners page
     When I click on updatedby sort
@@ -94,9 +100,12 @@ Feature: Manage partners module
 
   @done @partners @filtering @filtering_partner_by_name @filtering_partners
   Scenario: Filter partners records by name
+    Given created partner
+    Given created partner
+    Given created partner
     Given I am logged in as Administrator
     And I am on Manage Partners page
-    Then I write New in name Filter
+    Then I write partner_name in name Filter
     Then I want to see filtered data
 
 #  @done @partners @filtering @filtering_partner_by_createdby @filtering_partners
@@ -108,13 +117,19 @@ Feature: Manage partners module
 
   @done @partners @filtering @filtering_partner_by_updatedby @filtering_partners #TODO fixed
   Scenario: Filter partners records by updated_by
+    Given created partner
+    Given created partner
+    Given created partner
     Given I am logged in as Administrator
     And I am on Manage Partners page
-    Then I write root in updatedby Filter
+    Then I write admin in updatedby Filter
     Then I want to see filtered data
 
   @done @partners @filtering @filtering_partner_by_enabled @filtering_partners
   Scenario: Filter partners records by enabled
+    Given created partner
+    Given created partner
+    Given created disabled partner
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I select Enabled in status Filter
@@ -122,6 +137,9 @@ Feature: Manage partners module
 
   @done @partners @filtering @filtering_partner_by_disabled @filtering_partners
   Scenario: Filter partners records by disabled
+    Given created partner
+    Given created partner
+    Given created disabled partner
     Given I am logged in as Administrator
     And I am on Manage Partners page
     Then I select Disabled in status Filter

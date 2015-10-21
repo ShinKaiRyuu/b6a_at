@@ -2,6 +2,7 @@ Feature: Manage users module
 
   @done @view_users
   Scenario: Open manage users page and view all users
+    Given created partner
     Given created user
     Given I am logged in as Administrator
     And I am on Main page
@@ -12,6 +13,7 @@ Feature: Manage users module
 
   @wip @create_user
   Scenario: Create new user
+    Given created partner
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I click on Create link
@@ -26,6 +28,7 @@ Feature: Manage users module
 
   @wip @update_users @update_user_account_details
   Scenario: Update user account details
+    Given created partner
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -41,6 +44,7 @@ Feature: Manage users module
 
   @wip @update_users @update_user_profile_details
   Scenario: Update user profile details
+    Given created partner
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -54,6 +58,7 @@ Feature: Manage users module
 
   @wip @update_users @update_user_view_information
   Scenario: View user information
+    Given created partner
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -96,6 +101,7 @@ Feature: Manage users module
 
   @wip @delete_user_2
   Scenario: Delete user
+    Given created partner
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -128,6 +134,7 @@ Feature: Manage users module
 
   @wip @delete_user
   Scenario: Delete user
+    Given created partner
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -140,6 +147,7 @@ Feature: Manage users module
 
   @wip @block_unblock_user
   Scenario: Block\unblock user
+    Given created partner
     Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
@@ -166,6 +174,8 @@ Feature: Manage users module
 
   @wip @filtering @filtering_users @filtering_users_by_username
   Scenario: Filter user records by Username
+    Given created partner
+    Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
     Then I write admin in login Filter
@@ -173,6 +183,8 @@ Feature: Manage users module
 
   @wip @filtering @filtering_users @filtering_users_by_email
   Scenario: Filter user records by email
+    Given created partner
+    Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
     Then I write admin@nomail.com in email Filter
@@ -187,6 +199,8 @@ Feature: Manage users module
 
   @wip @sorting @sorting_by_username @sorting_users
   Scenario: Sort user records by username ascending/descending
+    Given created partner
+    Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I click on login link
@@ -196,6 +210,8 @@ Feature: Manage users module
 
   @wip @sorting @sorting_by_email @sorting_users
   Scenario: Sort user records by email ascending/descending
+    Given created partner
+    Given created user
     Given I am logged in as Administrator
     And I am on Manage Users page
     When I click on email link

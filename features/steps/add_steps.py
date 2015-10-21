@@ -17,6 +17,7 @@ def data_from_table(context):
 @given("created blocked user")
 @given("created user")
 def step_impl(context):
+    context.given = 1
     if 'blocked' not in context.step_name:
         create_user = app_helpers.create_user
     else:
@@ -30,6 +31,7 @@ def step_impl(context):
 @given("created disabled product")
 @given("created product")
 def step_impl(context):
+    context.given = 1
     context.product_data = create_product_data()
     if 'disabled' in context.step_name:
         context.product_data['enabled'] = 0
@@ -41,10 +43,10 @@ def step_impl(context):
 @given("created disabled partner")
 @given("created partner")
 def step_impl(context):
+    context.given = 1
     context.partner_data = create_partner_data()
     if 'disabled' in context.step_name:
-        context.product_data['status'] = 0
-
+        context.partner_data['status'] = 0
     context.partner_info = app_helpers.create_partner(context.partner_data)
     save_item_id(context.partner_info, 'partners', context)
 
@@ -54,6 +56,7 @@ def step_impl(context):
 @given('created parent page with draft additional page')
 @given('created parent page with additional page')
 def step_impl(context):
+    context.given = 1
     context.parent_page_data = create_page_data()
 
     if 'draft parent' in context.step_name:
@@ -79,6 +82,7 @@ def save_item_id(item_info, entity_name, context):
 
 @given("created inventorygroup")
 def step_impl(context):
+    context.given = 1
     context.inventorygroup_data = create_inventory_group_data()
     context.inventorygroup_info = app_helpers.create_inventory_group(context.inventorygroup_data)
     save_item_id(context.inventorygroup_info, 'inventory_group', context)

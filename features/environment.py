@@ -25,6 +25,7 @@ def before_all(context):
 
 
 def before_scenario(context, scenario):
+    context.given = 0
     if context.skip_filters:
         if 'Filter' in scenario.name:
             scenario.mark_skipped()
@@ -41,7 +42,8 @@ def after_scenario(context, scenario):
         if getattr(context, 'save_screenshots', True):
             take_screenshot(scenario, context.step_name)
     get_driver().delete_all_cookies()
-    delete_created_items(context)
+    if context.given != 0:
+        delete_created_items(context)
 
 
 def before_step(context, step):
@@ -73,8 +75,28 @@ def delete_created_items(context):
         'pages': app_helpers.delete_page,
         'inventory_group': app_helpers.delete_inventory_group,
     }
-
     if context.created_items:
         for item_type, ids in context.created_items.items():
-            for _id in ids:
-                delete_map[item_type](_id)
+            if item_type == 'users':
+                for _id in ids:
+                    delete_map[item_type](_id)
+    if context.created_items:
+        for item_type, ids in context.created_items.items():
+            if item_type == 'pages':
+                for _id in ids:
+                    delete_map[item_type](_id)
+    if context.created_items:
+        for item_type, ids in context.created_items.items():
+            if item_type == 'inventory_group':
+                for _id in ids:
+                    delete_map[item_type](_id)
+    if context.created_items:
+        for item_type, ids in context.created_items.items():
+            if item_type == 'products':
+                for _id in ids:
+                    delete_map[item_type](_id)
+    if context.created_items:
+        for item_type, ids in context.created_items.items():
+            if item_type == 'partners':
+                for _id in ids:
+                    delete_map[item_type](_id)

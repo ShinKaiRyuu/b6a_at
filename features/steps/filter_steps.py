@@ -6,6 +6,20 @@ from nose.tools import assert_equal, assert_in
 use_step_matcher("re")
 
 
+@then("I write (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
+@then("I select (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
+def step_impl(context, filter_text, filter_name):
+    context.filter_name = filter_name
+    context.filter_text = filter_text
+    if filter_text == 'page_name':
+        context.filter_text = context.parent_page_data['name']
+    if filter_text == 'partner_name':
+        context.filter_text = context.partner_data['name']
+    if filter_text == 'product_title':
+        context.filter_text = context.product_data['title']
+    context.page.filter_data(context.filter_name, context.filter_text)
+
+
 @then("I want to see filtered data")
 def step_impl(context):
     filter_name = context.filter_name

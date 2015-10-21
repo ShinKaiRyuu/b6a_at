@@ -54,14 +54,6 @@ def step_impl(context, status):
         assert_true(context.page.is_element_present('block_user_link'))
 
 
-@then("I write (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
-@then("I select (?P<filter_text>.+) in (?P<filter_name>.+) Filter")
-def step_impl(context, filter_text, filter_name):
-    context.filter_name = filter_name
-    context.filter_text = filter_text
-    context.page.filter_data(context.filter_name, context.filter_text)
-
-
 @then("I want to see updated user in list")
 @then("I want to see created user in list")
 def step_impl(context):

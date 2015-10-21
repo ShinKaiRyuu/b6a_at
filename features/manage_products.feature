@@ -2,6 +2,7 @@ Feature: Manage products module
 
   @done @products @view_products
   Scenario: Open Manage products page and view products
+    Given created product
     Given I am logged in as Administrator
     And I am on Main page
     When I click on Manage Site link
@@ -64,9 +65,12 @@ Feature: Manage products module
 
   @done @products @filtering @filtering_by_title
   Scenario: Filter products records by title
+    Given created product
+    Given created product
+    Given created product
     Given I am logged in as Administrator
     And I am on Manage Products page
-    Then I write New in title Filter
+    Then I write product_title in title Filter
     Then I want to see filtered data
 
 #  @done @products @filtering @filtering_by_created_by @filtering_products
@@ -78,6 +82,9 @@ Feature: Manage products module
 
   @done @products @filtering @filtering_by_updated_by @filtering_products #TODO fixed
   Scenario: Filter products records by updated by
+    Given created product
+    Given created product
+    Given created product
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I write admin in updatedby Filter
@@ -85,6 +92,9 @@ Feature: Manage products module
 
   @done @products @filtering @filtering_by_enabled @filtering_products
   Scenario: Filter products records by enabled
+    Given created product
+    Given created product
+    Given created disabled product
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I select Enabled in enabled Filter
@@ -92,6 +102,9 @@ Feature: Manage products module
 
   @done @products @filtering @filtering_by_disabled @filtering_products
   Scenario: Filter products records by disabled
+    Given created product
+    Given created product
+    Given created disabled product
     Given I am logged in as Administrator
     And I am on Manage Products page
     Then I select Disabled in enabled Filter
@@ -108,6 +121,9 @@ Feature: Manage products module
 
   @done @products @sorting @sorting_by_order @sorting_products #TODO fixed
   Scenario: Sort products records by title ascending/descending
+    Given created product
+    Given created product
+    Given created disabled product
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on title sort
@@ -117,6 +133,9 @@ Feature: Manage products module
 
   @done @products @sorting @sorting_by_order @sorting_products
   Scenario: Sort products records by price ascending/descending
+    Given created product
+    Given created product
+    Given created disabled product
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on price sort
@@ -135,6 +154,9 @@ Feature: Manage products module
 
   @done @products @sorting @sorting_by_order @sorting_products #TODO fixed
   Scenario: Sort products records by updatedby time ascending/descending
+    Given created product
+    Given created product
+    Given created disabled product
     Given I am logged in as Administrator
     And I am on Manage Products page
     When I click on updatedby sort

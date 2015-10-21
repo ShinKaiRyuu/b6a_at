@@ -163,9 +163,11 @@ def step_impl(context):
     assert_equal(len(item), 1)
     item = item[0]
     assert_equal(item['impressions_total'], context.opportunity_data['opportunity_views'])
-    context.page.close_modal_window()
+    context.driver.refresh()
 
 
 @then("I want to see items opportunity information")
 def step_impl(context):
+    wait = WebDriverWait(context.driver, 10)
+    wait.until(lambda x: (context.inventorygroup_data['content'] in context.driver.page_source) is True)
     assert_true(context.inventorygroup_data['content'] in context.driver.page_source)

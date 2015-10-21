@@ -23,7 +23,7 @@ def step_impl(context):
 @step("I want to see created page in list")
 @step("I want to see updated page in list")
 def step_impl(context):
-    context.page.filter_data('name', context.page_data['name'])
+    #context.page.filter_data('name', context.page_data['name'])
     page = [page for page in context.page.get_data() if page['name'].lower() == context.page_data['name'].lower()]
     assert_equal(len(page), 1)
     page = page[0]

@@ -3,6 +3,7 @@ Feature: Manage inventorygroups module
   @done @pages @open_pages_page
   Scenario: Open Manage inventory group page and view pages records
     Given I am logged in as Administrator
+    Given created partner
     Given created inventorygroup
     And I am on Main page
     When I click on Manage Site link
@@ -13,6 +14,7 @@ Feature: Manage inventorygroups module
   @slug
   Scenario: Create inventorygroup
     Given I am logged in as Administrator
+    Given created partner
     And I am on Inventory Group page
     When I click on create button
     And fill form with inventory group data
@@ -21,8 +23,9 @@ Feature: Manage inventorygroups module
 
   @done @partners @view_partner
   Scenario: View inventory group
-    Given created inventorygroup
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
     And I am on Inventory Group page
     When I view inventory group
     Then I want to see 'Update Inventory Group' page
@@ -30,8 +33,9 @@ Feature: Manage inventorygroups module
 
   @done @partners @update_partner @slug
   Scenario: Update inventory group
-    Given created inventorygroup
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
     And I am on Inventory Group page
     When I view inventory group
     Then I want to see 'Update Inventory Group' page
@@ -42,8 +46,9 @@ Feature: Manage inventorygroups module
 
   @done @partners @delete_partner
   Scenario: Delete inventory group
-    Given created inventorygroup
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
     And I am on Inventory Group page
     When I delete created inventory group
     Then I want to see dialog box and click No
@@ -53,8 +58,9 @@ Feature: Manage inventorygroups module
     Then I want to see inventory group is deleted
 
   Scenario: Create new item and opportunity
-    Given created inventorygroup
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
     And I am on Inventory Group page
     When I view inventory group
     Then I want to see 'Update Inventory Group' page
@@ -70,8 +76,9 @@ Feature: Manage inventorygroups module
     Then I want to see items details
 
   Scenario: Open scoreboard by manager
-    Given created inventorygroup
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
     And I am on Inventory Group page
     When I view inventory group
     Then I want to see 'Update Inventory Group' page
@@ -104,6 +111,9 @@ Feature: Manage inventorygroups module
   @wip @sorting @sorting_by_name @sorting_inventorygroups
   Scenario: Sort inventorygroup records by name ascending/descending
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
+    Given created inventorygroup
     And I am on Inventory Group page
     When I click on name sort
     Then i want to see sorted data by name and ascending
@@ -113,6 +123,9 @@ Feature: Manage inventorygroups module
   @wip @sorting @sorting_by_partner @sorting_inventorygroups
   Scenario: Sort inventorygroup records by partner ascending/descending
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
+    Given created inventorygroup
     And I am on Inventory Group page
     When I click on partner sort
     Then i want to see sorted data by partner and ascending
@@ -129,8 +142,11 @@ Feature: Manage inventorygroups module
 #    Then i want to see sorted data by createdby and descending
 
   @wip @sorting @sorting_by_updatedby @sorting_inventorygroups
-  Scenario: Sort inventorygroup records by partner ascending/descending
+  Scenario: Sort inventorygroup records by updatedby ascending/descending
     Given I am logged in as Administrator
+    Given created partner
+    Given created inventorygroup
+    Given created inventorygroup
     And I am on Inventory Group page
     When I click on updatedby sort
     Then i want to see sorted data by updatedby and ascending
