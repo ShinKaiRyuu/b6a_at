@@ -60,13 +60,13 @@ class ManageProductsPage(BasePage, TableMixin):
 
     def delete_product(self, product_title, product_info):
         self.filter_data('title', product_title)
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(product_info['id']),
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete?id={}')]".format(product_info['id']),
                            context=self)
         delete_link.click()
 
     def view_product(self, product_title, product_info):
         self.filter_data('title', product_title)
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(product_info['id']),
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update?id={}')]".format(product_info['id']),
                            context=self)
         update_link.click()
 

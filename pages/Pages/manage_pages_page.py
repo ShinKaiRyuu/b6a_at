@@ -36,7 +36,7 @@ class ManagePagesPage(BasePage, TableMixin):
     create_page_btn = Find(by=By.XPATH, value='//a[@href="/admin/page/create"]')
 
     # links
-    public_pages_link = Find(by=By.XPATH, value='id("top-menu-pages")/a')
+    public_pages_link = Find(by=By.XPATH, value='id("top-menu-manager")/a')
     link_list = Find(value="#w2")
     links = Finds(by=By.XPATH, value='//ul[@id="w2"]/li/a')
     links2 = Finds(by=By.XPATH, value='//ul[@id="w3"]/li/a')
@@ -61,7 +61,7 @@ class ManagePagesPage(BasePage, TableMixin):
 
     def view_page(self, page_data, page_info):
         self.filter_data('name', page_data['name'])
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(page_info['id']),
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update?id={}')]".format(page_info['id']),
                            context=self)
         update_link.click()
 

@@ -34,7 +34,7 @@ def step_impl(context):
                  context.product_data['enabled'])
     product_info = {}
     product_data_key = product['data_key']
-    product_list = product['links'][0]['update product'].split('/')
+    product_list = product['links'][0]['update product'].split('?id=')
     product_id = product_list[-1]
     product_info['id'] = product_id
     product_info['data_key'] = product_data_key

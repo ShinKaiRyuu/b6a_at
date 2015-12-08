@@ -6,13 +6,13 @@ import pages
 import requests
 
 # APP_URL = 'http://b6a.scoreboard-qa.selfip.com'
-APP_URL = 'http://b6a.le'
-#APP_URL = 'http://b6a-qa.scoreboard-qa.selfip.com'
+#APP_URL = 'http://b6a.le'
+APP_URL = 'http://b6a-qa.scoreboard-qa.selfip.com'
 ADMIN_CREDENTIALS = {'username': 'admin', 'password': '123456'}
 MANAGER_CREDENTIALS = {'username': 'manager', 'password': 'manager'}
 URL_PREFIXES = {
     'create_source': '/admin/{name}/create',
-    'delete_source': '/admin/{name}/delete/{id}',
+    'delete_source': '/admin/{name}/delete?id={id}',
     'block_user': '/user/admin/block',
 }
 SOURCE_NAMES_MAP = {
@@ -77,12 +77,12 @@ def create_source(source_name, source_payload):
     url = get_url(URL_PREFIXES['create_source'].format(name=SOURCE_NAMES_MAP[source_name]))
     r = s.get(url)
     source_payload['_csrf'] = get_csrf_token(r)
-    source_id = r.url.split('/')[-1]
+    source_id = r.url.split('?id=')[-1]
     url = r.url
     r = s.post(url, data=source_payload)
     # assert_equal(r.status_code, 200)
     assert_in('successfully.', r.text)
-    url = r.url.replace('update', 'index').replace('/'+source_id, '')
+    url = r.url.replace('update?id='+source_id, 'index')
     r = s.get(url)
     data_key = _get_data_key(source_name, source_payload, r)
     return {'id': source_id, 'data_key': data_key}

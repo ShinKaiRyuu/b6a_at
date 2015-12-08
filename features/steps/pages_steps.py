@@ -30,7 +30,7 @@ def step_impl(context):
     assert_equal(page['status'].lower(), context.page_data['status'])
     page_info = {}
     page_data_key = page['data_key']
-    page_id = page['links'][4]['delete page'].split('/')[-1]
+    page_id = page['links'][4]['delete page'].split('?id=')[-1]
     page_info['id'] = page_id
     page_info['data_key'] = page_data_key
     save_item_id(page_info, 'pages', context)

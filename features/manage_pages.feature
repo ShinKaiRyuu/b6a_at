@@ -28,38 +28,38 @@ Feature: Manage pages module
     And I am on Manage Pages page
     When I dragndrop created page to top position
     Then I want to see created page in top position
-    And I am on Manage Pages page
-    When I click on Public Pages link
-    Then I want to see created page in top of list
-    When I click on logout link
-    Then I want to see 'Main' page
-    And I want to see created page in header
+#    And I am on Manage Pages page
+#    When I click on Public Pages link
+#    Then I want to see created page in top of list
+#    When I click on logout link
+#    Then I want to see 'Main' page
+#    And I want to see created page in header
 
-  @wip @pages @opening @open_parent_and_additional_page
-  Scenario: Open parent and additional pages
-    Given created parent page
-    Given created parent page with additional page
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    When I open parent
-    Then I want to see 'Parent Page' page
-    And  I want to see additional link
-    When I open additional
-    Then I want to see 'Additional Page' page
-
-  @wip @pages @opening
-  Scenario: open draft pages
-    Given created draft parent page
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I want to see no link to draft parent page
-    When I open page from parent context_data
-    Then I must see 'The requested page does not exist.' text
-    Given created parent page with draft additional page
-    And I am on Manage Pages page
-    Then I want to see no link to draft additional page
-    When I open page from additional context_data
-    Then I must see 'The requested page does not exist.' text
+#  @wip @pages @opening @open_parent_and_additional_page
+#  Scenario: Open parent and additional pages
+#    Given created parent page
+#    Given created parent page with additional page
+#    Given I am logged in as Administrator
+#    And I am on Manage Pages page
+#    When I open parent
+#    Then I want to see 'Parent Page' page
+#    And  I want to see additional link
+#    When I open additional
+#    Then I want to see 'Additional Page' page
+#
+#  @wip @pages @opening
+#  Scenario: open draft pages
+#    Given created draft parent page
+#    Given I am logged in as Administrator
+#    And I am on Manage Pages page
+#    Then I want to see no link to draft parent page
+#    When I open page from parent context_data
+#    Then I must see 'The requested page does not exist.' text
+#    Given created parent page with draft additional page
+#    And I am on Manage Pages page
+#    Then I want to see no link to draft additional page
+#    When I open page from additional context_data
+#    Then I must see 'The requested page does not exist.' text
 
   @wip @pages @updating @slug # TODO wontfix slug
   Scenario: update parent page
@@ -97,21 +97,21 @@ Feature: Manage pages module
     Then I write admin in updatedby Filter
     Then I want to see filtered data
 
-  @done @pages @filtering @filtering_by_enabled @filtering_pages
-  Scenario: Filter pages records by Published
-    Given created parent page
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I select Published in status Filter
-    Then I want to see filtered data
-
-  @done @pages @filtering @filtering_by_disabled @filtering_pages
-  Scenario: Filter pages records by Draft
-    Given created parent page
-    Given I am logged in as Administrator
-    And I am on Manage Pages page
-    Then I select Draft in status Filter
-    Then I want to see filtered data
+#  @done @pages @filtering @filtering_by_enabled @filtering_pages
+#  Scenario: Filter pages records by Published
+#    Given created parent page
+#    Given I am logged in as Administrator
+#    And I am on Manage Pages page
+#    Then I select Published in status Filter
+#    Then I want to see filtered data
+#
+#  @done @pages @filtering @filtering_by_disabled @filtering_pages
+#  Scenario: Filter pages records by Draft
+#    Given created parent page
+#    Given I am logged in as Administrator
+#    And I am on Manage Pages page
+#    Then I select Draft in status Filter
+#    Then I want to see filtered data
 
 #  @done @pages @sorting @sorting_by_order @sorting_pages
 #  Scenario: Sort pages records by order ascending/descending

@@ -6,7 +6,7 @@ from pages.base_page import BasePage
 
 
 class UpdateUserProfileDetailsPage(BasePage):
-    url_path = '/user/admin/update-profile'
+    url_path = '/user/admin/update'
 
     # inputs
     name = Find(value="input#profile-name")

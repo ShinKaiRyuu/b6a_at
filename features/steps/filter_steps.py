@@ -33,6 +33,6 @@ def step_impl(context):
             assert_in(context.filter_text,
                       time.strftime('%Y-%m-%dT%H:%M:%SZ', time.strptime(data[filter_name], '%B %d, %Y %I:%M')))
         elif filter_name == 'updatedby':
-            assert_in(context.filter_text.lower(), data['updated']['updated_by'].lower())
+            assert_in(context.filter_text.lower(), data['updated_by'].lower())
         else:
             assert_in(context.filter_text.lower(), data[filter_name].lower())

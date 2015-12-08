@@ -7,7 +7,7 @@ from pages.base_page import BasePage
 
 
 class CreatePagePage(BasePage):
-    url_path = '/admin/page/update/'
+    url_path = '/admin/page/update'
 
     # inputs
     name = Find(value="input#page-name")

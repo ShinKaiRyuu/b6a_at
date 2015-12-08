@@ -49,7 +49,7 @@ class ManageUsersPage(BasePage, TableMixin):
 
     def delete_user(self, user_username, user_info):
         self.filter_data('login', user_username)
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(user_info['id']), context=self)
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete?id={}')]".format(user_info['id']), context=self)
         delete_link.click()
 
     def block_user(self, user_username, user_info):
@@ -59,7 +59,7 @@ class ManageUsersPage(BasePage, TableMixin):
 
     def update_user(self, user_username, user_info):
         self.filter_data('login', user_username)
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(user_info['id']), context=self)
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update?id={}')]".format(user_info['id']), context=self)
         update_link.click()
 
     def filter_data(self, filter_name, filter_value):

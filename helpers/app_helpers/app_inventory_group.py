@@ -43,5 +43,5 @@ def _get_group_data_key(response):
 
 def _get_group_id(response, data_key):
     soup = BeautifulSoup(response.text)
-    _id = soup.find('tr', attrs={'data-key': data_key}).a['href'].split('/')[-1]
+    _id = soup.find('tr', attrs={'data-key': data_key}).a['href'].split('?id=')[-1]
     return _id

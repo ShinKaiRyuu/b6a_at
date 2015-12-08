@@ -20,7 +20,7 @@ ITEMS_COLUMNS_MAP = {
 
 
 class UpdateInventorygroupsPage(BasePage, TableMixin):
-    url_path = '/admin/groups/update/'
+    url_path = '/admin/groups/update'
 
     name = Find(value="input#inventorygroup-name")
     content = Find(value="textarea#inventorygroup-content")
@@ -73,7 +73,7 @@ class UpdateInventorygroupsPage(BasePage, TableMixin):
         self.item_tab.click()
 
     def view_item(self, item_id):
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'items/update/{}')]".format(item_id),
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'items/update?id={}')]".format(item_id),
                            context=self)
         update_link.click()
 

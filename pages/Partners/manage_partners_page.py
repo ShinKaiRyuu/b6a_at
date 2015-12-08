@@ -41,13 +41,13 @@ class ManagePartnersPage(BasePage, TableMixin):
 
     def delete_partner(self, partner_name, partner_info):
         self.filter_data('name', partner_name)
-        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete/{}')]".format(partner_info['id']),
+        delete_link = Find(by=By.XPATH, value="//a[contains(@href,'delete?id={}')]".format(partner_info['id']),
                            context=self)
         delete_link.click()
 
     def view_partner(self, partner_name, partner_info):
         self.filter_data('name', partner_name)
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(partner_info['id']),
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update?id={}')]".format(partner_info['id']),
                            context=self)
         update_link.click()
 

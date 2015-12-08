@@ -7,7 +7,7 @@ from pages.base_page import BasePage
 
 class CreateProductPage(BasePage):
     # url_path = '/admin/goods/create'
-    url_path = 'admin/goods/update/'
+    url_path = 'admin/goods/update'
     a_tag = "//div/ul/li/a[contains(.,'{link_text}')]"
     # inputs
     title = Find(value="input#goods-title")

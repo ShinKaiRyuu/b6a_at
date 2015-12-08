@@ -64,10 +64,14 @@ class TableMixin(WebiumBasePage):
             registration_time = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.strptime(reg_time, '%B %d, %Y %H:%M'))
             return registration_time
 
-        elif column_name == 'updated':
+        elif column_name == 'updated_by':
             column_xpath = self.column_xpath.format(data_key, column_num)
-            updated = {'updated_by': Find(by=By.XPATH, value=column_xpath, context=self).text.split('\n')[0],
-                       'updated_at': Find(by=By.XPATH, value=column_xpath, context=self).text.split('\n')[1]}
+            updated = Find(by=By.XPATH, value=column_xpath, context=self).text
+            return updated
+
+        elif column_name == 'updated_at':
+            column_xpath = self.column_xpath.format(data_key, column_num)
+            updated = Find(by=By.XPATH, value=column_xpath, context=self).text
             return updated
 
         else:

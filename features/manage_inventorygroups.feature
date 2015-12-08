@@ -70,34 +70,34 @@ Feature: Manage inventorygroups module
     Then I want to see 'Update item' page
     Then I add a new opportunity
     Then I want to see opportunity in list
-    When I click on Scoreboard link
-    Then I want to see 'Scoreboard' page
-    Then I open items page
-    Then I want to see items details
+#    When I click on Scoreboard link
+#    Then I want to see 'Scoreboard' page
+#    Then I open items page
+#    Then I want to see items details
 
-  Scenario: Open scoreboard by manager
-    Given I am logged in as Administrator
-    Given created partner
-    Given created inventorygroup
-    And I am on Inventory Group page
-    When I view inventory group
-    Then I want to see 'Update Inventory Group' page
-    Then I add a new item
-    Then I want to see item in list
-    When I view item
-    Then I want to see 'Update item' page
-    Then I add a new opportunity
-    Then I want to see opportunity in list
-    Given I am logged in as Manager
-    And I am on Inventory Group page
-    When I click on Scoreboard link
-    Then I want to see 'Scoreboard' page
-    Then I open items page
-    Then I want to see items details
-    When I open item by clicking on name in tabel
-    Then I want to see items opportunity details
-    When I open item by clicking on view in tabel
-    Then I want to see items opportunity information
+#  Scenario: Open scoreboard by manager
+#    Given I am logged in as Administrator
+#    Given created partner
+#    Given created inventorygroup
+#    And I am on Inventory Group page
+#    When I view inventory group
+#    Then I want to see 'Update Inventory Group' page
+#    Then I add a new item
+#    Then I want to see item in list
+#    When I view item
+#    Then I want to see 'Update item' page
+#    Then I add a new opportunity
+#    Then I want to see opportunity in list
+#    Given I am logged in as Manager
+#    And I am on Inventory Group page
+#    When I click on Scoreboard link
+#    Then I want to see 'Scoreboard' page
+#    Then I open items page
+#    Then I want to see items details
+#    When I open item by clicking on name in tabel
+#    Then I want to see items opportunity details
+#    When I open item by clicking on view in tabel
+#    Then I want to see items opportunity information
 
 #  @wip @sorting @sorting_by_id @sorting_inventorygroups
 #  Scenario: Sort inventorygroup records by id ascending/descending
@@ -108,7 +108,7 @@ Feature: Manage inventorygroups module
 #    When I click on id sort
 #    Then i want to see sorted data by id and descending
 
-  @wip @sorting @sorting_by_name @sorting_inventorygroups
+  @sorting @sorting_by_name @sorting_inventorygroups
   Scenario: Sort inventorygroup records by name ascending/descending
     Given I am logged in as Administrator
     Given created partner

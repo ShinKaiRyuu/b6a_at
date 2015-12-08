@@ -18,7 +18,7 @@ OPPORTUNITIES_COLUMNS_MAP = {
 
 
 class UpdateItemsPage(BasePage, TableMixin):
-    url_path = '/admin/items/update/'
+    url_path = '/admin/items/update'
 
     name = Find(value="input#item-name")
     vpm = Find(value="input#item-vpm")
@@ -71,7 +71,7 @@ class UpdateItemsPage(BasePage, TableMixin):
         self.opportunity_tab.click()
 
     def view_opportunity(self, opportunity_id):
-        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update/{}')]".format(opportunity_id),
+        update_link = Find(by=By.XPATH, value="//a[contains(@href,'update?id={}')]".format(opportunity_id),
                            context=self)
         update_link.click()
 

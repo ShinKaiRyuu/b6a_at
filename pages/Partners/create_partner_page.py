@@ -9,7 +9,7 @@ from pages.base_page import BasePage
 
 
 class CreatePartnerPage(BasePage):
-    url_path = '/admin/partner/update/'
+    url_path = '/admin/partner/update'
 
     a_tag = "//div/ul/li/a[contains(.,'{link_text}')]"
     # inputs
